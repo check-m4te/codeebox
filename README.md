@@ -7,3 +7,13 @@ A simple code playground 😏
 3. Resizable
 4. Monaco editor! Taken right straight from VSCode source! (Even has command palette)
 5. Dark mode
+
+### Building:
+Download.
+`Yarn / npm i / pnpm i`
+`yarn build / npm run build /  pnpm run build`
+
+### Developing
+Download.
+`Yarn / npm i / pnpm i`
+`yarn dev / npm run dev /  pnpm run dev`
