@@ -11,6 +11,7 @@
     "vite-plugin-monaco-editor": "^1.0.10"
   },
   "dependencies": {
+    "emmet-monaco-es": "^5.0.2",
     "js-base64": "^3.7.2",
     "monaco-editor": "^0.31.1",
     "split-grid": "^1.0.11"

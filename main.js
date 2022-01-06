@@ -2,11 +2,10 @@ import './style.css'
 import Split from 'split-grid'
 import { encode, decode } from 'js-base64'
 import * as monaco from 'monaco-editor'
+import { emmetHTML } from 'emmet-monaco-es'
 import HtmlWorker from 'monaco-editor/esm/vs/language/html/html.worker?worker'
 import CssWorker from 'monaco-editor/esm/vs/language/css/css.worker?worker'
 import TypeScriptWorker from 'monaco-editor/esm/vs/language/typescript/ts.worker?worker'
-
-
 
 window.MonacoEnvironment = {
   getWorker: function(_, label) {
@@ -42,15 +41,33 @@ const $html = monaco.editor.create($('#html'), {
 	language: 'html',
   theme:'vs-dark',
   automaticLayout:true,
-  fontSize:"18px",
+  fontSize:16,
+  fontFamily: 'Cascadia Code PL',
+  fontLigatures:true,
+  minimap: {
+		enabled: false
+	},
+  padding:{
+    top:25
+  }
 });
+emmetHTML(monaco);
 
 const $js = monaco.editor.create($('#js'), {
 	value: "//Press the JS icon to import npm modules",
 	language: 'javascript',
   theme:'vs-dark',
   automaticLayout:true,
-  fontSize:"18px",
+  fontLigatures:true,
+  fontSize:16,
+  fontFamily: 'Cascadia Code PL',
+  minimap: {
+		enabled: false
+	},
+    lineNumbers:false,
+  padding:{
+    top:25
+  }
 });
 
 const $css = monaco.editor.create($('#css'), {
@@ -70,7 +87,15 @@ span {
 	language: 'css',
   theme:'vs-dark',
   automaticLayout:true,
-  fontSize:"18px",
+  fontSize:16,
+  fontFamily: 'Cascadia Code PL',
+  fontLigatures:true,
+  minimap: {
+		enabled: false
+	},
+  padding:{
+    top:25
+  }
 });
 
 let {pathname} = window.location
