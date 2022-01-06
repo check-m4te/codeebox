@@ -1,0 +1,18 @@
+{
+  "name": "codeebox",
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "vite": "^2.7.2",
+    "vite-plugin-monaco-editor": "^1.0.10"
+  },
+  "dependencies": {
+    "js-base64": "^3.7.2",
+    "monaco-editor": "^0.31.1",
+    "split-grid": "^1.0.11"
+  }
+}

@@ -1,0 +1,119 @@
+html, body, .grid {
+  height: 100vh;
+  width: 100vw;
+  padding: 0;
+  margin:0;
+  overflow:hidden;
+}
+
+@font-face {
+  font-family: 'Cascadia Code PL';
+  src: url('/assets/fonts/CascadiaCodePL.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Cascadia Code PL';
+  src: url('/assets/fonts/CascadiaCodePLItalic.woff2') format('woff2');
+  font-weight: normal;
+  font-style: italic;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.editor {
+  position: relative;
+  font-family: 'Cascadia Code PL' !important;
+  --code-editorInlayHintsFontFamily:"Cascadia Code PL", "Menlo", "Monaco", "Courier New", "monospace";
+}
+
+.editor-js {
+  position: relative;
+  font-family: 'Cascadia Code PL' !important;
+  --code-editorInlayHintsFontFamily:"Cascadia Code PL", "Menlo", "Monaco", "Courier New", "monospace";
+}
+
+.left-bar{
+  width: 310px;
+  height: 100vh;
+  overflow-y: auto;
+  scrollbar-gutter: stable;
+}
+
+
+.editor::after{
+  background-repeat: no-repeat;
+  content: '';
+  z-index: 1;
+  margin:0;
+  position: absolute;
+  height: 48px;
+  bottom:35px;
+  right: 35px;
+  width: 48px;
+}
+
+.js{
+  background-repeat: no-repeat;
+  content: '';
+  z-index: 1;
+  margin:0;
+  position: absolute;
+  height: 48px;
+  bottom:35px;
+  right: 35px;
+  width: 48px;
+}
+
+#html::after {
+  background-image: url("./html.svg");
+}
+
+#css::after {
+  background-image: url("./css.svg");
+}
+.js {
+  background-image: url("./js.svg");
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 49.8% 5px 49.8%;
+  grid-template-rows: 49.8% 5px 49.8%;
+}
+
+textarea, iframe{
+  height: 100%;
+  width: 100%;
+  border: none;
+}
+
+textarea {
+  resize: none;
+  background: #222;
+  color:white;
+  
+}
+
+.vertical-gutter {
+  grid-area: 1 / 2 / 4 / 2;
+  background: #555;
+  cursor:col-resize
+}
+
+.last-gutter {
+  grid-area: 6 / 1 / 6 / 4;
+  background: #555;
+  cursor:col-resize
+}
+
+
+.horizontal-gutter {
+  grid-area: 2 / 1 / 2 / 4;
+  background: #555;
+
+  cursor:row-resize
+}
