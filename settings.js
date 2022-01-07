@@ -20,14 +20,10 @@ $settingsBtn.addEventListener("click", () => {
 })
 
 $setThemeBtn.addEventListener('click', () => {
-    fetch(`themes/${capitalizeWords($themeInput.value)}.json`,{
-        headers : { 
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
-         }
-      })
-        .then(data => data.json())
-        .then(data => {
-        monaco.editor.defineTheme('monokai', data);
-        monaco.editor.setTheme('monokai');})
+    importable = 'themes/' + capitalizeWords$themeInput.value + '.json'
+    import(importable)
+    .then(data => {
+        monaco.editor.defineTheme('customTheme', data);
+        monaco.editor.setTheme('customTheme', data);
+    })
 })
