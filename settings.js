@@ -20,7 +20,7 @@ $settingsBtn.addEventListener("click", () => {
 })
 
 $setThemeBtn.addEventListener('click', () => {
-    importable = 'themes/' + capitalizeWords$themeInput.value + '.json'
+    let importable = '/themes/' + capitalizeWords($themeInput.value) + '.json'
     import(importable)
     .then(data => {
         monaco.editor.defineTheme('customTheme', data);
