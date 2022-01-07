@@ -1,4 +1,5 @@
-Known issues: codeebox.vercel.app gives 404 error when loading a URL with code.
+Known issues:
+Cannot load custom themes using verce
 
 ### CodeeBox
 A simple code playground 😏
