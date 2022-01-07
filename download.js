@@ -8,20 +8,18 @@ let htmlFile = `
 <!DOCTYPE html>
 <html>
     <head>
-    <style>
-        ${$css.getValue()}
-    </style>
+        <link href="main.css" rel="stylesheet">
     </head>
     <body>
     ${$html.getValue()}
-    <script type="module" src="/main.js"></script>
+    <script type="module" src="/script.js"></script>
     </body>
 </html>
 `
 
 function downloadZip() {
     zip.file("style.css", $css.getValue());
-    zip.file("index.html", $html.getValue());
+    zip.file("index.html", htmlFile);
     zip.file("script.js", $js.getValue());
     zip.generateAsync({type:"blob"}).then(function(content) {
         // see FileSaver.js

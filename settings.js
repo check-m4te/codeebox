@@ -27,7 +27,4 @@ $setThemeBtn.addEventListener('click', () => {
         .then(data => {
         monaco.editor.defineTheme('monokai', data);
         monaco.editor.setTheme('monokai');})
-        .catch( err => {
-                alert('Invalid theme!')
-            })
 })
