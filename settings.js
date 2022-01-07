@@ -7,8 +7,6 @@ const $setThemeBtn = $('#settheme')
 const $themeInput = $('#themeinp')
 let open = false;
 
-
-//capitalize all words of a string. 
 function capitalizeWords(string) {
     return string.replace(/(?:^|\s)\S/g, function(a) { return a.toUpperCase(); });
 };
