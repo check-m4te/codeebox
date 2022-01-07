@@ -143,8 +143,12 @@ button:active {
   grid-template-rows: 50.1% 5px 50.1%;
 }
 
-#skypack, #download, #settings, #preview {
+#skypack, #download, #settings, #preview, #copy {
   margin:10px;
+}
+
+.clickablesvg g, .clickablesvg path {
+  fill:#ccc
 }
 
 .clickablesvg:hover g, .clickablesvg:hover path{
