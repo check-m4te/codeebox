@@ -2,18 +2,12 @@
   "routes": [
     { "handle": "filesystem" },
     {
-      "src": "/themes/(.*).(js.map|js|css|txt|html|png|json)",
-      "dest": "/themes/$1",
-      "headers": {
-        "cache-control": "no-cache"
-      }
+      "src": "/themes/(.*)",
+      "dest": "/themes/$1"
     },
     {
       "src": "/(.*)",
-      "dest": "/index.html",
-      "headers": {
-        "Cache-Control": "no-cache"
-      }
+      "dest": "/index.html"
     }
   ]
 }
