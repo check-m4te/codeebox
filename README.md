@@ -1,3 +1,5 @@
+Known issues: codeebox.vercel.app gives 404 error when loading a URL with code.
+
 ### CodeeBox
 A simple code playground 😏
 
