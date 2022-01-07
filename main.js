@@ -6,6 +6,7 @@ import { emmetHTML } from 'emmet-monaco-es'
 import HtmlWorker from 'monaco-editor/esm/vs/language/html/html.worker?worker'
 import CssWorker from 'monaco-editor/esm/vs/language/css/css.worker?worker'
 import TypeScriptWorker from 'monaco-editor/esm/vs/language/typescript/ts.worker?worker'
+import cssFormatMonaco from 'css-format-monaco'
 
 window.MonacoEnvironment = {
   getWorker: function(_, label) {
@@ -109,6 +110,14 @@ $html.setValue(deHtml)
 $css.setValue(deCss)
 $js.setValue(deJs)
 
+const generateCssFormater = () => cssFormatMonaco(
+  monaco,
+  {
+    indent_size: 2
+  }
+)
+
+generateCssFormater()
 
 update();
 

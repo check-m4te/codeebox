@@ -8,10 +8,6 @@ const $themeInput = $('#themeinp')
 let open = false;
 
 
-//capitalize only the first letter of the string. 
-function capitalizeFirstLetter(string) {
-    return string.charAt(0).toUpperCase() + string.slice(1);
-}
 //capitalize all words of a string. 
 function capitalizeWords(string) {
     return string.replace(/(?:^|\s)\S/g, function(a) { return a.toUpperCase(); });
@@ -26,7 +22,6 @@ $settingsBtn.addEventListener("click", () => {
 })
 
 $setThemeBtn.addEventListener('click', () => {
-  
     fetch(`/themes/${capitalizeWords($themeInput.value)}.json`)
         .then(data => data.json())
         .then(data => {
