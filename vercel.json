@@ -1,6 +1,19 @@
 {
   "routes": [
     { "handle": "filesystem" },
-    { "src": "/(.*)", "dest": "/index.html" }
+    {
+      "src": "/(.*).(js.map|js|css|txt|html|png|json)",
+      "dest": "/themes/$1.$2",
+      "headers": {
+        "cache-control": "no-cache"
+      }
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/index.html",
+      "headers": {
+        "Cache-Control": "no-cache"
+      }
+    }
   ]
 }
