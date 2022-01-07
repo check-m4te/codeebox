@@ -3,7 +3,7 @@
     { "handle": "filesystem" },
     {
       "src": "/(.*).(js.map|js|css|txt|html|png|json)",
-      "dest": "/themes/$2",
+      "dest": "/themes/$1",
       "headers": {
         "cache-control": "no-cache"
       }
