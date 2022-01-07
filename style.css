@@ -87,18 +87,57 @@ html, body, .grid {
   background-color: #444;
 }
 
+.sidesidebar {
+  position: absolute;
+  z-index:2;
+  height: 100vh;
+  width: 250px;
+  padding: auto;
+  padding-top:10px;
+  padding-left:55px;
+  background-color: #444;
+}
+
+label{
+  color:#f5f5f5;
+  font-family: 'Cascadia Code PL';
+
+}
+
+input {
+  border-radius: 5px;
+  border:none;
+  outline: 0;
+  padding:3px;
+  background-color: #333;
+  color:#f5f5f5;
+  margin:2px;
+}
+
+button {
+  width:185px;
+  border:none;
+  border-radius: 5px;
+  background-color: #222;
+  color: #f5f5f5;
+}
+button:hover {
+  background-color: #252525;
+}
+button:active {
+  background-color: #111;
+}
+
 .grid {
   display: grid;
   grid-template-columns: 50% 5px 50%;
   grid-template-rows: 50.1% 5px 50.1%;
 }
 
-#skypack {
+#skypack, #download, #settings {
   margin:10px;
 }
-#download {
-  margin:10px;
-}
+
 .clickablesvg:hover g, .clickablesvg:hover path{
   fill:#777;
   transition: 0.2s;

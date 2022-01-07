@@ -119,7 +119,12 @@ console.log($css.getValue())
 $html.onDidChangeModelContent(update)
 $css.onDidChangeModelContent(update)
 $js.onDidChangeModelContent(update)
-
+import('monaco-themes/themes/Dominion Day.json')
+  .then(data => {
+      monaco.editor.defineTheme('monokai', data);
+      monaco.editor.setTheme('monokai')
+  })
+  
 
 
 function update() {
@@ -157,4 +162,5 @@ export {
   $js,
   $html,
   $css,
+  $,
 }

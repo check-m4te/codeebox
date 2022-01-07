@@ -16,6 +16,7 @@
     "js-base64": "^3.7.2",
     "jszip": "^3.7.1",
     "monaco-editor": "^0.31.1",
+    "monaco-themes": "^0.4.0",
     "requirejs": "^2.3.6",
     "split-grid": "^1.0.11"
   }

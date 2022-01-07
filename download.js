@@ -4,6 +4,21 @@ import { saveAs } from 'file-saver';
 
 var zip = new JSZip();
 
+let htmlFile = `
+<!DOCTYPE html>
+<html>
+    <head>
+    <style>
+        ${$css.getValue()}
+    </style>
+    </head>
+    <body>
+    ${$html.getValue()}
+    <script type="module" src="/main.js"></script>
+    </body>
+</html>
+`
+
 function downloadZip() {
     zip.file("style.css", $css.getValue());
     zip.file("index.html", $html.getValue());
