@@ -3,13 +3,8 @@ import * as monaco from 'monaco-editor'
 
 const $settingsBtn = $('#settings')
 const $sidebar = $('.sidesidebar')
-const $setThemeBtn = $('#settheme')
 const $themeInput = $('#themeinp')
 let open = false;
-
-function capitalizeWords(string) {
-    return string.replace(/(?:^|\s)\S/g, function(a) { return a.toUpperCase(); });
-};
 
 $settingsBtn.addEventListener("click", () => {
     if(!open)
@@ -19,8 +14,9 @@ $settingsBtn.addEventListener("click", () => {
     open = !open
 })
 
-$setThemeBtn.addEventListener('click', () => {
-    fetch(`./themes/${capitalizeWords($themeInput.value)}.json`,{
+$themeInput.addEventListener('change', () => {
+    var text = $themeInput.options[$themeInput.selectedIndex].text;
+    fetch(`./themes/${text}.json`,{
         headers : { 
           'Content-Type': 'application/json',
           'Accept': 'application/json'
