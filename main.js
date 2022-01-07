@@ -98,7 +98,7 @@ span {
   }
 });
 
-let {pathname} = window.location
+let {pathname} = document.location
 
 const [rawHtml, rawCss, rawJs] = pathname.slice(1).split('%7C')
 let deHtml = rawHtml ? decode(rawHtml) : $html.getValue();
@@ -124,7 +124,19 @@ $js.onDidChangeModelContent(update)
 
 function update() {
   const hashedCode = `${encode($html.getValue())}|${encode($css.getValue())}|${encode($js.getValue())}`
-  window.history.replaceState(null, null, `/${hashedCode}`)
+  window.history.replaceState(null, null, `/${hashedCode}`);
+  let newJS = `
+    <script>
+      ${$js.getValue()}
+    </script>
+  `;
+  if ($js.getValue().includes("import")){
+    newJS = `
+    <script type="module">
+      ${$js.getValue()}
+    </script>
+    `
+  }
   $('iframe').setAttribute('srcdoc', `
     <!DOCTYPE html>
     <html>
@@ -135,14 +147,14 @@ function update() {
       </head>
       <body>
         ${$html.getValue()}
-        <script>
-          ${$js.getValue()}
-        </script>
+        ${newJS}
       </body>
     </html>
   `)
 }
 
 export {
-  $js
+  $js,
+  $html,
+  $css,
 }

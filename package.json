@@ -12,8 +12,11 @@
   },
   "dependencies": {
     "emmet-monaco-es": "^5.0.2",
+    "file-saver": "^2.0.5",
     "js-base64": "^3.7.2",
+    "jszip": "^3.7.1",
     "monaco-editor": "^0.31.1",
+    "requirejs": "^2.3.6",
     "split-grid": "^1.0.11"
   }
 }
