@@ -22,7 +22,12 @@ $settingsBtn.addEventListener("click", () => {
 })
 
 $setThemeBtn.addEventListener('click', () => {
-    fetch(`/themes/${capitalizeWords($themeInput.value)}.json`)
+    fetch(`/themes/${capitalizeWords($themeInput.value)}.json`{
+        headers : { 
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+         }
+      })
         .then(data => data.json())
         .then(data => {
         monaco.editor.defineTheme('monokai', data);
