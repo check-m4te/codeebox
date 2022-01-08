@@ -1,12 +1,11 @@
 {
-  "routes": [
-    { "handle": "filesystem" },
+  "rewrites": [
     {
       "src": "/themes/(.*)",
       "dest": "themes/$1"
     },
     {
-      "src": "/(.*)",
+      "src": "^(.*)$",
       "dest": "/index.html"
     }
   ]
