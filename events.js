@@ -1,5 +1,5 @@
 import {$js} from './main'
-import {downloadZip} from './download'
+import downloadZip from './download'
 import previewer from './previewer'
 const $ = sel => document.querySelector(sel)
 

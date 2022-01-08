@@ -1,8 +1,14 @@
-import JSZip from 'jszip'
-import {$js, $css, $html} from './main'
-import { saveAs } from 'file-saver';
+import JSZip from "jszip";
+import { $js, $css, $html } from "./main";
+import { saveAs } from "file-saver";
 
 var zip = new JSZip();
+
+const generateZip = () => {
+  zip.file("style.css", $css.getValue());
+  zip.file("index.html", htmlFile);
+  zip.file("script.js", $js.getValue());
+};
 
 let htmlFile = `
 <!DOCTYPE html>
@@ -15,16 +21,14 @@ let htmlFile = `
     <script type="module" src="/script.js"></script>
     </body>
 </html>
-`
+`;
 
 function downloadZip() {
-    zip.file("style.css", $css.getValue());
-    zip.file("index.html", htmlFile);
-    zip.file("script.js", $js.getValue());
-    zip.generateAsync({type:"blob"}).then(function(content) {
-        // see FileSaver.js
-        saveAs(content, "codeebox.zip");
-    });
+  generateZip();
+  zip.generateAsync({ type: "blob" }).then(function (content) {
+    // Download the Zip file.
+    saveAs(content, "codeebox.zip");
+  });
 }
 
-export {downloadZip}
+export default downloadZip;

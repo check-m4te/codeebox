@@ -147,6 +147,17 @@ button:active {
   margin:10px;
 }
 
+#copy {
+  position: absolute;
+  bottom: 45px;
+  width:30px;
+}
+#settings {
+  position: absolute;
+  bottom: 0px;
+  width:31px;
+}
+
 .clickablesvg g, .clickablesvg path {
   fill:#ccc
 }
