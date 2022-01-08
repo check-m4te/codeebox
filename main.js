@@ -39,7 +39,7 @@ Split({
 })
 
 const $html = monaco.editor.create($('#html'), {
-	value: "<h1>Codee<span>Box</span></h1>",
+	value: "<h1>CodeeBox</h1>",
 	language: 'html',
   theme:'vs-dark',
   automaticLayout:true,
@@ -56,7 +56,7 @@ const $html = monaco.editor.create($('#html'), {
 emmetHTML(monaco);
 
 const $js = monaco.editor.create($('#js'), {
-	value: "//Press the JS icon to import npm modules",
+	value: "",
 	language: 'javascript',
   theme:'vs-dark',
   automaticLayout:true,
@@ -73,19 +73,7 @@ const $js = monaco.editor.create($('#js'), {
 });
 
 const $css = monaco.editor.create($('#css'), {
-	value: 
-`body {
-  color: rgb(40, 0, 13);
-  background-color: aliceblue;
-  font-family: Arial, Helvetica, sans-serif;
-}
-  
-span {
-  background-color: orange;
-  border-radius: 5px;
-  padding: 5px;
-  margin-left: 5px;
-}`,
+	value: '',
 	language: 'css',
   theme:'vs-dark',
   automaticLayout:true,
