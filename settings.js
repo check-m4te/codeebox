@@ -16,7 +16,10 @@ $settingsBtn.addEventListener("click", () => {
 
 $themeInput.addEventListener('change', () => {
     var text = $themeInput.options[$themeInput.selectedIndex].text;
-    import('monaco-editor/themes/'+text + '.json').then(data => {
+    fetch('https://raw.githubusercontent.com/brijeshb42/monaco-themes/master/themes/'+text + '.json')
+    .then(data => data.json())
+    .then(data => {
         monaco.editor.defineTheme('monokai', data);
-        monaco.editor.setTheme('monokai');})
+        monaco.editor.setTheme('monokai');
+    })
 })
