@@ -1,9 +1,10 @@
-import { $ } from "./main";
+import { $, $html, $css, $js } from "./main";
 import * as monaco from "monaco-editor";
 
 const $settingsBtn = $("#settings");
 const $sidebar = $(".sidesidebar");
 const $themeInput = $("#themeinp");
+const $fontInput = $("#fonts");
 let open = false;
 
 $settingsBtn.addEventListener("click", () => {
@@ -14,7 +15,7 @@ $settingsBtn.addEventListener("click", () => {
 
 //Themes
 $themeInput.addEventListener("change", () => {
-  var text = $themeInput.options[$themeInput.selectedIndex].text;
+  var text = encodeURI($themeInput.options[$themeInput.selectedIndex].text);
   fetch(
     "https://raw.githubusercontent.com/brijeshb42/monaco-themes/master/themes/" +
       text +
@@ -26,3 +27,20 @@ $themeInput.addEventListener("change", () => {
       monaco.editor.setTheme("monokai");
     });
 });
+
+$fontInput.addEventListener('change', () => {
+    var text = encodeURI($fontInput.options[$fontInput.selectedIndex].text);
+    let options = {
+      "fontFamily": text
+    }
+    if (text === 'Fira Code'){
+      $html.updateOptions({"fontFamily": "FiraCode"});
+      $css.updateOptions({"fontFamily": "FiraCode"});
+      $js.updateOptions({"fontFamily": "FiraCode"});
+    }
+    else{
+      $html.updateOptions(options);
+      $css.updateOptions(options);
+      $js.updateOptions(options);
+    }    
+})

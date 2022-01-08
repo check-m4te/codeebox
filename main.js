@@ -42,8 +42,8 @@ const $html = monaco.editor.create($('#html'), {
 	language: 'html',
   theme:'vs-dark',
   automaticLayout:true,
-  fontSize:16,
-  fontFamily: 'Cascadia Code PL',
+  fontSize:18,
+  fontFamily: 'CascadiaCodePL',
   fontLigatures:true,
   minimap: {
 		enabled: false
@@ -60,8 +60,8 @@ const $js = monaco.editor.create($('#js'), {
   theme:'vs-dark',
   automaticLayout:true,
   fontLigatures:true,
-  fontSize:16,
-  fontFamily: 'Cascadia Code PL',
+  fontSize:18,
+  fontFamily: 'CascadiaCodePL',
   minimap: {
 		enabled: false
 	},
@@ -88,8 +88,8 @@ span {
 	language: 'css',
   theme:'vs-dark',
   automaticLayout:true,
-  fontSize:16,
-  fontFamily: 'Cascadia Code PL',
+  fontSize:18,
+  fontFamily: 'CascadiaCodePL',
   fontLigatures:true,
   minimap: {
 		enabled: false
@@ -128,13 +128,6 @@ console.log($css.getValue())
 $html.onDidChangeModelContent(update)
 $css.onDidChangeModelContent(update)
 $js.onDidChangeModelContent(update)
-import('monaco-themes/themes/Dominion Day.json')
-  .then(data => {
-      monaco.editor.defineTheme('monokai', data);
-      monaco.editor.setTheme('monokai')
-  })
-  
-
 
 function update() {
   const hashedCode = `${encode($html.getValue())}|${encode($css.getValue())}|${encode($js.getValue())}`

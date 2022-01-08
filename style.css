@@ -7,14 +7,47 @@ html, body, .grid {
 }
 
 @font-face {
-  font-family: 'Cascadia Code PL';
+  font-family: 'CascadiaCodePL';
   src: url('/assets/fonts/CascadiaCodePL.woff2') format('woff2');
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'Cascadia Code PL';
+  font-family: 'FiraCode';
+  src: url('/assets/fonts/FiraCode.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Agave';
+  src: url('/assets/fonts/Agave.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Ellograph';
+  src: url('/assets/fonts/Ellograph.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Hasklig';
+  src: url('/assets/fonts/Hasklig.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'JuliaMono';
+  src: url('/assets/fonts/JuliaMono.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
+
+@font-face {
+  font-family: 'CascadiaCodePL';
   src: url('/assets/fonts/CascadiaCodePLItalic.woff2') format('woff2');
   font-weight: normal;
   font-style: italic;
