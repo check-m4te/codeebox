@@ -1,12 +1,12 @@
 {
   "rewrites": [
     {
-      "src": "/themes/(.*)",
-      "dest": "themes/$1"
+      "source": "/themes/:file",
+      "destination": "/themes/:file"
     },
     {
-      "src": "^(.*)$",
-      "dest": "/index.html"
+      "source": "^(.*)$",
+      "destination": "/"
     }
   ]
 }
