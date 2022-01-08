@@ -1,10 +1,11 @@
-import {$js} from './main'
+import {$js, update} from './main'
 import downloadZip from './download'
 import previewer from './previewer'
 const $ = sel => document.querySelector(sel)
 
 const $skypackBar = $('.skypackbar')
 const $skypackBtn = $('#importmodule')
+const $runBtn = $('#run');
 const $skypackInp = $('#skyinp')
 
 const $jsBtn = $('#skypack');
@@ -30,3 +31,9 @@ $("#download").addEventListener("click", () => {
 $previewBtn.addEventListener('click', () => {
     previewer.openWindow();
 })
+
+$runBtn.addEventListener('click', () => {
+    update();
+    console.log('clicky guy')
+})
+

@@ -45,7 +45,9 @@
       <option value="6">Hasklig</option>
       <option value="7">JuliaMono</option>
     </select>
-    <input type="number" id="fontsize" placeholder="Font size (press enter)">
+    <input type="number" id="fontsize" placeholder="Font size (press enter)">\
+    <label for="realtime">Realtime Preview</label>
+    <input type="checkbox" id="realtime" checked="true">
   </div>
   <div class="skypackbar" style="display: none;">
     <label for="skyinp">SkyPack module</label>
@@ -79,6 +81,14 @@
             d="M21.229,10.116C19.914,7.925,16.966,4.25,12,4.25S4.086,7.925,2.771,10.116a3.656,3.656,0,0,0,0,3.768C4.086,16.075,7.035,19.75,12,19.75s7.914-3.675,9.229-5.866h0A3.652,3.652,0,0,0,21.229,10.116Zm-1.286,3C18.792,15.031,16.228,18.25,12,18.25s-6.791-3.219-7.943-5.138a2.16,2.16,0,0,1,0-2.224C5.209,8.969,7.773,5.75,12,5.75s6.792,3.219,7.943,5.138A2.155,2.155,0,0,1,19.943,13.112ZM12,7.75A4.25,4.25,0,1,0,16.25,12,4.255,4.255,0,0,0,12,7.75Zm0,7A2.75,2.75,0,1,1,14.75,12,2.752,2.752,0,0,1,12,14.75Z" />
         </g>
       </svg>
+    </div>
+    <div id="run">
+      <svg class="clickablesvg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 489.8 489.8" style="enable-background:new 0 0 489.8 489.8;" xml:space="preserve">
+            <g>
+              <path d="M244.9,0C109.8,0,0,109.8,0,244.9s109.9,244.9,244.9,244.9c135.1,0,244.9-109.9,244.9-244.9C489.8,109.8,380,0,244.9,0z      M244.9,455.5c-116.1,0-210.6-94.5-210.6-210.6S128.8,34.3,244.9,34.3s210.6,94.5,210.6,210.6S361,455.5,244.9,455.5z"/>
+              <path d="M375.9,230.5L200.1,117.7c-5.3-3.4-12-3.6-17.5-0.6s-8.9,8.8-8.9,15v225.5c0,6.3,3.4,12,8.9,15c2.6,1.4,5.4,2.1,8.2,2.1     c3.2,0,6.4-0.9,9.3-2.7l175.8-112.7c4.9-3.2,7.9-8.6,7.9-14.4C383.7,239.1,380.8,233.6,375.9,230.5z M207.9,326.3V163.5     l126.9,81.4L207.9,326.3z"/>
+            </g>
+        </svg>
     </div>
     <div id="copy" onclick="navigator.clipboard.writeText(window.location.href)">
       <svg class="clickablesvg" xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24">

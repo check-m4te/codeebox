@@ -7,6 +7,7 @@ import HtmlWorker from 'monaco-editor/esm/vs/language/html/html.worker?worker'
 import CssWorker from 'monaco-editor/esm/vs/language/css/css.worker?worker'
 import TypeScriptWorker from 'monaco-editor/esm/vs/language/typescript/ts.worker?worker'
 import cssFormatMonaco from 'css-format-monaco'
+import { realtimeUpdate } from './settings'
 
 window.MonacoEnvironment = {
   getWorker: function(_, label) {
@@ -121,13 +122,18 @@ generateCssFormater()
 
 update();
 
-console.log($html.getValue())
-console.log($js.getValue())
-console.log($css.getValue())
-
-$html.onDidChangeModelContent(update)
-$css.onDidChangeModelContent(update)
-$js.onDidChangeModelContent(update)
+$html.onDidChangeModelContent(() => {
+  if(realtimeUpdate)
+    update();
+})
+$css.onDidChangeModelContent(() => {
+  if(realtimeUpdate)
+    update();
+})
+$js.onDidChangeModelContent(() => {
+  if(realtimeUpdate)
+    update();
+})
 
 function update() {
   const hashedCode = `${encode($html.getValue())}|${encode($css.getValue())}|${encode($js.getValue())}`
@@ -144,7 +150,8 @@ function update() {
     </script>
     `
   }
-  $('iframe').setAttribute('srcdoc', `
+  
+    $('iframe').setAttribute('srcdoc', `
     <!DOCTYPE html>
     <html>
       <head>
@@ -165,4 +172,5 @@ export {
   $html,
   $css,
   $,
+  update,
 }

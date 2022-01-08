@@ -176,7 +176,7 @@ button:active {
   grid-template-rows: 50.1% 5px 50.1%;
 }
 
-#skypack, #download, #settings, #preview, #copy {
+#skypack, #download, #settings, #preview, #copy, #run {
   margin:10px;
 }
 
@@ -189,6 +189,11 @@ button:active {
   position: absolute;
   bottom: 0px;
   width:31px;
+}
+#run {
+  position: absolute;
+  bottom: 85px;
+  width: 33px;
 }
 
 .clickablesvg g, .clickablesvg path {

@@ -1,11 +1,14 @@
-import { $, $html, $css, $js } from "./main";
+import { $html, $css, $js } from "./main";
 import * as monaco from "monaco-editor";
+const $ = sel => document.querySelector(sel)
 
 const $settingsBtn = $("#settings");
 const $sidebar = $(".sidesidebar");
 const $themeInput = $("#themeinp");
 const $fontInput = $("#fonts");
 const $fontsizeInput = $("#fontsize");
+const $realtime = $('#realtime');
+let realtimeUpdate = true;
 let open = false;
 
 $settingsBtn.addEventListener("click", () => {
@@ -53,3 +56,11 @@ $fontsizeInput.addEventListener("change", () => {
   $css.updateOptions(options);
   $js.updateOptions(options);
 });
+
+$realtime.addEventListener('change', () => {
+  realtimeUpdate = $realtime.checked;
+})
+
+export {
+  realtimeUpdate,
+}
