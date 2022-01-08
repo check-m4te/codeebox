@@ -5,6 +5,7 @@ const $settingsBtn = $("#settings");
 const $sidebar = $(".sidesidebar");
 const $themeInput = $("#themeinp");
 const $fontInput = $("#fonts");
+const $fontsizeInput = $("#fontsize");
 let open = false;
 
 $settingsBtn.addEventListener("click", () => {
@@ -28,19 +29,27 @@ $themeInput.addEventListener("change", () => {
     });
 });
 
-$fontInput.addEventListener('change', () => {
-    var text = encodeURI($fontInput.options[$fontInput.selectedIndex].text);
-    let options = {
-      "fontFamily": text
-    }
-    if (text === 'Fira Code'){
-      $html.updateOptions({"fontFamily": "FiraCode"});
-      $css.updateOptions({"fontFamily": "FiraCode"});
-      $js.updateOptions({"fontFamily": "FiraCode"});
-    }
-    else{
-      $html.updateOptions(options);
-      $css.updateOptions(options);
-      $js.updateOptions(options);
-    }    
-})
+$fontInput.addEventListener("change", () => {
+  var text = encodeURI($fontInput.options[$fontInput.selectedIndex].text);
+  let options = {
+    fontFamily: text,
+  };
+  if (text === "Fira Code") {
+    $html.updateOptions({ fontFamily: "FiraCode" });
+    $css.updateOptions({ fontFamily: "FiraCode" });
+    $js.updateOptions({ fontFamily: "FiraCode" });
+  } else {
+    $html.updateOptions(options);
+    $css.updateOptions(options);
+    $js.updateOptions(options);
+  }
+});
+
+$fontsizeInput.addEventListener("change", () => {
+  let options = {
+    "fontSize": parseInt($fontsizeInput.value),
+  };
+  $html.updateOptions(options);
+  $css.updateOptions(options);
+  $js.updateOptions(options);
+});
