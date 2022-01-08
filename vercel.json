@@ -3,7 +3,7 @@
     { "handle": "filesystem" },
     {
       "src": "/themes/(.*)",
-      "dest": "/themes/$1"
+      "dest": "themes/$1"
     },
     {
       "src": "/(.*)",
