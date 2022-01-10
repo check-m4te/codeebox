@@ -21,9 +21,7 @@ $settingsBtn.addEventListener("click", () => {
 $themeInput.addEventListener("change", () => {
   var text = encodeURI($themeInput.options[$themeInput.selectedIndex].text);
   fetch(
-    "https://raw.githubusercontent.com/L1ghtingBolt/codeebox/master/themes/" +
-      text +
-      ".json"
+    "themes/" + text + ".json"
   )
     .then((data) => data.json())
     .then((data) => {
