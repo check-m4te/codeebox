@@ -88,9 +88,9 @@ const $css = monaco.editor.create($('#css'), {
   }
 });
 
-let {pathname} = document.location
+let {search} = document.location
 
-const [rawHtml, rawCss, rawJs] = pathname.slice(1).split('%7C')
+const [rawHtml, rawCss, rawJs] = search.slice(1).split('%7C')
 let deHtml = rawHtml ? decode(rawHtml) : $html.getValue();
 let deCss = rawCss ? decode(rawCss) : $css.getValue();
 let deJs = rawJs ? decode(rawJs) : $js.getValue();
@@ -124,7 +124,7 @@ $js.onDidChangeModelContent(() => {
 })
 
 function update() {
-  const hashedCode = `${encode($html.getValue())}|${encode($css.getValue())}|${encode($js.getValue())}`
+  const hashedCode = `?${encode($html.getValue())}|${encode($css.getValue())}|${encode($js.getValue())}`
   window.history.replaceState(null, null, `/${hashedCode}`);
   let newJS = `
     <script>

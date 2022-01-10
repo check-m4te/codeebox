@@ -21,14 +21,14 @@ $settingsBtn.addEventListener("click", () => {
 $themeInput.addEventListener("change", () => {
   var text = encodeURI($themeInput.options[$themeInput.selectedIndex].text);
   fetch(
-    "https://raw.githubusercontent.com/brijeshb42/monaco-themes/master/themes/" +
+    "https://raw.githubusercontent.com/L1ghtingBolt/codeebox/master/public/" +
       text +
       ".json"
   )
     .then((data) => data.json())
     .then((data) => {
-      monaco.editor.defineTheme("monokai", data);
-      monaco.editor.setTheme("monokai");
+      monaco.editor.defineTheme("customtheme", data);
+      monaco.editor.setTheme("customtheme");
     });
 });
 
