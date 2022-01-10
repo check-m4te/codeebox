@@ -26,7 +26,6 @@ window.MonacoEnvironment = {
 
 const $ = sel => document.querySelector(sel)
 
-
 Split({
 	columnGutters: [{
     track: 1,
@@ -90,7 +89,7 @@ const $css = monaco.editor.create($('#css'), {
 
 let {search} = document.location
 
-const [rawHtml, rawCss, rawJs] = search.slice(1).split('%7C')
+const [rawHtml, rawCss, rawJs] = search.slice(1).split('|')
 let deHtml = rawHtml ? decode(rawHtml) : $html.getValue();
 let deCss = rawCss ? decode(rawCss) : $css.getValue();
 let deJs = rawJs ? decode(rawJs) : $js.getValue();
@@ -124,6 +123,7 @@ $js.onDidChangeModelContent(() => {
 })
 
 function update() {
+  console.clear();
   const hashedCode = `?${encode($html.getValue())}|${encode($css.getValue())}|${encode($js.getValue())}`
   window.history.replaceState(null, null, `/${hashedCode}`);
   let newJS = `
