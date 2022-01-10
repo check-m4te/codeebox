@@ -2,6 +2,7 @@ Known issues:
 Cannot load custom themes using verce
 
 ### CodeeBox
+![image](https://user-images.githubusercontent.com/82386159/148798865-7e8fabee-7c9a-4608-8114-41d9a3a00c41.png)
 A simple code playground 😏
 
 ### Features:
