@@ -108,7 +108,7 @@ html, body, .grid {
   position: absolute;
   z-index:2;
   height: 100vh;
-  width: 48px;
+  width: 50px;
   -webkit-box-shadow: 5px 5px 33px 5px rgba(0,0,0,0.49); 
   box-shadow: 5px 5px 33px 5px rgba(0,0,0,0.16);
   background-color: #444;
