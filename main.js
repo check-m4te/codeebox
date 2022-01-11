@@ -26,6 +26,7 @@ window.MonacoEnvironment = {
 
 const $ = sel => document.querySelector(sel)
 
+
 Split({
 	columnGutters: [{
     track: 1,
@@ -43,6 +44,7 @@ const $html = monaco.editor.create($('#html'), {
   theme:'vs-dark',
   automaticLayout:true,
   fontSize:18,
+  renderWhitespace: 'none',
   fontFamily: 'CascadiaCodePL',
   fontLigatures:true,
   minimap: {
@@ -61,6 +63,7 @@ const $js = monaco.editor.create($('#js'), {
   automaticLayout:true,
   fontLigatures:true,
   fontSize:18,
+  renderWhitespace: 'none',
   fontFamily: 'CascadiaCodePL',
   minimap: {
 		enabled: false
@@ -78,6 +81,7 @@ const $css = monaco.editor.create($('#css'), {
   automaticLayout:true,
   fontSize:18,
   fontFamily: 'CascadiaCodePL',
+  renderWhitespace: 'none',
   fontLigatures:true,
   minimap: {
 		enabled: false
@@ -86,10 +90,12 @@ const $css = monaco.editor.create($('#css'), {
     top:25
   }
 });
+monaco.editor.remeasureFonts()
 
-let {search} = document.location
 
-const [rawHtml, rawCss, rawJs] = search.slice(1).split('|')
+let {pathname} = document.location
+
+const [rawHtml, rawCss, rawJs] = pathname.slice(1).split('%7C')
 let deHtml = rawHtml ? decode(rawHtml) : $html.getValue();
 let deCss = rawCss ? decode(rawCss) : $css.getValue();
 let deJs = rawJs ? decode(rawJs) : $js.getValue();
@@ -123,8 +129,7 @@ $js.onDidChangeModelContent(() => {
 })
 
 function update() {
-  console.clear();
-  const hashedCode = `?${encode($html.getValue())}|${encode($css.getValue())}|${encode($js.getValue())}`
+  const hashedCode = `${encode($html.getValue())}|${encode($css.getValue())}|${encode($js.getValue())}`
   window.history.replaceState(null, null, `/${hashedCode}`);
   let newJS = `
     <script>
