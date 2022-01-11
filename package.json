@@ -11,7 +11,9 @@
     "vite-plugin-monaco-editor": "^1.0.10"
   },
   "dependencies": {
+    "ace-builds": "^1.4.13",
     "css-format-monaco": "^2.0.4",
+    "emmet-core": "^1.0.0",
     "emmet-monaco-es": "^5.0.2",
     "file-saver": "^2.0.5",
     "js-base64": "^3.7.2",

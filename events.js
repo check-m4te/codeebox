@@ -21,7 +21,7 @@ $jsBtn.addEventListener('click', () => {
 })
 
 $skypackBtn.addEventListener('click', () => {
-    $js.setValue(`${$js.getValue()}\nimport module from 'https://cdn.skypack.dev/${$skypackInp.value}'`)
+    $js.insert(`\nimport module from 'https://cdn.skypack.dev/${$skypackInp.value}'`)
 })
 
 $("#download").addEventListener("click", () => {

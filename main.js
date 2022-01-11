@@ -1,27 +1,12 @@
 import './style.css'
 import Split from 'split-grid'
 import { encode, decode } from 'js-base64'
-import * as monaco from 'monaco-editor'
-import { emmetHTML } from 'emmet-monaco-es'
-import HtmlWorker from 'monaco-editor/esm/vs/language/html/html.worker?worker'
-import CssWorker from 'monaco-editor/esm/vs/language/css/css.worker?worker'
-import TypeScriptWorker from 'monaco-editor/esm/vs/language/typescript/ts.worker?worker'
-import cssFormatMonaco from 'css-format-monaco'
 import { realtimeUpdate } from './settings'
-
-window.MonacoEnvironment = {
-  getWorker: function(_, label) {
-    if (label === "html") {
-      return new HtmlWorker()
-    }
-    if (label === "javascript") {
-      return new TypeScriptWorker()
-    }
-    if (label === "css") {
-      return new CssWorker()
-    }
-  },
-}
+import 'emmet-core'
+import ace from 'ace-builds/src-noconflict/ace'
+import 'ace-builds/src-noconflict/ext-emmet'
+import 'ace-builds/src-noconflict/ext-prompt'
+import 'ace-builds/src-noconflict/ext-beautify'
 
 
 const $ = sel => document.querySelector(sel)
@@ -38,59 +23,74 @@ Split({
   }]
 })
 
-const $html = monaco.editor.create($('#html'), {
-	value: "<h1>CodeeBox</h1>",
-	language: 'html',
-  theme:'vs-dark',
-  automaticLayout:true,
-  fontSize:18,
-  renderWhitespace: 'none',
-  fontFamily: 'CascadiaCodePL',
-  fontLigatures:true,
-  minimap: {
-		enabled: false
-	},
-  padding:{
-    top:25
-  }
-});
-emmetHTML(monaco);
+const $html = ace.edit('html');
+const $css = ace.edit('css');
+const $js = ace.edit('js');
+$html.$blockScrolling = Infinity
+$js.$blockScrolling = Infinity
+$css.$blockScrolling = Infinity
 
-const $js = monaco.editor.create($('#js'), {
-	value: "",
-	language: 'javascript',
-  theme:'vs-dark',
-  automaticLayout:true,
-  fontLigatures:true,
-  fontSize:18,
-  renderWhitespace: 'none',
-  fontFamily: 'CascadiaCodePL',
-  minimap: {
-		enabled: false
-	},
-    lineNumbers:false,
-  padding:{
-    top:25
-  }
-});
+import('ace-builds/src-noconflict/ext-language_tools')
+  .then(() => {
+    $js.setOptions({
+    enableBasicAutocompletion: true,
+    useWorker:false,
+    enableLiveAutocompletion: true
+  });
+  $html.setOptions({
+    enableLiveAutocompletion: true,
+    useWorker:false,
+    enableBasicAutocompletion: true
+  });
+  $css.setOptions({
+    enableLiveAutocompletion: true,
+    useWorker:false,
+    enableBasicAutocompletion: true
+  });
+  })
 
-const $css = monaco.editor.create($('#css'), {
-	value: '',
-	language: 'css',
-  theme:'vs-dark',
-  automaticLayout:true,
-  fontSize:18,
-  fontFamily: 'CascadiaCodePL',
-  renderWhitespace: 'none',
-  fontLigatures:true,
-  minimap: {
-		enabled: false
-	},
-  padding:{
-    top:25
-  }
-});
-monaco.editor.remeasureFonts()
+
+import('ace-builds/src-noconflict/mode-html')
+.then(() => {
+$html.getSession().setMode("ace/mode/html");
+})
+import('ace-builds/src-noconflict/mode-javascript')
+.then(() => {
+  $js.getSession().setMode("ace/mode/javascript");
+})
+import('ace-builds/src-noconflict/mode-css')
+.then(() => {
+$css.getSession().setMode("ace/mode/css");
+})
+
+import('ace-builds/src-noconflict/theme-monokai')
+  .then(()=>{
+    $html.setTheme("ace/theme/monokai");
+    $css.setTheme("ace/theme/monokai");
+    $js.setTheme("ace/theme/monokai");
+  })
+
+
+
+$html.renderer.setPadding(16)
+$css.renderer.setPadding(16)
+$js.renderer.setPadding(16)
+
+
+$html.renderer.setScrollMargin(10, 10)
+$js.renderer.setScrollMargin(10, 10)
+$css.renderer.setScrollMargin(10, 10)
+
+
+$js.getSession().on('change', update);
+$css.getSession().on('change', update);
+$html.getSession().on('change', update);
+var beautify = ace.require('ace/ext/beautify');
+$js.commands.addCommands(beautify.commands);
+$html.commands.addCommands(beautify.commands);
+$css.commands.addCommands(beautify.commands);
+
+$html.setOption('enableEmmet', true)
 
 
 let {pathname} = document.location
@@ -100,37 +100,20 @@ let deHtml = rawHtml ? decode(rawHtml) : $html.getValue();
 let deCss = rawCss ? decode(rawCss) : $css.getValue();
 let deJs = rawJs ? decode(rawJs) : $js.getValue();
 
-$html.setValue(deHtml)
-$css.setValue(deCss)
-$js.setValue(deJs)
-
-const generateCssFormater = () => cssFormatMonaco(
-  monaco,
-  {
-    indent_size: 2
-  }
-)
-
-generateCssFormater()
+$html.setValue(deHtml, -1)
+$css.setValue(deCss, -1)
+$js.setValue(deJs, -1)
 
 update();
-
-$html.onDidChangeModelContent(() => {
-  if(realtimeUpdate)
-    update();
-})
-$css.onDidChangeModelContent(() => {
-  if(realtimeUpdate)
-    update();
-})
-$js.onDidChangeModelContent(() => {
-  if(realtimeUpdate)
-    update();
-})
+beautify.beautify($html.getSession());
+beautify.beautify($css.getSession());
+beautify.beautify($js.getSession());
 
 function update() {
+  
   const hashedCode = `${encode($html.getValue())}|${encode($css.getValue())}|${encode($js.getValue())}`
   window.history.replaceState(null, null, `/${hashedCode}`);
+  console.clear();
   let newJS = `
     <script>
       ${$js.getValue()}

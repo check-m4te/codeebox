@@ -1,5 +1,47 @@
 import { $html, $css, $js } from "./main";
 import * as monaco from "monaco-editor";
+import ace from 'ace-builds'
+// THEME IMPORT
+import 'ace-builds/src-noconflict/theme-monokai'
+import 'ace-builds/src-noconflict/theme-textmate'
+import 'ace-builds/src-noconflict/theme-chaos'
+import 'ace-builds/src-noconflict/theme-chrome'
+import 'ace-builds/src-noconflict/theme-cobalt'
+import 'ace-builds/src-noconflict/theme-clouds'
+import 'ace-builds/src-noconflict/theme-clouds_midnight'
+import 'ace-builds/src-noconflict/theme-crimson_editor'
+import 'ace-builds/src-noconflict/theme-dawn'
+import 'ace-builds/src-noconflict/theme-dracula'
+import 'ace-builds/src-noconflict/theme-dreamweaver'
+import 'ace-builds/src-noconflict/theme-eclipse'
+import 'ace-builds/src-noconflict/theme-github'
+import 'ace-builds/src-noconflict/theme-gob'
+import 'ace-builds/src-noconflict/theme-gruvbox'
+import 'ace-builds/src-noconflict/theme-idle_fingers'
+import 'ace-builds/src-noconflict/theme-iplastic'
+import 'ace-builds/src-noconflict/theme-katzenmilch'
+import 'ace-builds/src-noconflict/theme-kr_theme'
+import 'ace-builds/src-noconflict/theme-kuroir'
+import 'ace-builds/src-noconflict/theme-merbivore'
+import 'ace-builds/src-noconflict/theme-merbivore_soft'
+import 'ace-builds/src-noconflict/theme-mono_industrial'
+import 'ace-builds/src-noconflict/theme-one_dark'
+import 'ace-builds/src-noconflict/theme-nord_dark'
+import 'ace-builds/src-noconflict/theme-pastel_on_dark'
+import 'ace-builds/src-noconflict/theme-solarized_dark'
+import 'ace-builds/src-noconflict/theme-solarized_light'
+import 'ace-builds/src-noconflict/theme-sqlserver'
+import 'ace-builds/src-noconflict/theme-terminal'
+import 'ace-builds/src-noconflict/theme-tomorrow'
+import 'ace-builds/src-noconflict/theme-tomorrow_night'
+import 'ace-builds/src-noconflict/theme-tomorrow_night_blue'
+import 'ace-builds/src-noconflict/theme-tomorrow_night_bright'
+import 'ace-builds/src-noconflict/theme-tomorrow_night_eighties'
+import 'ace-builds/src-noconflict/theme-twilight'
+import 'ace-builds/src-noconflict/theme-vibrant_ink'
+import 'ace-builds/src-noconflict/theme-xcode'
+
+
 const $ = sel => document.querySelector(sel)
 
 // VARIABLES
@@ -16,34 +58,24 @@ let open = false;
 // FUNCTIONS {
 
 const setFontSize = size => {
-  let options = {
-    "fontSize": size,
-  };
-  $html.updateOptions(options);
-  $css.updateOptions(options);
-  $js.updateOptions(options);
+  size = parseInt(size)
+  $html.setFontSize(size);
+  $css.setFontSize(size);
+  $js.setFontSize(size);
   localStorage.setItem('fontsize', size);
 }
 
-const setMonTheme = text => {
-  fetch(
-    "themes/" + text + ".json"
-  )
-    .then((data) => data.json())
-    .then((data) => {
-      monaco.editor.defineTheme("customtheme", data);
-      monaco.editor.setTheme("customtheme");
-    });
-  localStorage.setItem('theme', text);
+const setMonTheme = async p => {
+  $html.setTheme(p);
+  $css.setTheme(p);
+  $js.setTheme(p);
+  localStorage.setItem('theme', p);
 }
 
 const setFont = text => {
-  let options = {
-    fontFamily: text,
-  };
-  $html.updateOptions(options);
-  $css.updateOptions(options);
-  $js.updateOptions(options);
+  $html.setOption("fontFamily", text);
+  $css.setOption("fontFamily", text);
+  $js.setOption("fontFamily", text);
   localStorage.setItem('font', text);
 }
 
@@ -76,7 +108,8 @@ $settingsBtn.addEventListener("click", () => {
 //themes
 
 $themeInput.addEventListener("change", () => {
-  let text = encodeURI($themeInput.options[$themeInput.selectedIndex].text);
+  let p = encodeURI($themeInput.options[$themeInput.selectedIndex].text);
+  let text = `ace/theme/${p.replace(' ', '_').toLowerCase()}`
   setMonTheme(text);
 });
 
