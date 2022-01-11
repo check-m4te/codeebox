@@ -92,7 +92,6 @@ $css.commands.addCommands(beautify.commands);
 
 $html.setOption('enableEmmet', true)
 
-
 let {pathname} = document.location
 
 const [rawHtml, rawCss, rawJs] = pathname.slice(1).split('%7C')

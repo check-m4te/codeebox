@@ -66,9 +66,10 @@ const setFontSize = size => {
 }
 
 const setMonTheme = async p => {
-  $html.setTheme(p);
-  $css.setTheme(p);
-  $js.setTheme(p);
+  let text = `ace/theme/${p.replace(' ', '_').toLowerCase()}`
+  $html.setTheme(text);
+  $css.setTheme(text);
+  $js.setTheme(text);
   localStorage.setItem('theme', p);
 }
 
@@ -90,11 +91,11 @@ if (!(localStorage.getItem('fontsize') && localStorage.getItem('theme') && local
 
 window.addEventListener('DOMContentLoaded', () => {
   setFontSize(localStorage.getItem('fontsize'));
-  setMonTheme(localStorage.getItem('theme'));
   setFont(localStorage.getItem('font'));
   $fontInput.selectedIndex = [...$fontInput.options].findIndex (option => option.text === localStorage.getItem('font'));
   $themeInput.selectedIndex = [...$themeInput.options].findIndex (option => option.text === localStorage.getItem('theme'));
   $fontsizeInput.value = localStorage.getItem('fontsize').toString();
+  setTimeout(() => setMonTheme(localStorage.getItem('theme')), 10)
 })
 
 // EVENTS
@@ -109,8 +110,7 @@ $settingsBtn.addEventListener("click", () => {
 
 $themeInput.addEventListener("change", () => {
   let p = encodeURI($themeInput.options[$themeInput.selectedIndex].text);
-  let text = `ace/theme/${p.replace(' ', '_').toLowerCase()}`
-  setMonTheme(text);
+  setMonTheme(p);
 });
 
 $fontInput.addEventListener("change", () => {
