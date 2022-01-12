@@ -7,6 +7,12 @@ import ace from 'ace-builds/src-noconflict/ace'
 import emmet from 'ace-builds/src-noconflict/ext-emmet'
 import 'ace-builds/src-noconflict/ext-prompt'
 import 'ace-builds/src-noconflict/ext-beautify'
+import 'ace-builds/src-noconflict/ext-searchbox'
+import 'ace-builds/src-noconflict/ext-code_lens'
+import 'ace-builds/src-noconflict/ext-error_marker'
+import 'ace-builds/src-noconflict/ext-hardwrap'
+import 'ace-builds/src-noconflict/ext-keybinding_menu'
+import 'ace-builds/src-noconflict/keybinding-vscode'
 import('./emmet');
 
 // * $ funtion (one-line-jquery 😉)
@@ -106,6 +112,9 @@ $html.setOption('enableEmmet', true)
 $css.setOption('enableEmmet', true)
 $js.setOption('enableEmmet', true)
 
+// ! CODELENS
+
+$js.setOption("enableCodeLens", true);
 
 // ? URL SAVING SYSTEM
 let {pathname} = document.location
