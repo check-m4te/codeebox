@@ -108,9 +108,9 @@ $js.setOption('enableEmmet', true)
 
 
 // ? URL SAVING SYSTEM
-let {pathname} = document.location
+let {search} = document.location
 
-const [rawHtml, rawCss, rawJs] = pathname.slice(1).split('%7C')
+const [rawHtml, rawCss, rawJs] = search.slice(1).split('%7C')
 let deHtml = rawHtml ? decode(rawHtml) : $html.getValue();
 let deCss = rawCss ? decode(rawCss) : $css.getValue();
 let deJs = rawJs ? decode(rawJs) : $js.getValue();
@@ -128,7 +128,7 @@ beautify.beautify($js.getSession());
 function update() {
   
   const hashedCode = `${encode($html.getValue())}|${encode($css.getValue())}|${encode($js.getValue())}`
-  window.history.replaceState(null, null, `/${hashedCode}`);
+  window.history.replaceState(null, null, `/?${hashedCode}`);
   !(window.location.href.includes('localhost:3000')) ? console.clear() : console.log('');
   let newJS = `
     <script>
