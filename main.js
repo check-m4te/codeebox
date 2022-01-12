@@ -7,7 +7,7 @@ import emmet from 'ace-builds/src-noconflict/ext-emmet'
 import 'ace-builds/src-noconflict/ext-prompt'
 import 'ace-builds/src-noconflict/ext-beautify'
 
-import('emmet-core');
+import('./emmet');
 
 const $ = sel => document.querySelector(sel)
 
