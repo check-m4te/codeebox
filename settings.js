@@ -1,5 +1,4 @@
 import { $html, $css, $js } from "./main";
-import * as monaco from "monaco-editor";
 import ace from 'ace-builds'
 // THEME IMPORT
 import 'ace-builds/src-noconflict/theme-monokai'

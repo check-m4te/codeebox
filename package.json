@@ -1,26 +1,21 @@
 {
   "name": "codeebox",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview"
   },
   "devDependencies": {
-    "vite": "^2.7.2",
-    "vite-plugin-monaco-editor": "^1.0.10"
+    "vite": "^2.7.2"
   },
   "dependencies": {
     "ace-builds": "^1.4.13",
-    "css-format-monaco": "^2.0.4",
+    "emmet": "^2.3.5",
     "emmet-core": "^1.0.0",
-    "emmet-monaco-es": "^5.0.2",
     "file-saver": "^2.0.5",
     "js-base64": "^3.7.2",
     "jszip": "^3.7.1",
-    "monaco-editor": "^0.31.1",
-    "monaco-themes": "^0.4.0",
-    "requirejs": "^2.3.6",
     "split-grid": "^1.0.11"
   }
 }

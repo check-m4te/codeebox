@@ -18,7 +18,7 @@ let htmlFile = `
     </head>
     <body>
     ${$html.getValue()}
-    <script type="module" src="/script.js"></script>
+    <script type="module" src="script.js"></script>
     </body>
 </html>
 `;

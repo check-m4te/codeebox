@@ -2,12 +2,12 @@ import './style.css'
 import Split from 'split-grid'
 import { encode, decode } from 'js-base64'
 import { realtimeUpdate } from './settings'
-import 'emmet-core'
 import ace from 'ace-builds/src-noconflict/ace'
-import 'ace-builds/src-noconflict/ext-emmet'
+import emmet from 'ace-builds/src-noconflict/ext-emmet'
 import 'ace-builds/src-noconflict/ext-prompt'
 import 'ace-builds/src-noconflict/ext-beautify'
 
+import('emmet-core');
 
 const $ = sel => document.querySelector(sel)
 
@@ -112,7 +112,7 @@ function update() {
   
   const hashedCode = `${encode($html.getValue())}|${encode($css.getValue())}|${encode($js.getValue())}`
   window.history.replaceState(null, null, `/${hashedCode}`);
-  console.clear();
+  //console.clear();
   let newJS = `
     <script>
       ${$js.getValue()}
