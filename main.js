@@ -4,9 +4,7 @@ import {
   encode,
   decode
 } from 'js-base64'
-import {
-  realtimeUpdate
-} from './settings'
+
 // ! ACE IMPORTS
 import ace from 'ace-builds/src-noconflict/ace'
 import 'ace-builds/src-noconflict/ext-emmet'
@@ -19,6 +17,11 @@ import 'ace-builds/src-noconflict/ext-hardwrap'
 import 'ace-builds/src-noconflict/ext-keybinding_menu'
 import 'ace-builds/src-noconflict/keybinding-vscode'
 import('./emmet');
+import {
+  realtimeUpdate,
+  setMonTheme,
+  setLineNumbers
+} from './settings';
 
 //. $ funtion (one-line-jquery 😉)
 const $ = sel => document.querySelector(sel)
@@ -41,13 +44,11 @@ const $css = ace.edit('css');
 const $js = ace.edit('js');
 
 // * Editor configurations.
-//. Remove the line numbers from JS editor.
-$js.renderer.setShowGutter(false);
 
 //.Remove scroll block
-$html.$blockScrolling = Infinity
-$js.$blockScrolling = Infinity
-$css.$blockScrolling = Infinity
+$html.$blockScrolling = Infinity;
+$js.$blockScrolling = Infinity;
+$css.$blockScrolling = Infinity;
 
 //. Autocomplete
 import('ace-builds/src-noconflict/ext-language_tools')
@@ -83,23 +84,15 @@ import('ace-builds/src-noconflict/mode-css')
     $css.getSession().setMode("ace/mode/css");
   })
 
-//.Themes
-import('ace-builds/src-noconflict/theme-monokai')
-  .then(() => {
-    $html.setTheme("ace/theme/monokai");
-    $css.setTheme("ace/theme/monokai");
-    $js.setTheme("ace/theme/monokai");
-  })
-
 //.Padding
 $html.renderer.setPadding(16)
 $css.renderer.setPadding(16)
 $js.renderer.setPadding(16)
 
 //.Scroll margin (top padding)
-$html.renderer.setScrollMargin(10, 10)
-$js.renderer.setScrollMargin(10, 10)
-$css.renderer.setScrollMargin(10, 10)
+$html.renderer.setScrollMargin(14, 14)
+$js.renderer.setScrollMargin(14, 14)
+$css.renderer.setScrollMargin(14, 14)
 
 //.Update on change
 $js.getSession().on('change', () => {

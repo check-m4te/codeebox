@@ -41,7 +41,6 @@ import 'ace-builds/src-noconflict/theme-twilight'
 import 'ace-builds/src-noconflict/theme-vibrant_ink'
 import 'ace-builds/src-noconflict/theme-xcode'
 
-
 const $ = sel => document.querySelector(sel)
 
 // * VARIABLES
@@ -52,6 +51,7 @@ const $themeInput = $("#themeinp");
 const $fontInput = $("#fonts");
 const $fontsizeInput = $("#fontsize");
 const $realtime = $('#realtime');
+const $linenums = $('#linenums');
 let realtimeUpdate = true;
 let open = false;
 
@@ -80,6 +80,13 @@ const setFont = text => {
   localStorage.setItem('font', text);
 }
 
+const setLineNumbers = show => {
+  $js.renderer.setShowGutter(show);
+  $html.renderer.setShowGutter(show);
+  $css.renderer.setShowGutter(show);
+  localStorage.setItem('linenums', show);
+}
+
 //* }
 
 // * LOCAL STORAGE
@@ -89,14 +96,16 @@ if (!(localStorage.getItem('fontsize') && localStorage.getItem('theme') && local
   localStorage.setItem('font', 'CascadiaCodePL');
 }
 
-window.addEventListener('DOMContentLoaded', () => {
+window.onload = () => {
   setFontSize(localStorage.getItem('fontsize'));
   setFont(localStorage.getItem('font'));
   $fontInput.selectedIndex = [...$fontInput.options].findIndex (option => option.text === localStorage.getItem('font'));
   $themeInput.selectedIndex = [...$themeInput.options].findIndex (option => option.text === localStorage.getItem('theme'));
   $fontsizeInput.value = localStorage.getItem('fontsize').toString();
-  setTimeout(() => setMonTheme(localStorage.getItem('theme')), 1000)
-})
+  $linenums.checked = JSON.parse(localStorage.getItem('linenums'));
+  setMonTheme(localStorage.getItem('theme'));
+  setLineNumbers(JSON.parse(localStorage.getItem('linenums')))
+}
 
 // * EVENTS
 
@@ -106,27 +115,41 @@ $settingsBtn.addEventListener("click", () => {
   open = !open;
 });
 
-// ! themes
+// ! Themes
 
 $themeInput.addEventListener("change", () => {
   let p = encodeURI($themeInput.options[$themeInput.selectedIndex].text);
   setMonTheme(p);
 });
 
+// ! Fonts
+
 $fontInput.addEventListener("change", () => {
   let text = encodeURI($fontInput.options[$fontInput.selectedIndex].text);
   setFont(text);
 });
+
+// ! Font size
 
 $fontsizeInput.addEventListener("change", () => {
   let size = parseInt($fontsizeInput.value);
   setFontSize(size);
 });
 
+// ! Realtime Update
+
 $realtime.addEventListener('change', () => {
   realtimeUpdate = $realtime.checked;
 })
 
+// ! Show line numbers
+
+$linenums.addEventListener('change', () => {
+  setLineNumbers($linenums.checked)
+})
+
 export {
   realtimeUpdate,
+  setMonTheme,
+  setLineNumbers,
 }
