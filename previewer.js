@@ -1,5 +1,8 @@
+// ! Imports the one-line jQuery
 import { $ } from './main'
 
+
+// * Create class
 class Previewer {
   constructor () {
     this.previewerWindow = null
@@ -11,6 +14,7 @@ class Previewer {
     }
   }
 
+  // * Setup the IFrame
   setupWindowIframe () {
     const title = `${document.title} | Preview`
     this.previewerWindow.document.title = title
@@ -22,6 +26,8 @@ class Previewer {
     this.previewerWindow.document.body.appendChild(this.iframe)
   }
 
+
+  // * Update content
   updateWindowContent (html) {
     if (this.previewerWindow) {
       this.iframe.setAttribute(
@@ -31,6 +37,8 @@ class Previewer {
     }
   }
 
+
+  // ! OPEN THE WINDOW
   openWindow () {
     this.previewerWindow = window.open()
     this.previewerWindow.addEventListener('beforeunload', () => (this.previewerWindow = null))
@@ -41,4 +49,5 @@ class Previewer {
 
 const previewer = new Previewer()
 
+// - exports it.
 export default previewer

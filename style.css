@@ -5,7 +5,9 @@ html, body, .grid {
   margin:0;
   overflow:hidden;
 }
-
+/* 
+! Fonts
+*/
 @font-face {
   font-family: 'CascadiaCodePL';
   src: url('/assets/fonts/CascadiaCodePL.woff2') format('woff2');
@@ -52,6 +54,10 @@ html, body, .grid {
   font-weight: normal;
   font-style: italic;
 }
+
+/* 
+! Styles
+*/
 
 * {
   box-sizing: border-box;

@@ -2,16 +2,17 @@ import './style.css'
 import Split from 'split-grid'
 import { encode, decode } from 'js-base64'
 import { realtimeUpdate } from './settings'
+// ! ACE IMPORTS
 import ace from 'ace-builds/src-noconflict/ace'
 import emmet from 'ace-builds/src-noconflict/ext-emmet'
 import 'ace-builds/src-noconflict/ext-prompt'
 import 'ace-builds/src-noconflict/ext-beautify'
-
 import('./emmet');
 
+// * $ funtion (one-line-jquery 😉)
 const $ = sel => document.querySelector(sel)
 
-
+// * Split JS
 Split({
 	columnGutters: [{
     track: 1,
@@ -32,6 +33,7 @@ $html.$blockScrolling = Infinity
 $js.$blockScrolling = Infinity
 $css.$blockScrolling = Infinity
 
+// * Editor configurations.
 import('ace-builds/src-noconflict/ext-language_tools')
   .then(() => {
     $js.setOptions({
@@ -72,8 +74,6 @@ import('ace-builds/src-noconflict/theme-monokai')
     $js.setTheme("ace/theme/monokai");
   })
 
-$html.commands.bindKey("ctrl-shift-p", "command-palette");
-
 $html.renderer.setPadding(16)
 $css.renderer.setPadding(16)
 $js.renderer.setPadding(16)
@@ -96,6 +96,7 @@ $html.getSession().on('change', () => {
   if(realtimeUpdate)
     update();
 });
+// * Beautify for Ace
 var beautify = ace.require('ace/ext/beautify');
 $js.commands.addCommands(beautify.commands);
 $html.commands.addCommands(beautify.commands);
@@ -105,6 +106,8 @@ $html.setOption('enableEmmet', true)
 $css.setOption('enableEmmet', true)
 $js.setOption('enableEmmet', true)
 
+
+// ? URL SAVING SYSTEM
 let {pathname} = document.location
 
 const [rawHtml, rawCss, rawJs] = pathname.slice(1).split('%7C')
@@ -121,6 +124,7 @@ beautify.beautify($html.getSession());
 beautify.beautify($css.getSession());
 beautify.beautify($js.getSession());
 
+// ? UPDATE FUNCTION
 function update() {
   
   const hashedCode = `${encode($html.getValue())}|${encode($css.getValue())}|${encode($js.getValue())}`
@@ -154,7 +158,7 @@ function update() {
     </html>
   `)
 }
-
+// ! EXPORTS
 export {
   $js,
   $html,

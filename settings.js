@@ -1,6 +1,7 @@
 import { $html, $css, $js } from "./main";
 import ace from 'ace-builds'
-// THEME IMPORT
+// * THEME IMPORT (Super unefficient)
+// TODO: find a better system.
 import 'ace-builds/src-noconflict/theme-monokai'
 import 'ace-builds/src-noconflict/theme-textmate'
 import 'ace-builds/src-noconflict/theme-chaos'
@@ -43,7 +44,7 @@ import 'ace-builds/src-noconflict/theme-xcode'
 
 const $ = sel => document.querySelector(sel)
 
-// VARIABLES
+// * VARIABLES
 
 const $settingsBtn = $("#settings");
 const $sidebar = $(".sidesidebar");
@@ -54,7 +55,7 @@ const $realtime = $('#realtime');
 let realtimeUpdate = true;
 let open = false;
 
-// FUNCTIONS {
+// * FUNCTIONS {
 
 const setFontSize = size => {
   size = parseInt(size)
@@ -79,9 +80,9 @@ const setFont = text => {
   localStorage.setItem('font', text);
 }
 
-//}
+//* }
 
-// LOCAL STORAGE
+// * LOCAL STORAGE
 if (!(localStorage.getItem('fontsize') && localStorage.getItem('theme') && localStorage.getItem('font'))) {
   localStorage.setItem('fontsize', 16);
   localStorage.setItem('theme', 'Monokai');
@@ -97,7 +98,7 @@ window.addEventListener('DOMContentLoaded', () => {
   setTimeout(() => setMonTheme(localStorage.getItem('theme')), 10)
 })
 
-// EVENTS
+// * EVENTS
 
 $settingsBtn.addEventListener("click", () => {
   if (!open) $sidebar.style.display = "block";
@@ -105,7 +106,7 @@ $settingsBtn.addEventListener("click", () => {
   open = !open;
 });
 
-//themes
+// ! themes
 
 $themeInput.addEventListener("change", () => {
   let p = encodeURI($themeInput.options[$themeInput.selectedIndex].text);

@@ -9,6 +9,7 @@
 </head>
 
 <body>
+  <!-- ! Settings -->
   <div class="sidesidebar" style="display: none;">
     <label for="themeinp">Theme</label>
     <select id="themeinp" class="form-control">
@@ -61,15 +62,18 @@
       <option value="6">Hasklig</option>
       <option value="7">JuliaMono</option>
     </select>
+
     <input type="number" id="fontsize" placeholder="Font size (press enter)">\
     <label for="realtime">Realtime Preview</label>
     <input type="checkbox" id="realtime" checked="true">
   </div>
+  <!-- ? Skypack -->
   <div class="skypackbar" style="display: none;">
     <label for="skyinp">SkyPack module</label>
     <input type="text" id="skyinp"><button id="importmodule">Import</button>
     <a href="https://www.skypack.dev/" style="color:white;font-family: 'CascadiaCodePL'">Modules</a>
   </div>
+  <!-- ? Sidebar -->
   <div class="sidebar">
     <div id="skypack">
       <svg class="clickablesvg" fill="#C5C5C5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 26">
@@ -125,6 +129,7 @@
       </svg>
     </div>
   </div>
+  <!-- ! Main grid -->
   <div class="grid">
     <div id="html" class="editor">&#60;h1>CodeeBox&#60;/h1></div>
     <div id="js" class="editor"></div>
@@ -135,6 +140,7 @@
     <div class="vertical-gutter">
     </div>
   </div>
+  <!-- - Scripts -->
   <script type="module" src="/main.js"></script>
   <script type="module" src="/events.js"></script>
   <script type="module" src="/download.js"></script>

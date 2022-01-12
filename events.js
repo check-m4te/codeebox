@@ -1,8 +1,10 @@
+// ! Imports
 import {$js, update} from './main'
 import downloadZip from './download'
 import previewer from './previewer'
-const $ = sel => document.querySelector(sel)
+import {$} from './main'
 
+// ! Variables
 const $skypackBar = $('.skypackbar')
 const $skypackBtn = $('#importmodule')
 const $runBtn = $('#run');
@@ -11,6 +13,7 @@ const $skypackInp = $('#skyinp')
 const $jsBtn = $('#skypack');
 const $previewBtn = $('#preview');
 
+// * Open settings button
 let open = false
 $jsBtn.addEventListener('click', () => {
     if(!open)
@@ -20,8 +23,10 @@ $jsBtn.addEventListener('click', () => {
     open = !open
 })
 
+
+// ! Event listeners
 $skypackBtn.addEventListener('click', () => {
-    $js.insert(`\nimport module from 'https://cdn.skypack.dev/${$skypackInp.value}'`)
+    $js.insert(`\nimport ${$skypackInp.value.replace('-', '').toLowerCase()} from 'https://cdn.skypack.dev/${$skypackInp.value}'`)
 })
 
 $("#download").addEventListener("click", () => {
