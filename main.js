@@ -56,16 +56,22 @@ import('ace-builds/src-noconflict/ext-language_tools')
     $js.setOptions({
       enableBasicAutocompletion: true,
       useWorker: false,
+      behavioursEnabled: true,
+      wrapBehavioursEnabled: true,
       enableLiveAutocompletion: true
     });
     $html.setOptions({
       enableLiveAutocompletion: true,
       useWorker: false,
+      behavioursEnabled: true,
+      wrapBehavioursEnabled: true,
       enableBasicAutocompletion: true
     });
     $css.setOptions({
       enableLiveAutocompletion: true,
       useWorker: false,
+      behavioursEnabled: true,
+      wrapBehavioursEnabled: true,
       enableBasicAutocompletion: true
     });
   })
@@ -126,6 +132,11 @@ $js.setOption('enableEmmet', true)
 // ! CODELENS
 
 $js.setOption("enableCodeLens", true);
+
+$html.getSession().setUseWrapMode(true)
+$js.getSession().setUseWrapMode(true)
+$css.getSession().setUseWrapMode(true)
+
 
 // ! URL SAVING SYSTEM
 //.Pathname
