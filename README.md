@@ -12,6 +12,11 @@ A ~~simple~~ super cool code playground 😏
 4. Ace editor! Taken right straight from Cloud9 source! (Has command palette, emmet, autocompletion, and Beautify)
 5. Dark mode, light mode, 38 themes!
 
+### Keybindings:
+F1: open command palette.
+Ctrl + shift + B: Format with Beautify
+Other keybindings can be found in command palette.
+
 ### Building:
 Download.
 `Yarn / npm i / pnpm i`
