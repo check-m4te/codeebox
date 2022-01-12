@@ -26,6 +26,8 @@ Split({
 const $html = ace.edit('html');
 const $css = ace.edit('css');
 const $js = ace.edit('js');
+$js.renderer.setShowGutter(false)
+
 $html.$blockScrolling = Infinity
 $js.$blockScrolling = Infinity
 $css.$blockScrolling = Infinity
@@ -70,7 +72,7 @@ import('ace-builds/src-noconflict/theme-monokai')
     $js.setTheme("ace/theme/monokai");
   })
 
-
+$html.commands.bindKey("ctrl-shift-p", "command-palette");
 
 $html.renderer.setPadding(16)
 $css.renderer.setPadding(16)
@@ -82,15 +84,26 @@ $js.renderer.setScrollMargin(10, 10)
 $css.renderer.setScrollMargin(10, 10)
 
 
-$js.getSession().on('change', update);
-$css.getSession().on('change', update);
-$html.getSession().on('change', update);
+$js.getSession().on('change', () => {
+  if(realtimeUpdate)
+    update();
+});
+$css.getSession().on('change', () => {
+  if(realtimeUpdate)
+    update();
+});
+$html.getSession().on('change', () => {
+  if(realtimeUpdate)
+    update();
+});
 var beautify = ace.require('ace/ext/beautify');
 $js.commands.addCommands(beautify.commands);
 $html.commands.addCommands(beautify.commands);
 $css.commands.addCommands(beautify.commands);
 
 $html.setOption('enableEmmet', true)
+$css.setOption('enableEmmet', true)
+$js.setOption('enableEmmet', true)
 
 let {pathname} = document.location
 
@@ -112,7 +125,7 @@ function update() {
   
   const hashedCode = `${encode($html.getValue())}|${encode($css.getValue())}|${encode($js.getValue())}`
   window.history.replaceState(null, null, `/${hashedCode}`);
-  //console.clear();
+  !(window.location.href.includes('localhost:3000')) ? console.clear() : console.log('');
   let newJS = `
     <script>
       ${$js.getValue()}
