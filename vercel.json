@@ -1,0 +1,6 @@
+{
+    "rewrites": [
+    { "src": "(*.*)", "dest": "/" },
+    { "src": "themes/", "dest": "themes/" }
+  ]
+}
