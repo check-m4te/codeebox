@@ -95,7 +95,7 @@ window.addEventListener('DOMContentLoaded', () => {
   $fontInput.selectedIndex = [...$fontInput.options].findIndex (option => option.text === localStorage.getItem('font'));
   $themeInput.selectedIndex = [...$themeInput.options].findIndex (option => option.text === localStorage.getItem('theme'));
   $fontsizeInput.value = localStorage.getItem('fontsize').toString();
-  setTimeout(() => setMonTheme(localStorage.getItem('theme')), 10)
+  setTimeout(() => setMonTheme(localStorage.getItem('theme')), 1000)
 })
 
 // * EVENTS

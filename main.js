@@ -142,9 +142,9 @@ let {
 
 //.Variables
 const [rawHtml, rawCss, rawJs] = pathname.slice(1).split('%7C')
-let deHtml = rawHtml ? decode(rawHtml) : $html.getValue();
-let deCss = rawCss ? decode(rawCss) : $css.getValue();
-let deJs = rawJs ? decode(rawJs) : $js.getValue();
+let deHtml = rawHtml ? decode(rawHtml) : localStorage.getItem('html');
+let deCss = rawCss ? decode(rawCss) :localStorage.getItem('css');
+let deJs = rawJs ? decode(rawJs) : localStorage.getItem('js');
 
 //.Add decoded values to editors
 $html.setValue(deHtml, -1)
@@ -194,6 +194,9 @@ function update() {
       </body>
     </html>
   `)
+  localStorage.setItem('html', $html.getValue())
+  localStorage.setItem('css', $css.getValue())
+  localStorage.setItem('js', $js.getValue())
 }
 // ! EXPORTS
 export {
