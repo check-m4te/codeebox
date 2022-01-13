@@ -83,6 +83,10 @@ import('ace-builds/src-noconflict/ext-language_tools')
     });
   })
 
+$js.setKeyboardHandler("ace/keyboard/vscode");
+$css.setKeyboardHandler("ace/keyboard/vscode");
+$html.setKeyboardHandler("ace/keyboard/vscode");
+
 //.Modes
 import('ace-builds/src-noconflict/mode-html')
   .then(() => {
