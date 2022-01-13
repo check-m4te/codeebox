@@ -180,8 +180,8 @@ button:active {
 }
 
 .clickablesvg:hover g, .clickablesvg:hover path{
-  fill:#777;
-  transition: 0.2s ;
+  fill:#999 !important;
+  transition: 100ms !important;
 }
 
 textarea, iframe{
