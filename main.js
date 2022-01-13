@@ -28,6 +28,7 @@ import {
 
 //. $ funtion (one-line-jquery 😉)
 const $ = sel => document.querySelector(sel)
+const $$ = sel => document.querySelectorAll(sel)
 
 //. Split JS (resizing)
 Split({
@@ -226,5 +227,6 @@ export {
   $html,
   $css,
   $,
+  $$,
   update,
 }

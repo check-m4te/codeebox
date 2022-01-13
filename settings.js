@@ -41,9 +41,10 @@ import 'ace-builds/src-noconflict/theme-twilight'
 import 'ace-builds/src-noconflict/theme-vibrant_ink'
 import 'ace-builds/src-noconflict/theme-xcode'
 
-const $ = sel => document.querySelector(sel)
-
 // * VARIABLES
+
+const $ = sel => document.querySelector(sel)
+const $$ = sel => document.querySelectorAll(sel)
 
 const $settingsBtn = $("#settings");
 const $sidebar = $(".sidesidebar");
@@ -70,12 +71,49 @@ const setMonTheme = async p => {
   $html.setTheme(text);
   $css.setTheme(text);
   $js.setTheme(text);
-  var target_obj = document.getElementsByClassName('ace_scroller')[0];
-  var color = getComputedStyle(target_obj).backgroundColor;
+  let target_obj = document.getElementsByClassName('ace_scroller')[0];
+  let color = getComputedStyle(target_obj).backgroundColor;
   console.log(color);
+  let rgb = color.replace('(', "").replace(')', '').replace('rgb', '').split(',')
+  let brightness = Math.round((
+                      (parseInt(rgb[0])) +
+                      (parseInt(rgb[1])) +
+                      (parseInt(rgb[2]))) / 3);
   $('.sidebar').style.backgroundColor = color;
   $('.sidesidebar').style.backgroundColor = color;
   $('.skypackbar').style.backgroundColor = color;
+  if(brightness > 125) {
+    console.log('test')
+    $$('g').forEach(svg => {
+      svg.style.fill = 'black'
+    })
+    $$('path').forEach(svg => {
+      svg.style.fill = 'black';
+    })
+    $$('*').forEach(item => {
+      item.style.color = '#222';
+    })
+  }
+  else {
+    $$('g').forEach(svg => {
+      svg.style.fill = 'white'
+    })
+    $$('path').forEach(svg => {
+      svg.style.fill = 'white';
+    })
+    $$('*').forEach(item => {
+      item.style.color = '#dfdfdf';
+    })
+  }
+  $$('select').forEach(item => {
+    item.style.color = '#222';
+  })
+  $$('input').forEach(item => {
+    item.style.color = '#222';
+  })
+  $$('option').forEach(item => {
+    item.style.color = '#222';
+  })
   localStorage.setItem('theme', p);
 }
 
