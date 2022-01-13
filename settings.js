@@ -84,25 +84,19 @@ const setMonTheme = async p => {
   $('.skypackbar').style.backgroundColor = color;
   if(brightness > 125) {
     console.log('test')
-    $$('g').forEach(svg => {
+    $$('g, path').forEach(svg => {
       svg.style.fill = 'black'
     })
-    $$('path').forEach(svg => {
-      svg.style.fill = 'black';
-    })
-    $$('*').forEach(item => {
-      item.style.color = '#222';
+    $$('label').forEach(svg => {
+      svg.style.color = 'black'
     })
   }
   else {
-    $$('g').forEach(svg => {
+    $$('g, path').forEach(svg => {
       svg.style.fill = 'white'
     })
-    $$('path').forEach(svg => {
-      svg.style.fill = 'white';
-    })
-    $$('*').forEach(item => {
-      item.style.color = '#dfdfdf';
+    $$('label').forEach(svg => {
+      svg.style.color = 'white'
     })
   }
   $$('select').forEach(item => {
