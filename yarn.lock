@@ -2,25 +2,6 @@
 # yarn lockfile v1
 
 
-"@emmetio/abbreviation@^2.2.2":
-  version "2.2.2"
-  resolved "https://registry.yarnpkg.com/@emmetio/abbreviation/-/abbreviation-2.2.2.tgz#746762fd9e7a8c2ea604f580c62e3cfe250e6989"
-  integrity sha512-TtE/dBnkTCct8+LntkqVrwqQao6EnPAs1YN3cUgxOxTaBlesBCY37ROUAVZrRlG64GNnVShdl/b70RfAI3w5lw==
-  dependencies:
-    "@emmetio/scanner" "^1.0.0"
-
-"@emmetio/css-abbreviation@^2.1.4":
-  version "2.1.4"
-  resolved "https://registry.yarnpkg.com/@emmetio/css-abbreviation/-/css-abbreviation-2.1.4.tgz#90362e8a1122ce3b76f6c3157907d30182f53f54"
-  integrity sha512-qk9L60Y+uRtM5CPbB0y+QNl/1XKE09mSO+AhhSauIfr2YOx/ta3NJw2d8RtCFxgzHeRqFRr8jgyzThbu+MZ4Uw==
-  dependencies:
-    "@emmetio/scanner" "^1.0.0"
-
-"@emmetio/scanner@^1.0.0":
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/@emmetio/scanner/-/scanner-1.0.0.tgz#065b2af6233fe7474d44823e3deb89724af42b5f"
-  integrity sha512-8HqW8EVqjnCmWXVpqAOZf+EGESdkR27odcMMMGefgKXtar00SoYNSryGv//TELI4T3QFsECo78p+0lmalk/CFA==
-
 ace-builds@^1.4.13:
   version "1.4.13"
   resolved "https://registry.yarnpkg.com/ace-builds/-/ace-builds-1.4.13.tgz#186f42d3849ebcc6a48b93088a058489897514c1"
@@ -30,19 +11,6 @@ core-util-is@~1.0.0:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/core-util-is/-/core-util-is-1.0.3.tgz#a6042d3634c2b27e9328f837b965fac83808db85"
   integrity sha512-ZQBvi1DcpJ4GDqanjucZ2Hj3wEO5pZDS89BWbkcrvdxksJorwUDDZamX9ldFkp9aw2lmBDLgkObEA4DWNJ9FYQ==
-
-emmet-core@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/emmet-core/-/emmet-core-1.0.0.tgz#e36fb45b7307fbb11016e0973efd5e2ed48e76ab"
-  integrity sha512-Rd9rbiV8Z7nqdZZxMs7L6TUFg/WENY9F3elB4shq10hELaf0s5V99ynsnJOarU31Lb2eR4MqgOxHS7OXRGpKDw==
-
-emmet@^2.3.5:
-  version "2.3.5"
-  resolved "https://registry.yarnpkg.com/emmet/-/emmet-2.3.5.tgz#7f80f9c3db6831d1ee2b458717b9c36a074b1a47"
-  integrity sha512-LcWfTamJnXIdMfLvJEC5Ld3hY5/KHXgv1L1bp6I7eEvB0ZhacHZ1kX0BYovJ8FroEsreLcq7n7kZhRMsf6jkXQ==
-  dependencies:
-    "@emmetio/abbreviation" "^2.2.2"
-    "@emmetio/css-abbreviation" "^2.1.4"
 
 esbuild-android-arm64@0.13.15:
   version "0.13.15"
@@ -290,6 +258,11 @@ set-immediate-shim@~1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/set-immediate-shim/-/set-immediate-shim-1.0.1.tgz#4b2b1b27eb808a9f8dcc481a58e5e56f599f3f61"
   integrity sha1-SysbJ+uAip+NzEgaWOXlb1mfP2E=
+
+shade-blend-color@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/shade-blend-color/-/shade-blend-color-1.0.0.tgz#cfa10d3673a22ba31d552a0e793b708bc24be0bc"
+  integrity sha512-Tnp/ppF5h3YhPCpeHiZJ2DRnvmo4luu9qpMhuksCT+QInIXJ9alA3Vd9klfEi+RY8Oh7MaK5vzH/qcLo892L1g==
 
 source-map-js@^1.0.1:
   version "1.0.1"

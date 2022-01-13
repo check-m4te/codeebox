@@ -140,11 +140,6 @@ $js.setOption('enableEmmet', true)
 
 $js.setOption("enableCodeLens", true);
 
-$html.getSession().setUseWrapMode(true)
-$js.getSession().setUseWrapMode(true)
-$css.getSession().setUseWrapMode(true)
-
-
 // ! URL SAVING SYSTEM
 //.Pathname
 let {
@@ -171,16 +166,6 @@ setTimeout(() => {
   beautify.beautify($css.getSession());
   beautify.beautify($js.getSession());
 }, 500);
-
-//.Test
-setTimeout(() => {
-  var target_obj = document.getElementsByClassName('ace_scroller')[0];
-  var color = getComputedStyle(target_obj).backgroundColor;
-  console.log(color);
-  $('.sidebar').style.backgroundColor = color;
-  $('.sidesidebar').style.backgroundColor = color;
-  $('.skypackbar').style.backgroundColor = color;
-}, 1000)
 
 // ! UPDATE FUNCTION
 function update() {

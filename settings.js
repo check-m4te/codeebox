@@ -2,6 +2,7 @@ import { $html, $css, $js } from "./main";
 import ace from 'ace-builds'
 // * THEME IMPORT (Super unefficient)
 // TODO: find a better system.
+import pSBC from 'shade-blend-color';
 import 'ace-builds/src-noconflict/theme-monokai'
 import 'ace-builds/src-noconflict/theme-textmate'
 import 'ace-builds/src-noconflict/theme-chaos'
@@ -53,10 +54,38 @@ const $fontInput = $("#fonts");
 const $fontsizeInput = $("#fontsize");
 const $realtime = $('#realtime');
 const $linenums = $('#linenums');
+const $wrap = $('#wrapenabled');
 let realtimeUpdate = true;
 let open = false;
 
 // * FUNCTIONS {
+
+  function LightenDarkenColor(col,amt) {
+    var usePound = false;
+    if ( col[0] == "#" ) {
+        col = col.slice(1);
+        usePound = true;
+    }
+
+    var num = parseInt(col,16);
+
+    var r = (num >> 16) + amt;
+
+    if ( r > 255 ) r = 255;
+    else if  (r < 0) r = 0;
+
+    var b = ((num >> 8) & 0x00FF) + amt;
+
+    if ( b > 255 ) b = 255;
+    else if  (b < 0) b = 0;
+
+    var g = (num & 0x0000FF) + amt;
+
+    if ( g > 255 ) g = 255;
+    else if  ( g < 0 ) g = 0;
+
+    return (usePound?"#":"") + (g | (b << 8) | (r << 16)).toString(16);
+}
 
 const setFontSize = size => {
   size = parseInt(size)
@@ -73,34 +102,20 @@ const setMonTheme = async p => {
   $js.setTheme(text);
   let target_obj = document.getElementsByClassName('ace_scroller')[0];
   let color = getComputedStyle(target_obj).backgroundColor;
-  console.log(color);
   let rgb = color.replace('(', "").replace(')', '').replace('rgb', '').split(',')
   let brightness = Math.round((
                       (parseInt(rgb[0])) +
                       (parseInt(rgb[1])) +
                       (parseInt(rgb[2]))) / 3);
-  $('.sidebar').style.backgroundColor = color;
-  $('.horizontal-gutter').style.backgroundColor = color;
-  $('.vertical-gutter').style.backgroundColor = color;
-  $('.sidesidebar').style.backgroundColor = color;
-  $('.skypackbar').style.backgroundColor = color;
-  if(brightness > 125) {
-    console.log('test')
-    $$('g, path').forEach(svg => {
-      svg.style.fill = 'black'
-    })
-    $$('label').forEach(svg => {
-      svg.style.color = 'black'
-    })
-  }
-  else {
-    $$('g, path').forEach(svg => {
-      svg.style.fill = 'white'
-    })
-    $$('label').forEach(svg => {
-      svg.style.color = 'white'
-    })
-  }
+  let accent = pSBC(0.06, color);
+  let acento = pSBC(0.1, accent);
+  console.log(accent)
+  $('.sidebar').style.backgroundColor = accent;
+  $('.horizontal-gutter').style.backgroundColor = accent;
+  $('.vertical-gutter').style.backgroundColor = accent;
+  $('.sidesidebar').style.backgroundColor = accent;
+  $('input[type="number"]').style.backgroundColor = acento;
+  $('.skypackbar').style.backgroundColor = accent;
   $$('select').forEach(item => {
     item.style.color = '#222';
   })
@@ -110,6 +125,48 @@ const setMonTheme = async p => {
   $$('option').forEach(item => {
     item.style.color = '#222';
   })
+  if(brightness >= 125) {
+    $$('g, path').forEach(svg => {
+      svg.style.fill = 'black'
+    })
+    $$('label').forEach(e => {
+      e.style.color = 'black'
+    })
+    $$('input[type="number"]').forEach(e =>{
+      e.style.color = 'black'
+    })
+    $$('select').forEach(e =>{
+      e.style.color = 'black'
+      e.style.backgroundColor = 'white'
+    })
+    $$('option').forEach(e =>{
+      e.style.color = 'black'
+      e.style.backgroundColor = 'white'
+    })
+    acento = pSBC(-0.1, accent);
+    $('input[type="number"]').style.backgroundColor = acento;
+  }
+  else {
+    $$('g, path').forEach(svg => {
+      svg.style.fill = 'white'
+    })
+    $$('label').forEach(e => {
+      e.style.color = 'white'
+    })
+    $$('input[type="number"]').forEach(e =>{
+      e.style.color = 'white'
+    })
+    acento = pSBC(0.1, accent);
+    $$('select').forEach(e =>{
+      e.style.color = 'white'
+      e.style.backgroundColor = acento
+    })
+    $$('option').forEach(e =>{
+      e.style.color = 'white'
+      e.style.backgroundColor = acento
+    })
+  }
+  
   localStorage.setItem('theme', p);
 }
 
@@ -127,6 +184,13 @@ const setLineNumbers = show => {
   localStorage.setItem('linenums', show);
 }
 
+const setWrap = wrap => {
+  $html.getSession().setUseWrapMode(wrap);
+  $js.getSession().setUseWrapMode(wrap);
+  $css.getSession().setUseWrapMode(wrap);
+  localStorage.setItem('wrapenabled', wrap)
+}
+
 //* }
 
 // * LOCAL STORAGE
@@ -137,21 +201,30 @@ if (!(localStorage.getItem('fontsize') && localStorage.getItem('theme') && local
 }
 
 window.onload = () => {
+  // ! Call settings functions from localStorage
   setFontSize(localStorage.getItem('fontsize'));
   setFont(localStorage.getItem('font'));
+  setMonTheme(localStorage.getItem('theme'));
+  setLineNumbers(JSON.parse(localStorage.getItem('linenums')))
+  setWrap(JSON.parse(localStorage.getItem('wrapenabled')))
+  
+  // . Set inputs and selects default value
   $fontInput.selectedIndex = [...$fontInput.options].findIndex (option => option.text === localStorage.getItem('font'));
   $themeInput.selectedIndex = [...$themeInput.options].findIndex (option => option.text === localStorage.getItem('theme'));
   $fontsizeInput.value = localStorage.getItem('fontsize').toString();
   $linenums.checked = JSON.parse(localStorage.getItem('linenums'));
-  setMonTheme(localStorage.getItem('theme'));
-  setLineNumbers(JSON.parse(localStorage.getItem('linenums')))
-
+  $wrap.checked = JSON.parse(localStorage.getItem('wrapenabled'));
 }
 
 // * EVENTS
 
+$wrap.addEventListener('change', () => {
+  let wrapEnable = $wrap.checked
+  setWrap(wrapEnable)
+})
+
 $settingsBtn.addEventListener("click", () => {
-  if (!open) $sidebar.style.display = "block";
+  if (!open) $sidebar.style.display = "inline-block";
   else $sidebar.style.display = "none";
   open = !open;
 });

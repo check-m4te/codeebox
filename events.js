@@ -39,6 +39,5 @@ $previewBtn.addEventListener('click', () => {
 
 $runBtn.addEventListener('click', () => {
     update();
-    console.log('clicky guy')
 })
 
