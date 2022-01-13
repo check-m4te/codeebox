@@ -83,6 +83,7 @@ import('ace-builds/src-noconflict/ext-language_tools')
     });
   })
 
+// TODO: Add posibility to select your keybinding profile
 $js.setKeyboardHandler("ace/keyboard/vscode");
 $css.setKeyboardHandler("ace/keyboard/vscode");
 $html.setKeyboardHandler("ace/keyboard/vscode");
