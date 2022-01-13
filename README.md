@@ -1,5 +1,5 @@
 Known issues:
-Cannot load custom themes using verce
+~~Cannot load custom themes using vercel~~
 
 ### CodeeBox
 ![image](https://user-images.githubusercontent.com/82386159/149339356-f871ad1b-8d80-460e-b68f-e390bf8d382d.png)
