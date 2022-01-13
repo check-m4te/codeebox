@@ -2,7 +2,7 @@ Known issues:
 Cannot load custom themes using verce
 
 ### CodeeBox
-![image](https://user-images.githubusercontent.com/82386159/149338660-6e60d2ca-56f9-4734-9e60-4e781b645163.png)
+![image](https://user-images.githubusercontent.com/82386159/149339356-f871ad1b-8d80-460e-b68f-e390bf8d382d.png)
 A ~~simple~~ super cool code playground 😏
 https://codeebox.vercel.app
 
