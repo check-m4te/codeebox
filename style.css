@@ -91,6 +91,7 @@ body {
 
 .sidebar {
   height: 100vh;
+  opacity: 0.9;
   width: 60px;
   -webkit-box-shadow: 5px 5px 33px 5px rgba(0,0,0,0.49); 
   box-shadow: 5px 5px 33px 5px rgba(0,0,0,0.16);
@@ -99,6 +100,7 @@ body {
 
 .sidesidebar {
   height: 100vh;
+  opacity: 0.9;
   width: 250px;
   padding: auto;
   padding-top:10px;
@@ -107,6 +109,7 @@ body {
 
 .skypackbar {
   height: 100vh;
+  opacity: 0.9;
   width: 250px;
   padding: auto;
   padding-top:10px;
@@ -193,7 +196,9 @@ textarea {
   color:white;
   height: 99.9vh;
 }
-
+* {
+  word-wrap: ;
+}
 .vertical-gutter {
   grid-area: 1 / 2 / 4 / 2;
   background: #555;

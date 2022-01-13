@@ -16,6 +16,9 @@ import 'ace-builds/src-noconflict/ext-error_marker'
 import 'ace-builds/src-noconflict/ext-hardwrap'
 import 'ace-builds/src-noconflict/ext-keybinding_menu'
 import 'ace-builds/src-noconflict/keybinding-vscode'
+import 'ace-builds/src-noconflict/snippets/javascript'
+import 'ace-builds/src-noconflict/snippets/html'
+import 'ace-builds/src-noconflict/snippets/css'
 import('./emmet');
 import {
   realtimeUpdate,
@@ -57,6 +60,7 @@ import('ace-builds/src-noconflict/ext-language_tools')
       enableBasicAutocompletion: true,
       useWorker: false,
       behavioursEnabled: true,
+      enableSnippets: true,
       wrapBehavioursEnabled: true,
       enableLiveAutocompletion: true
     });
@@ -64,6 +68,7 @@ import('ace-builds/src-noconflict/ext-language_tools')
       enableLiveAutocompletion: true,
       useWorker: false,
       behavioursEnabled: true,
+      enableSnippets: true,
       wrapBehavioursEnabled: true,
       enableBasicAutocompletion: true
     });
@@ -71,6 +76,7 @@ import('ace-builds/src-noconflict/ext-language_tools')
       enableLiveAutocompletion: true,
       useWorker: false,
       behavioursEnabled: true,
+      enableSnippets: true,
       wrapBehavioursEnabled: true,
       enableBasicAutocompletion: true
     });
@@ -165,12 +171,24 @@ setTimeout(() => {
   beautify.beautify($js.getSession());
 }, 500);
 
+//.Test
+setTimeout(() => {
+  var target_obj = document.getElementsByClassName('ace_scroller')[0];
+  var color = getComputedStyle(target_obj).backgroundColor;
+  console.log(color);
+  $('.sidebar').style.backgroundColor = color;
+  $('.sidesidebar').style.backgroundColor = color;
+  $('.skypackbar').style.backgroundColor = color;
+}, 1000)
+
 // ! UPDATE FUNCTION
 function update() {
 
   const hashedCode = `${encode($html.getValue())}|${encode($css.getValue())}|${encode($js.getValue())}`
   window.history.replaceState(null, null, `/${hashedCode}`);
-  !(window.location.href.includes('localhost:3000')) ? console.clear(): console.log('');
+  if(!location.href.includes('localhost')){
+    console.clear();
+  }
   let newJS = `
     <script>
       ${$js.getValue()}

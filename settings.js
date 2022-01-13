@@ -70,6 +70,12 @@ const setMonTheme = async p => {
   $html.setTheme(text);
   $css.setTheme(text);
   $js.setTheme(text);
+  var target_obj = document.getElementsByClassName('ace_scroller')[0];
+  var color = getComputedStyle(target_obj).backgroundColor;
+  console.log(color);
+  $('.sidebar').style.backgroundColor = color;
+  $('.sidesidebar').style.backgroundColor = color;
+  $('.skypackbar').style.backgroundColor = color;
   localStorage.setItem('theme', p);
 }
 
@@ -105,6 +111,7 @@ window.onload = () => {
   $linenums.checked = JSON.parse(localStorage.getItem('linenums'));
   setMonTheme(localStorage.getItem('theme'));
   setLineNumbers(JSON.parse(localStorage.getItem('linenums')))
+
 }
 
 // * EVENTS
