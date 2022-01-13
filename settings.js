@@ -80,6 +80,8 @@ const setMonTheme = async p => {
                       (parseInt(rgb[1])) +
                       (parseInt(rgb[2]))) / 3);
   $('.sidebar').style.backgroundColor = color;
+  $('.horizontal-gutter').style.backgroundColor = color;
+  $('.vertical-gutter').style.backgroundColor = color;
   $('.sidesidebar').style.backgroundColor = color;
   $('.skypackbar').style.backgroundColor = color;
   if(brightness > 125) {
