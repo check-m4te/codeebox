@@ -5,22 +5,26 @@ import * as monaco from 'monaco-editor'
 
 // * VARIABLES
 
+// . Two lines jquery
 const $ = sel => document.querySelector(sel)
 const $$ = sel => document.querySelectorAll(sel)
 
-const $settingsBtn = $("#settings");
-const $sidebar = $(".sidesidebar");
-const $themeInput = $("#themeinp");
-const $fontInput = $("#fonts");
+//. IDS
+const $settingsBtn   = $("#settings");
+const $themeInput    = $("#themeinp");
+const $fontInput     = $("#fonts");
 const $fontsizeInput = $("#fontsize");
-const $realtime = $('#realtime');
-const $linenums = $('#linenums');
-const $wrap = $('#wrapenabled');
-let realtimeUpdate = true;
-let open = false;
+const $realtime      = $('#realtime');
+const $linenums      = $('#linenums');
+const $wrap          = $('#wrapenabled');
+//. CLASSES
+const $sidebar       = $(".sidesidebar");
+//. BOOLEANS
+let realtimeUpdate   = true;
+let open             = false;
 
 // * FUNCTIONS {
-
+//. Font size
 const setFontSize = size => {
   let options = {"fontSize": parseInt(size)}
   $html.updateOptions(options);
@@ -29,6 +33,7 @@ const setFontSize = size => {
   localStorage.setItem('fontsize', size);
 }
 
+//. Theme
 const setMonTheme = async p => {
   let accent, color, highlight, r, g, b, brightness;
   fetch(`/themes/${p}.json`)
@@ -80,11 +85,10 @@ const setMonTheme = async p => {
     }
   })
   
-  
-  
   localStorage.setItem('theme', p);
 }
 
+//. Font
 const setFont = text => {
   let options = {"fontFamily": text}
   $html.updateOptions(options);
@@ -93,6 +97,7 @@ const setFont = text => {
   localStorage.setItem('font', text);
 }
 
+//. Numbers
 const setLineNumbers = show => {
   let options = {
     lineNumbers: show === true ? 'on' : 'off',
@@ -103,6 +108,7 @@ const setLineNumbers = show => {
   localStorage.setItem('linenums', show);
 }
 
+//. Word Wrap
 const setWrap = wrap => {
   let options = {
     wordWrap: wrap === true ? "on" : "false",
@@ -164,7 +170,7 @@ $themeInput.addEventListener("change", () => {
 $fontInput.addEventListener("change", () => {
   let text = encodeURI($fontInput.options[$fontInput.selectedIndex].text);
   setFont(text);
-});
+}); 
 
 // ! Font size
 
