@@ -112,25 +112,24 @@ function getURLCode() {
   let code, html, js, css = '';
   if(codeBase64){
     code = codeBase64.split('|_|');
-    html = code[0];
-    css = code[1];
-    js = code[2];
+    html = decode(code[0]);
+    css = decode(code[1]);
+    js = decode(code[2]);
   }
   else {
-    html = '';
-    css = '';
-    js = '';
+    html = localStorage.getItem('html');
+    css = localStorage.getItem('css');
+    js = localStorage.getItem('js');
   }
-  $html.setValue(decode(html));
-  $js.setValue(decode(js));
-  $css.setValue(decode(css));
+  $html.setValue(html);
+  $js.setValue(js);
+  $css.setValue(css);
 }
 getURLCode();
 //.First update, automatic.
 update();
 
 emmetCSS(monaco)
-emmetJSX(monaco)
 emmetHTML(monaco)
 
 // ! UPDATE FUNCTION
