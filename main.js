@@ -100,18 +100,32 @@ $js.onDidChangeModelContent(() => {
     update()
 })
 
-//.Variables
-let codeBase64 = PARAMS.get('code');
-const [rawHtml, rawCss, rawJs] = codeBase64 ? PARAMS.get('code').split('|') : ''
-let deHtml = codeBase64 ? decode(rawHtml) : '';
-let deJs = codeBase64 ? decode(rawJs) : '';
-let deCss = codeBase64 ? decode(rawCss) : '';
-
-//.Add decoded values to editors
-$html.setValue(deHtml)
-$css.setValue(deCss)
-$js.setValue(deJs)
-
+// ! URL
+function updateURLCode(html, css, js) {
+  let url = new URL(window.location);
+  let codeBase64 = `${encode(html)}|_|${encode(css)}|_|${encode(js)}`;
+  url.searchParams.set('code', codeBase64);
+  window.history.replaceState('', 'CodeeBox', url);
+}
+function getURLCode() {
+  const codeBase64 = PARAMS.get('code');
+  let code, html, js, css = '';
+  if(codeBase64){
+    code = codeBase64.split('|_|');
+    html = code[0];
+    css = code[1];
+    js = code[2];
+  }
+  else {
+    html = '';
+    css = '';
+    js = '';
+  }
+  $html.setValue(decode(html));
+  $js.setValue(decode(js));
+  $css.setValue(decode(css));
+}
+getURLCode();
 //.First update, automatic.
 update();
 
@@ -121,8 +135,6 @@ emmetHTML(monaco)
 
 // ! UPDATE FUNCTION
 function update() {
-  const hashedCode = `${encode($html.getValue())}|${encode($css.getValue())}|${encode($js.getValue())}`
-  window.history.replaceState(null, null, `/?code=${hashedCode}`);
   if (!location.href.includes('localhost')) {
     console.clear();
   }
@@ -138,24 +150,25 @@ function update() {
     </script>
     `
   }
-
-  $('iframe').setAttribute('srcdoc', `
-    <!DOCTYPE html>
-    <html>
-      <head>
-        <style>
-          ${$css.getValue()}
-        </style>
-      </head>
-      <body>
-        ${$html.getValue()}
-        ${newJS}
-      </body>
-    </html>
-  `)
+  let htmlcomplete = `
+  <!DOCTYPE html>
+  <html>
+    <head>
+      <style>
+        ${$css.getValue()}
+      </style>
+    </head>
+    <body>
+      ${$html.getValue()}
+      ${newJS}
+    </body>
+  </html>
+`
+  $('iframe').setAttribute('srcdoc', htmlcomplete)
   localStorage.setItem('html', $html.getValue())
   localStorage.setItem('css', $css.getValue())
   localStorage.setItem('js', $js.getValue())
+  updateURLCode($html.getValue(), $css.getValue(), $js.getValue());
 }
 // ! EXPORTS
 export {
