@@ -81,7 +81,27 @@ const $html = monaco.editor.create($('#html'), {
   fontFamily:'CascadiaCodePL',
   padding:{
     top:25,
-  }
+  },
+  insertSpaces: true,
+  minimap: {
+    enabled: false,
+  },
+  lineNumbersMinChars: 3,
+  lineDecorationsWidth: 3,
+  fontFamily: "CascadiaCodePL",
+  automaticLayout: true,
+  // Suggestion-related:
+  lightbulb: {
+    enabled: true,
+  },
+  quickSuggestions: {
+    other: true,
+    comments: true,
+    strings: true,
+  },
+  acceptSuggestionOnCommitCharacter: true,
+  acceptSuggestionOnEnter: 'on',
+  accessibilitySupport: 'on',
 });;
 
 
