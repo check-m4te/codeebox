@@ -97,7 +97,7 @@ body {
   box-shadow: 5px 5px 33px 5px rgba(0,0,0,0.15);
   background-color: #444;
 }
-.sidesidebar {
+.sidesidebar, .skypackbar {
   height: 100vh;
   opacity: 1;
   width: 250px;
@@ -110,16 +110,6 @@ body {
 .sidesidebar * {
   display: inline-block;
   margin-bottom: 10px;
-}
-
-
-.skypackbar {
-  height: 100vh;
-  opacity: 1;
-  width: 250px;
-  padding: auto;
-  padding-top:10px;
-  background-color: #444;
 }
 
 label{
