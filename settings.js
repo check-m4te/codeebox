@@ -1,46 +1,8 @@
 import { $html, $css, $js } from "./main";
 import ace from 'ace-builds'
 // * THEME IMPORT (Super unefficient)
-// TODO: find a better system.
 import pSBC from 'shade-blend-color';
-import 'ace-builds/src-noconflict/theme-monokai'
-import 'ace-builds/src-noconflict/theme-textmate'
-import 'ace-builds/src-noconflict/theme-chaos'
-import 'ace-builds/src-noconflict/theme-chrome'
-import 'ace-builds/src-noconflict/theme-cobalt'
-import 'ace-builds/src-noconflict/theme-clouds'
-import 'ace-builds/src-noconflict/theme-clouds_midnight'
-import 'ace-builds/src-noconflict/theme-crimson_editor'
-import 'ace-builds/src-noconflict/theme-dawn'
-import 'ace-builds/src-noconflict/theme-dracula'
-import 'ace-builds/src-noconflict/theme-dreamweaver'
-import 'ace-builds/src-noconflict/theme-eclipse'
-import 'ace-builds/src-noconflict/theme-github'
-import 'ace-builds/src-noconflict/theme-gob'
-import 'ace-builds/src-noconflict/theme-gruvbox'
-import 'ace-builds/src-noconflict/theme-idle_fingers'
-import 'ace-builds/src-noconflict/theme-iplastic'
-import 'ace-builds/src-noconflict/theme-katzenmilch'
-import 'ace-builds/src-noconflict/theme-kr_theme'
-import 'ace-builds/src-noconflict/theme-kuroir'
-import 'ace-builds/src-noconflict/theme-merbivore'
-import 'ace-builds/src-noconflict/theme-merbivore_soft'
-import 'ace-builds/src-noconflict/theme-mono_industrial'
-import 'ace-builds/src-noconflict/theme-one_dark'
-import 'ace-builds/src-noconflict/theme-nord_dark'
-import 'ace-builds/src-noconflict/theme-pastel_on_dark'
-import 'ace-builds/src-noconflict/theme-solarized_dark'
-import 'ace-builds/src-noconflict/theme-solarized_light'
-import 'ace-builds/src-noconflict/theme-sqlserver'
-import 'ace-builds/src-noconflict/theme-terminal'
-import 'ace-builds/src-noconflict/theme-tomorrow'
-import 'ace-builds/src-noconflict/theme-tomorrow_night'
-import 'ace-builds/src-noconflict/theme-tomorrow_night_blue'
-import 'ace-builds/src-noconflict/theme-tomorrow_night_bright'
-import 'ace-builds/src-noconflict/theme-tomorrow_night_eighties'
-import 'ace-builds/src-noconflict/theme-twilight'
-import 'ace-builds/src-noconflict/theme-vibrant_ink'
-import 'ace-builds/src-noconflict/theme-xcode'
+import * as monaco from 'monaco-editor'
 
 // * VARIABLES
 
@@ -60,134 +22,96 @@ let open = false;
 
 // * FUNCTIONS {
 
-  function LightenDarkenColor(col,amt) {
-    var usePound = false;
-    if ( col[0] == "#" ) {
-        col = col.slice(1);
-        usePound = true;
-    }
-
-    var num = parseInt(col,16);
-
-    var r = (num >> 16) + amt;
-
-    if ( r > 255 ) r = 255;
-    else if  (r < 0) r = 0;
-
-    var b = ((num >> 8) & 0x00FF) + amt;
-
-    if ( b > 255 ) b = 255;
-    else if  (b < 0) b = 0;
-
-    var g = (num & 0x0000FF) + amt;
-
-    if ( g > 255 ) g = 255;
-    else if  ( g < 0 ) g = 0;
-
-    return (usePound?"#":"") + (g | (b << 8) | (r << 16)).toString(16);
-}
-
 const setFontSize = size => {
-  size = parseInt(size)
-  $html.setFontSize(size);
-  $css.setFontSize(size);
-  $js.setFontSize(size);
+  let options = {"fontSize": parseInt(size)}
+  $html.updateOptions(options);
+  $css.updateOptions(options);
+  $js.updateOptions(options);
   localStorage.setItem('fontsize', size);
 }
 
 const setMonTheme = async p => {
-  let text = `ace/theme/${p.replace(' ', '_').toLowerCase()}`
-  $html.setTheme(text);
-  $css.setTheme(text);
-  $js.setTheme(text);
-  let target_obj = document.getElementsByClassName('ace_scroller')[0];
-  let color = getComputedStyle(target_obj).backgroundColor;
-  let rgb = color.replace('(', "").replace(')', '').replace('rgb', '').split(',')
-  let brightness = Math.round((
-                      (parseInt(rgb[0])) +
-                      (parseInt(rgb[1])) +
-                      (parseInt(rgb[2]))) / 3);
-  let accent = pSBC(0.06, color);
-  let acento = pSBC(0.1, accent);
-  console.log(accent)
-  $('.sidebar').style.backgroundColor = accent;
-  $('.horizontal-gutter').style.backgroundColor = accent;
-  $('.vertical-gutter').style.backgroundColor = accent;
-  $('.sidesidebar').style.backgroundColor = accent;
-  $('input[type="number"]').style.backgroundColor = acento;
-  $('.skypackbar').style.backgroundColor = accent;
-  $$('select').forEach(item => {
-    item.style.color = '#222';
+  let accent, color, highlight, r, g, b, brightness;
+  fetch(`/themes/${p}.json`)
+  .then(data => data.json())
+  .then(data => {
+    monaco.editor.defineTheme('theme', data);
+    monaco.editor.setTheme('theme');
+    accent = pSBC(0.1, getComputedStyle($('.monaco-editor')).backgroundColor);
+    color = getComputedStyle($('.monaco-editor')).backgroundColor;
+    $('.sidebar').style.backgroundColor = accent;
+    $('.sidesidebar').style.backgroundColor = accent;
+    $('.skypackbar').style.backgroundColor = accent;
+    highlight = color.replace('rgb(', '').replace(')','').split(',');
+    r = parseInt(highlight[0]);
+    g = parseInt(highlight[1]);
+    b = parseInt(highlight[2]);
+    brightness = ((r + g + b) / 3);
+    if(brightness > 125) {
+      $$('g, path').forEach(e => {
+        e.style.fill = '#222';
+      })
+      $$('label, select, option').forEach(e => {
+        e.style.color = '#222'
+      })
+      $$('select, option').forEach(e => {
+        e.style.backgroundColor = '#dedede'
+      })
+      $$('input[type="number"]').forEach(e => {
+        e.style.backgroundColor = pSBC(-0.1,accent)
+        e.style.color = '#222'
+      })
+    }
+    else{
+      $$('g, path').forEach(e => {
+        e.style.fill = '#dedede';
+      })
+      $$('label, select, option').forEach(e => {
+        e.style.color = '#dedede'
+      })
+      $$('select, option').forEach(e => {
+        e.style.backgroundColor = '#222'
+        e.style.color = '#dedede'
+      })
+
+      $$('input[type="number"]').forEach(e => {
+        e.style.backgroundColor = pSBC(0.1,accent)
+        e.style.color = '#dedede'
+      })
+    }
   })
-  $$('input').forEach(item => {
-    item.style.color = '#222';
-  })
-  $$('option').forEach(item => {
-    item.style.color = '#222';
-  })
-  if(brightness >= 125) {
-    $$('g, path').forEach(svg => {
-      svg.style.fill = 'black'
-    })
-    $$('label').forEach(e => {
-      e.style.color = 'black'
-    })
-    $$('input[type="number"]').forEach(e =>{
-      e.style.color = 'black'
-    })
-    $$('select').forEach(e =>{
-      e.style.color = 'black'
-      e.style.backgroundColor = 'white'
-    })
-    $$('option').forEach(e =>{
-      e.style.color = 'black'
-      e.style.backgroundColor = 'white'
-    })
-    acento = pSBC(-0.1, accent);
-    $('input[type="number"]').style.backgroundColor = acento;
-  }
-  else {
-    $$('g, path').forEach(svg => {
-      svg.style.fill = 'white'
-    })
-    $$('label').forEach(e => {
-      e.style.color = 'white'
-    })
-    $$('input[type="number"]').forEach(e =>{
-      e.style.color = 'white'
-    })
-    acento = pSBC(0.1, accent);
-    $$('select').forEach(e =>{
-      e.style.color = 'white'
-      e.style.backgroundColor = acento
-    })
-    $$('option').forEach(e =>{
-      e.style.color = 'white'
-      e.style.backgroundColor = acento
-    })
-  }
+  
+  
   
   localStorage.setItem('theme', p);
 }
 
 const setFont = text => {
-  $html.setOption("fontFamily", text);
-  $css.setOption("fontFamily", text);
-  $js.setOption("fontFamily", text);
+  let options = {"fontFamily": text}
+  $html.updateOptions(options);
+  $css.updateOptions(options);
+  $js.updateOptions(options);
   localStorage.setItem('font', text);
 }
 
 const setLineNumbers = show => {
-  $js.renderer.setShowGutter(show);
-  $html.renderer.setShowGutter(show);
-  $css.renderer.setShowGutter(show);
+  let options = {
+    lineNumbers: show === true ? 'on' : 'off',
+  }
+  $js.updateOptions(options)
+  $html.updateOptions(options)
+  $css.updateOptions(options)
   localStorage.setItem('linenums', show);
 }
 
 const setWrap = wrap => {
-  $html.getSession().setUseWrapMode(wrap);
-  $js.getSession().setUseWrapMode(wrap);
-  $css.getSession().setUseWrapMode(wrap);
+  let options = {
+    wordWrap: wrap === true ? "on" : "false",
+    wrappingIndent: 'indent'
+  }
+  $js.updateOptions(options)
+  $css.updateOptions(options)
+  $html.updateOptions(options)
   localStorage.setItem('wrapenabled', wrap)
 }
 

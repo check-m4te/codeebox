@@ -7,14 +7,17 @@
     "preview": "vite preview"
   },
   "devDependencies": {
-    "vite": "^2.7.2"
+    "vite": "^2.7.2",
+    "vite-plugin-monaco-editor-nls": "^1.0.8"
   },
   "dependencies": {
     "ace-builds": "^1.4.13",
-    "file-loader": "^6.2.0",
+    "emmet-monaco-es": "^5.0.2",
     "file-saver": "^2.0.5",
     "js-base64": "^3.7.2",
     "jszip": "^3.7.1",
+    "magic-string": "^0.25.7",
+    "monaco-editor": "^0.31.1",
     "shade-blend-color": "^1.0.0",
     "split-grid": "^1.0.11"
   }

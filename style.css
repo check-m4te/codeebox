@@ -97,15 +97,6 @@ body {
   box-shadow: 5px 5px 33px 5px rgba(0,0,0,0.15);
   background-color: #444;
 }
-select option {
-  margin: 40px;
-  background: #222;
-  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.4);
-}
-select {
-  background: #222;
-  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.4);
-}
 .sidesidebar {
   height: 100vh;
   opacity: 1;

@@ -26,7 +26,7 @@ $jsBtn.addEventListener('click', () => {
 
 // ! Event listeners
 $skypackBtn.addEventListener('click', () => {
-    $js.insert(`\nimport ${$skypackInp.value.replace('-', '').toLowerCase()} from 'https://cdn.skypack.dev/${$skypackInp.value}'`)
+    $js.trigger('keyboard', 'type', {text: `\nimport ${$skypackInp.value.replace('-', '').toLowerCase()} from 'https://cdn.skypack.dev/${$skypackInp.value}'`});
 })
 
 $("#download").addEventListener("click", () => {

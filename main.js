@@ -5,25 +5,35 @@ import {
   decode
 } from 'js-base64'
 
-// ! ACE IMPORTS
-import ace from 'ace-builds/src-noconflict/ace'
-import 'ace-builds/src-noconflict/ext-emmet'
-import 'ace-builds/src-noconflict/ext-prompt'
-import 'ace-builds/src-noconflict/ext-beautify'
-import 'ace-builds/src-noconflict/ext-searchbox'
-import 'ace-builds/src-noconflict/ext-code_lens'
-import 'ace-builds/src-noconflict/ext-error_marker'
-import 'ace-builds/src-noconflict/ext-hardwrap'
-import 'ace-builds/src-noconflict/ext-keybinding_menu'
-import 'ace-builds/src-noconflict/keybinding-vscode'
-import 'ace-builds/src-noconflict/snippets/javascript'
-import 'ace-builds/src-noconflict/snippets/html'
-import 'ace-builds/src-noconflict/snippets/css'
-import('./emmet');
+// !MONACO
+import * as monaco from 'monaco-editor'
+import { emmetHTML, emmetJSX, emmetCSS } from 'emmet-monaco-es'
+import editorWorker from 'monaco-editor/esm/vs/editor/editor.worker?worker'
+import jsonWorker from 'monaco-editor/esm/vs/language/json/json.worker?worker'
+import cssWorker from 'monaco-editor/esm/vs/language/css/css.worker?worker'
+import htmlWorker from 'monaco-editor/esm/vs/language/html/html.worker?worker'
+import tsWorker from 'monaco-editor/esm/vs/language/typescript/ts.worker?worker'
+
+self.MonacoEnvironment = {
+  getWorker(_, label) {
+    if (label === 'json') {
+      return new jsonWorker()
+    }
+    if (label === 'css' || label === 'scss' || label === 'less') {
+      return new cssWorker()
+    }
+    if (label === 'html' || label === 'handlebars' || label === 'razor') {
+      return new htmlWorker()
+    }
+    if (label === 'typescript' || label === 'javascript') {
+      return new tsWorker()
+    }
+    return new editorWorker()
+  }
+}
+
 import {
-  realtimeUpdate,
-  setMonTheme,
-  setLineNumbers
+  realtimeUpdate
 } from './settings';
 
 //. $ funtion (one-line-jquery 😉)
@@ -43,108 +53,55 @@ Split({
 })
 
 // ! Create editors!
-const $html = ace.edit('html');
-const $css = ace.edit('css');
-const $js = ace.edit('js');
+const $js = monaco.editor.create($('#js'), {
+  value: 'console.log("Hello, world")',
+  language: 'javascript',
+  automaticLayout:true,
+  fontLigatures:true,
+  fontFamily:'CascadiaCodePL',
+  padding:{
+    top:15,
+  }
+});
+const $css = monaco.editor.create($('#css'), {
+  value: 'console.log("Hello, world")',
+  language: 'css',
+  automaticLayout:true,
+  fontLigatures:true,
+  fontFamily:'CascadiaCodePL',
+  padding:{
+    top:15,
+  }
+});
+const $html = monaco.editor.create($('#html'), {
+  value: 'console.log("Hello, world")',
+  language: 'html',
+  automaticLayout:true,
+  fontLigatures:true,
+  fontFamily:'CascadiaCodePL',
+  padding:{
+    top:15,
+  }
+});;
+
 
 // * Editor configurations.
 
-//.Remove scroll block
-$html.$blockScrolling = Infinity;
-$js.$blockScrolling = Infinity;
-$css.$blockScrolling = Infinity;
-
-//. Autocomplete
-import('ace-builds/src-noconflict/ext-language_tools')
-  .then(() => {
-    $js.setOptions({
-      enableBasicAutocompletion: true,
-      useWorker: false,
-      behavioursEnabled: true,
-      enableSnippets: true,
-      wrapBehavioursEnabled: true,
-      enableLiveAutocompletion: true
-    });
-    $html.setOptions({
-      enableLiveAutocompletion: true,
-      useWorker: false,
-      behavioursEnabled: true,
-      enableSnippets: true,
-      wrapBehavioursEnabled: true,
-      enableBasicAutocompletion: true
-    });
-    $css.setOptions({
-      enableLiveAutocompletion: true,
-      useWorker: false,
-      behavioursEnabled: true,
-      enableSnippets: true,
-      wrapBehavioursEnabled: true,
-      enableBasicAutocompletion: true
-    });
-  })
-
-// TODO: Add posibility to select your keybinding profile
-$js.setKeyboardHandler("ace/keyboard/vscode");
-$css.setKeyboardHandler("ace/keyboard/vscode");
-$html.setKeyboardHandler("ace/keyboard/vscode");
-
-//.Modes
-import('ace-builds/src-noconflict/mode-html')
-  .then(() => {
-    $html.getSession().setMode("ace/mode/html");
-  })
-import('ace-builds/src-noconflict/mode-javascript')
-  .then(() => {
-    $js.getSession().setMode("ace/mode/javascript");
-  })
-import('ace-builds/src-noconflict/mode-css')
-  .then(() => {
-    $css.getSession().setMode("ace/mode/css");
-  })
-
-//.Padding
-$html.renderer.setPadding(16)
-$css.renderer.setPadding(16)
-$js.renderer.setPadding(16)
-
-//.Scroll margin (top padding)
-$html.renderer.setScrollMargin(14, 14)
-$js.renderer.setScrollMargin(14, 14)
-$css.renderer.setScrollMargin(14, 14)
-
-//.Update on change
-$js.getSession().on('change', () => {
-  if (realtimeUpdate)
-    update();
-});
-$css.getSession().on('change', () => {
-  if (realtimeUpdate)
-    update();
-});
-$html.getSession().on('change', () => {
-  if (realtimeUpdate)
-    update();
-});
+//.Events
+$html.onDidChangeModelContent(() => {
+  if(realtimeUpdate)
+    update()
+})
+$css.onDidChangeModelContent(() => {
+  if(realtimeUpdate)
+    update()
+})
+$js.onDidChangeModelContent(() => {
+  if(realtimeUpdate)
+    update()
+})
 
 // * Beautify for Ace
-
-//.Import
-var beautify = ace.require('ace/ext/beautify');
-//.Add shortcuts
-$js.commands.addCommands(beautify.commands);
-$html.commands.addCommands(beautify.commands);
-$css.commands.addCommands(beautify.commands);
-
-// * Emmet for Ace
-
-$html.setOption('enableEmmet', true)
-$css.setOption('enableEmmet', true)
-$js.setOption('enableEmmet', true)
-
-// ! CODELENS
-
-$js.setOption("enableCodeLens", true);
-
 // ! URL SAVING SYSTEM
 //.Pathname
 let {
@@ -154,30 +111,26 @@ let {
 //.Variables
 const [rawHtml, rawCss, rawJs] = pathname.slice(1).split('%7C')
 let deHtml = rawHtml ? decode(rawHtml) : localStorage.getItem('html');
-let deCss = rawCss ? decode(rawCss) :localStorage.getItem('css');
+let deCss = rawCss ? decode(rawCss) : localStorage.getItem('css');
 let deJs = rawJs ? decode(rawJs) : localStorage.getItem('js');
 
 //.Add decoded values to editors
-$html.setValue(deHtml, -1)
-$css.setValue(deCss, -1)
-$js.setValue(deJs, -1)
+$html.setValue(deHtml)
+$css.setValue(deCss)
+$js.setValue(deJs)
 
 //.First update, automatic.
 update();
 
-//.Beautify for the first time
-setTimeout(() => {
-  beautify.beautify($html.getSession());
-  beautify.beautify($css.getSession());
-  beautify.beautify($js.getSession());
-}, 500);
+emmetCSS(monaco)
+emmetJSX(monaco)
+emmetHTML(monaco)
 
 // ! UPDATE FUNCTION
 function update() {
-
   const hashedCode = `${encode($html.getValue())}|${encode($css.getValue())}|${encode($js.getValue())}`
   window.history.replaceState(null, null, `/${hashedCode}`);
-  if(!location.href.includes('localhost')){
+  if (!location.href.includes('localhost')) {
     console.clear();
   }
   let newJS = `
