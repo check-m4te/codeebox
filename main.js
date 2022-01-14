@@ -168,6 +168,9 @@ function update() {
   localStorage.setItem('html', $html.getValue())
   localStorage.setItem('css', $css.getValue())
   localStorage.setItem('js', $js.getValue())
+  if($('#autosave').checked) {
+    updateURLCode($html.getValue(), $css.getValue(), $js.getValue());
+  }
 }
 // ! EXPORTS
 export {

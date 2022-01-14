@@ -3,6 +3,7 @@ import {$js, update, updateURLCode, $html, $css} from './main'
 import downloadZip from './download'
 import previewer from './previewer'
 import {$} from './main';
+import cssFormatMonaco from 'css-format-monaco';
 import * as monaco from 'monaco-editor'
 
 // ! Variables
@@ -65,3 +66,12 @@ var cssPalette = $css.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyMod.Shift | m
 var jsPalette = $js.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyMod.Shift | monaco.KeyCode.KeyP, function() {
     $js.trigger('anyString', 'editor.action.quickCommand')
 });
+
+const generateCssFormater = () => cssFormatMonaco(
+    monaco,
+    {
+      indent_size: 2
+    }
+  )
+
+generateCssFormater();
