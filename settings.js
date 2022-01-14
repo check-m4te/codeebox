@@ -1,5 +1,4 @@
 import { $html, $css, $js } from "./main";
-import ace from 'ace-builds'
 // * THEME IMPORT (Super unefficient)
 import pSBC from 'shade-blend-color';
 import * as monaco from 'monaco-editor'
