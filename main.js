@@ -60,6 +60,9 @@ const $js = monaco.editor.create($('#js'), {
   automaticLayout:true,
   fontLigatures:true,
   fontFamily:'CascadiaCodePL',
+  minimap: {
+    enabled:false, // TODO: ADD OPTION
+  },
   padding:{
     top:25,
   }
@@ -69,6 +72,9 @@ const $css = monaco.editor.create($('#css'), {
   automaticLayout:true,
   fontLigatures:true,
   fontFamily:'CascadiaCodePL',
+  minimap: {
+    enabled:false, // TODO: ADD OPTION
+  },
   padding:{
     top:25,
   }
@@ -78,6 +84,9 @@ const $html = monaco.editor.create($('#html'), {
   automaticLayout:true,
   fontLigatures:true,
   fontFamily:'CascadiaCodePL',
+  minimap: {
+    enabled:false, // TODO: ADD OPTION
+  },
   padding:{
     top:25,
   },

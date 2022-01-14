@@ -35,7 +35,7 @@ const setFontSize = size => {
 
 //. Theme
 const setMonTheme = async p => {
-  let accent, color, highlight, r, g, b, brightness;
+  let accent,color, highlight, r, g, b, brightness;
   fetch(`/themes/${p}.json`)
   .then(data => data.json())
   .then(data => {
@@ -43,15 +43,13 @@ const setMonTheme = async p => {
     monaco.editor.setTheme('theme');
     accent = pSBC(0.1, getComputedStyle($('.monaco-editor')).backgroundColor);
     color = getComputedStyle($('.monaco-editor')).backgroundColor;
-    $('.sidebar').style.backgroundColor = accent;
-    $('.sidesidebar').style.backgroundColor = accent;
-    $('.skypackbar').style.backgroundColor = accent;
     highlight = color.replace('rgb(', '').replace(')','').split(',');
     r = parseInt(highlight[0]);
     g = parseInt(highlight[1]);
     b = parseInt(highlight[2]);
     brightness = ((r + g + b) / 3);
     if(brightness > 125) {
+      accent = pSBC(-0.1, color)
       $$('g, path').forEach(e => {
         e.style.fill = '#222';
       })
@@ -62,7 +60,7 @@ const setMonTheme = async p => {
         e.style.backgroundColor = '#dedede'
       })
       $$('input[type="number"]').forEach(e => {
-        e.style.backgroundColor = pSBC(-0.1,accent)
+        e.style.backgroundColor = accent
         e.style.color = '#222'
       })
     }
@@ -83,6 +81,11 @@ const setMonTheme = async p => {
         e.style.color = '#dedede'
       })
     }
+    $('.sidebar').style.backgroundColor = accent;
+    $('.sidesidebar').style.backgroundColor = accent;
+    $('.skypackbar').style.backgroundColor = accent;
+    $('.vertical-gutter').style.backgroundColor = accent;
+    $('.horizontal-gutter').style.backgroundColor = accent;
   })
   
   localStorage.setItem('theme', p);
