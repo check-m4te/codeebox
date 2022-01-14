@@ -60,7 +60,7 @@ const $js = monaco.editor.create($('#js'), {
   fontLigatures:true,
   fontFamily:'CascadiaCodePL',
   padding:{
-    top:15,
+    top:25,
   }
 });
 const $css = monaco.editor.create($('#css'), {
@@ -70,7 +70,7 @@ const $css = monaco.editor.create($('#css'), {
   fontLigatures:true,
   fontFamily:'CascadiaCodePL',
   padding:{
-    top:15,
+    top:25,
   }
 });
 const $html = monaco.editor.create($('#html'), {
@@ -80,7 +80,7 @@ const $html = monaco.editor.create($('#html'), {
   fontLigatures:true,
   fontFamily:'CascadiaCodePL',
   padding:{
-    top:15,
+    top:25,
   }
 });;
 
