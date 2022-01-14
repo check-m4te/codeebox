@@ -32,6 +32,8 @@ self.MonacoEnvironment = {
   }
 }
 
+const PARAMS = new URLSearchParams(window.location.search);
+
 import {
   realtimeUpdate
 } from './settings';
@@ -54,7 +56,6 @@ Split({
 
 // ! Create editors!
 const $js = monaco.editor.create($('#js'), {
-  value: 'console.log("Hello, world")',
   language: 'javascript',
   automaticLayout:true,
   fontLigatures:true,
@@ -64,7 +65,6 @@ const $js = monaco.editor.create($('#js'), {
   }
 });
 const $css = monaco.editor.create($('#css'), {
-  value: 'console.log("Hello, world")',
   language: 'css',
   automaticLayout:true,
   fontLigatures:true,
@@ -74,7 +74,6 @@ const $css = monaco.editor.create($('#css'), {
   }
 });
 const $html = monaco.editor.create($('#html'), {
-  value: 'console.log("Hello, world")',
   language: 'html',
   automaticLayout:true,
   fontLigatures:true,
@@ -82,27 +81,7 @@ const $html = monaco.editor.create($('#html'), {
   padding:{
     top:25,
   },
-  insertSpaces: true,
-  minimap: {
-    enabled: false,
-  },
-  lineNumbersMinChars: 3,
-  lineDecorationsWidth: 3,
-  fontFamily: "CascadiaCodePL",
-  automaticLayout: true,
-  // Suggestion-related:
-  lightbulb: {
-    enabled: true,
-  },
-  quickSuggestions: {
-    other: true,
-    comments: true,
-    strings: true,
-  },
-  acceptSuggestionOnCommitCharacter: true,
-  acceptSuggestionOnEnter: 'on',
-  accessibilitySupport: 'on',
-});;
+});
 
 
 // * Editor configurations.
@@ -121,18 +100,12 @@ $js.onDidChangeModelContent(() => {
     update()
 })
 
-// * Beautify for Ace
-// ! URL SAVING SYSTEM
-//.Pathname
-let {
-  pathname
-} = document.location
-
 //.Variables
-const [rawHtml, rawCss, rawJs] = pathname.slice(1).split('%7C')
-let deHtml = rawHtml ? decode(rawHtml) : localStorage.getItem('html');
-let deCss = rawCss ? decode(rawCss) : localStorage.getItem('css');
-let deJs = rawJs ? decode(rawJs) : localStorage.getItem('js');
+let codeBase64 = PARAMS.get('code');
+const [rawHtml, rawCss, rawJs] = codeBase64 ? PARAMS.get('code').split('|') : ''
+let deHtml = codeBase64 ? decode(rawHtml) : '';
+let deJs = codeBase64 ? decode(rawJs) : '';
+let deCss = codeBase64 ? decode(rawCss) : '';
 
 //.Add decoded values to editors
 $html.setValue(deHtml)
@@ -149,7 +122,7 @@ emmetHTML(monaco)
 // ! UPDATE FUNCTION
 function update() {
   const hashedCode = `${encode($html.getValue())}|${encode($css.getValue())}|${encode($js.getValue())}`
-  window.history.replaceState(null, null, `/${hashedCode}`);
+  window.history.replaceState(null, null, `/?code=${hashedCode}`);
   if (!location.href.includes('localhost')) {
     console.clear();
   }
