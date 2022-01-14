@@ -63,6 +63,8 @@ const $js = monaco.editor.create($('#js'), {
   minimap: {
     enabled:false, // TODO: ADD OPTION
   },
+  renderLineHighlight: "line",
+  renderLineHighlightOnlyWhenFocus:true,
   padding:{
     top:25,
   }
@@ -75,6 +77,8 @@ const $css = monaco.editor.create($('#css'), {
   minimap: {
     enabled:false, // TODO: ADD OPTION
   },
+  renderLineHighlight: "line",
+  renderLineHighlightOnlyWhenFocus:true,
   padding:{
     top:25,
   }
@@ -87,6 +91,8 @@ const $html = monaco.editor.create($('#html'), {
   minimap: {
     enabled:false, // TODO: ADD OPTION
   },
+  renderLineHighlight: "line",
+  renderLineHighlightOnlyWhenFocus:true,
   padding:{
     top:25,
   },
