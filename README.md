@@ -11,12 +11,11 @@ https://codeebox.vercel.app
 2. Saving without accounts or databases, everything's on the URL (Encoded)
 3. Resizable
 4. Ace editor! Taken right straight from Cloud9 source! (Has command palette, emmet, autocompletion, and Beautify)
-5. Dark mode, light mode, 38 themes!
+5. Dark mode, light mode, 49 themes!
 6. Adaptive theme; sidebar, panels and gutters adapts to the theme you selected.
 
 ### Keybindings:
-F1: open command palette.
-Ctrl + shift + B: Format with Beautify
+F1 or Ctrl + Shift + P: open command palette.
 Other keybindings can be found in command palette.
 
 ### Building:
