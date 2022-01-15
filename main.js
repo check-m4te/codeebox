@@ -1,5 +1,4 @@
 import './style.css'
-import Split from 'split-grid'
 import {
   encode,
   decode
@@ -43,16 +42,25 @@ const $ = sel => document.querySelector(sel)
 const $$ = sel => document.querySelectorAll(sel)
 
 //. Split JS (resizing)
-Split({
-  columnGutters: [{
-    track: 1,
-    element: document.querySelector('.vertical-gutter'),
-  }],
-  rowGutters: [{
-    track: 1,
-    element: document.querySelector('.horizontal-gutter'),
-  }]
+Split(['#a', '#b'], {
+  gutterSize: 8,
+  cursor: 'col-resize'
 })
+
+Split(['#c', '#d'], {
+  direction: 'vertical',
+  sizes: [50, 50],
+  gutterSize: 8,
+  cursor: 'row-resize'
+})
+
+Split(['#e', '#f'], {
+  direction: 'vertical',
+  sizes: [60, 40],
+  gutterSize: 8,
+  cursor: 'row-resize'
+})
+
 
 // ! Create editors!
 const $js = monaco.editor.create($('#js'), {
@@ -67,7 +75,7 @@ const $js = monaco.editor.create($('#js'), {
   renderLineHighlightOnlyWhenFocus:true,
   cursorSmoothCaretAnimation:true,
   cursorBlinking:'smooth',
-  
+
   padding:{
     top:25,
   }
@@ -84,7 +92,7 @@ const $css = monaco.editor.create($('#css'), {
   renderLineHighlightOnlyWhenFocus:true,
   cursorSmoothCaretAnimation:true,
   cursorBlinking:'smooth',
-  
+
   padding:{
     top:25,
   }
@@ -101,7 +109,7 @@ const $html = monaco.editor.create($('#html'), {
   renderLineHighlightOnlyWhenFocus:true,
   cursorSmoothCaretAnimation:true,
   cursorBlinking:'smooth',
-  
+
   padding:{
     top:25,
   },

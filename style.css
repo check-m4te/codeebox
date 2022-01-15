@@ -1,4 +1,4 @@
-body {
+html,body {
   background-color: #f1f1f1;
   color: #333;
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
@@ -12,6 +12,7 @@ body {
 
 body {
   display: flex;
+  box-sizing: border-box;
 }
 
 /* ! Fonts */
@@ -80,8 +81,6 @@ iframe {
 .editor {
   position: relative;
   overflow: hidden;
-  width: 100.2%;
-  height: 100.2%;
 }
 
 .editor::after{
@@ -162,20 +161,66 @@ button:active {
   background-color: #111;
 }
 
-.grid {
-  display: grid;
-  grid-template-columns: 1fr 10px 1fr;
-  grid-template-rows: 1fr 10px 1fr;
-  height: 100vh;
-  width: 100vw;
-}
+.split {
+     -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+     box-sizing: border-box;
+     overflow-y: auto;
+     overflow-x: hidden;
+ }
+ 
+ .content {
+    box-shadow: inset 0 1px 2px #e4e4e4;
+    background-color: #fff;
+    height: calc(100% + 2px);
+    width:  calc(100% + 2px);
+    overflow: hidden;
+    scrollbar-width: none;
+ }
+ 
+ #html, #css, #js, iframe {
+  height: calc(100% + 2px);
+  width:  calc(100% + 2px);
+  overflow: hidden;
+  scrollbar-width: none;
+  padding: 0;
+ }
+
+ .gutter {
+     background-color: transparent;
+     background-repeat: no-repeat;
+     background-position: 50%;
+ }
+ 
+ .gutter.gutter-horizontal {
+     cursor: col-resize;
+     background-image: url('../assets/vertical.png');
+ }
+ 
+ .gutter.gutter-vertical {
+     cursor: row-resize;
+     background-image: url('../assets/horizontal.png');
+ }
+ 
+ .split.split-horizontal,
+ .gutter.gutter-horizontal {
+     height: 100%;
+     float: left;
+ }
+
 
 #skypack, #download, #settings, #preview, #copy, #run {
   margin:17px;
 }
 
 #preview {
-  margin:12px;
+  margin:13px;
+  width: 40px;
+}
+
+
+#download {
+  margin-bottom: 2px;
 }
 
 #copy {
@@ -206,20 +251,13 @@ button:active {
   transition: 100ms !important;
 }
 
-textarea, iframe{
+iframe{
   height: 100%;
   width: 100%;
   border: none;
 }
 
-textarea {
-  resize: none;
-  background: #222;
-  color:white;
-  height: 99.9vh;
-}
-
-.vertical-gutter {
+/* .vertical-gutter {
   grid-area: 1 / 2 / 4 / 2;
   background: #555 no-repeat;
   -webkit-box-shadow: 0px 0px 10px 3px rgba(0,0,0,0.3); 
@@ -237,26 +275,9 @@ textarea {
   cursor:row-resize;
   background-image: url('/assets/horizontal.png');
   background-position: 50% center;
-}
+} */
 
 ::-webkit-scrollbar {
   width: 10px;
 }
 
-/* Track */
-::-webkit-scrollbar-track {
-  background: #444; 
-  transition: 0.2s;
-}
- 
-/* Handle */
-::-webkit-scrollbar-thumb {
-  background: #888; 
-  border-radius:10px
-}
-
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-  background: #999; 
-  transition: 0.2s;
-}

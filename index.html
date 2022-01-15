@@ -151,7 +151,7 @@
       <option value="7">JuliaMono</option>
     </select>
     <!-- . Font size -->
-    <input type="number" id="fontsize" placeholder="Font size (press enter)">
+    <input type="number" min="1" id="fontsize" placeholder="Font size (press enter)">
     <!-- . Realtime -->
     <label for="realtime">Realtime Preview</label>
     <input type="checkbox" id="realtime" checked="true">
@@ -173,7 +173,24 @@
     <a href="https://www.skypack.dev/" style="color:white;font-family: 'CascadiaCodePL'">Modules</a>
   </div>
   <!-- ! Main grid -->
-  <div class="grid">
+  <div id="a" class="split split-horizontal">
+    <div id="c" class="split content">
+      <div id="html"></div>
+    </div>
+    <div id="d" class="split content">
+      <div id="css"></div>
+    </div>
+  </div>
+  <div id="b" class="split split-horizontal">
+      <div id="e" class="split content">
+        <div id="js"></div>
+      </div>
+      <div id="f" class="split content">
+        <iframe srcdoc="" frameborder="0"></iframe>
+      </div>
+  </div>
+
+  <!-- <div class="grid">
     <div id="html" class="editor"></div>
     <div id="js" class="editor"></div>
     <div id="css" class="editor"></div>
@@ -182,8 +199,9 @@
     </div>
     <div class="vertical-gutter">
     </div>
-  </div>
+  </div> -->
   <!-- - Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/split.js/1.2.0/split.min.js"></script>
   <script type="module" src="/main.js"></script>
   <script type="module" src="/events.js"></script>
   <script type="module" src="/download.js"></script>

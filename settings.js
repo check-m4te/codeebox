@@ -84,8 +84,7 @@ const setMonTheme = async p => {
     $('.sidebar').style.backgroundColor = accent;
     $('.sidesidebar').style.backgroundColor = accent;
     $('.skypackbar').style.backgroundColor = accent;
-    $('.vertical-gutter').style.backgroundColor = accent;
-    $('.horizontal-gutter').style.backgroundColor = accent;
+    $$('.gutter').forEach(e=> e.style.backgroundColor = accent);
   })
   
   localStorage.setItem('theme', p);

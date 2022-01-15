@@ -18,6 +18,6 @@
     "jszip": "^3.7.1",
     "monaco-editor": "^0.31.1",
     "shade-blend-color": "^1.0.0",
-    "split-grid": "^1.0.11"
+    "split-js": "^1.2.0"
   }
 }

@@ -450,10 +450,10 @@ source-map-js@^1.0.1:
   resolved "https://registry.yarnpkg.com/source-map-js/-/source-map-js-1.0.1.tgz#a1741c131e3c77d048252adfa24e23b908670caf"
   integrity sha512-4+TN2b3tqOCd/kaGRJ/sTYA0tR0mdXx26ipdolxcwtJVqEnqNYvlCAt1q3ypy4QMlYus+Zh34RNtYLoq2oQ4IA==
 
-split-grid@^1.0.11:
-  version "1.0.11"
-  resolved "https://registry.yarnpkg.com/split-grid/-/split-grid-1.0.11.tgz#2df26ac4fd4153f23a42471ab2f618ade81b69fd"
-  integrity sha512-ELtFtxc3r5we5GZfe6Fi0BFFxIi2M6BY1YEntBscKRDD3zx4JVHqx2VnTRSQu1BixCYSTH3MTjKd4esI2R7EgQ==
+split-js@^1.2.0:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/split-js/-/split-js-1.0.1.tgz#7f7b722beebb182fd19f2fd582f520efc4af0acd"
+  integrity sha1-f3tyK+67GC/Rny/VgvUg78SvCs0=
 
 string_decoder@~1.1.1:
   version "1.1.1"
