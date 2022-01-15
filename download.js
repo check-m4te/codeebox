@@ -18,7 +18,7 @@ let htmlFile = `
 <!DOCTYPE html>
 <html>
     <head>
-        <link href="main.css" rel="stylesheet">
+        <link href="style.css" rel="stylesheet">
     </head>
     <body>
     ${$html.getValue()}
