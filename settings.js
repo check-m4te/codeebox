@@ -50,10 +50,7 @@ const setMonTheme = async p => {
     brightness = ((r + g + b) / 3);
     if(brightness > 125) {
       accent = pSBC(-0.15, color)
-      $$('g, path').forEach(e => {
-        e.style.fill = '#222';
-      })
-      $$('label, select, option, a').forEach(e => {
+      $$('label, select, option, a, .fab, .fa, .fa-solid').forEach(e => {
         e.style.color = '#222'
       })
       $$('select, option').forEach(e => {
@@ -65,10 +62,7 @@ const setMonTheme = async p => {
       })
     }
     else{
-      $$('g, path').forEach(e => {
-        e.style.fill = '#dedede';
-      })
-      $$('label, select, option, a').forEach(e => {
+      $$('label, select, option, a, .fab, .fa, .fa-solid').forEach(e => {
         e.style.color = '#dedede'
       })
       $$('select, option').forEach(e => {

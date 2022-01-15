@@ -111,11 +111,11 @@ iframe {
 .sidebar {
   height: 100vh;
   z-index: 1;
-  width: 78px;
+  width: 78px !important;
   -webkit-box-shadow: 5px 5px 33px 5px rgba(0, 0, 0, 0.15);
   box-shadow: 5px 5px 33px 5px rgba(0, 0, 0, 0.15);
   background-color: #444;
-  padding: 5px;
+  padding: 5px !important;
   margin: 0;
 }
 .sidesidebar,
@@ -258,40 +258,48 @@ iframe {
   float: left;
 }
 
-#skypack,
-#download,
-#settings,
-#preview,
-#copy,
-#run {
+.fa, .fab, .fa-solid {
   margin: 17px;
+  transition: .1s;
+  font-size: 35px;
+  position: relative;
+}
+.fa:hover, .fab:hover, .fa-solid:hover {
+  color: #999 !important;
 }
 
-#preview {
-  margin: 13px;
-  width: 40px;
+div[data-tooltip]:hover::after {
+  position: absolute;
+  font-size: 15px;
+  left: 50px;
+  bottom: 1px;
+  font-family: 'CascadiaCodePL';
+  border-radius: 5px;
+  background: #223;
+  box-shadow:0 0 5px 0 rgba(0, 0, 0, 0.6);
+  color: #dfdfdf;
+  padding: 10px;
+  content: attr(data-tooltip);
 }
 
-#download {
-  margin-bottom: 2px;
+#skypack {
+  font-size: 40px;
+  margin-bottom: 15px;
+}
+
+#copy, #settings, #run {
+  position: absolute;
 }
 
 #copy {
-  position: absolute;
   bottom: 60px;
-  width: 32px;
 }
 #settings {
-  position: absolute;
   bottom: 0px;
-  width: 34px;
 }
 
 #run {
-  position: absolute;
   bottom: 120px;
-  left: 2px;
-  width: 37px;
 }
 
 .clickablesvg g,

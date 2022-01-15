@@ -56,7 +56,7 @@ Split(['#c', '#d'], {
 
 Split(['#e', '#f'], {
   direction: 'vertical',
-  sizes: [60, 40],
+  sizes: [50, 50],
   gutterSize: 8,
   cursor: 'row-resize'
 })
