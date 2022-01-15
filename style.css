@@ -194,12 +194,12 @@ button:active {
  
  .gutter.gutter-horizontal {
      cursor: col-resize;
-     background-image: url('imgs/vertical.png');
+     background-image: url('./assets/imgs/vertical.png');
  }
  
  .gutter.gutter-vertical {
      cursor: row-resize;
-     background-image: url('imgs/horizontal.png');
+     background-image: url('./assets/imgs/horizontal.png');
  }
  
  .split.split-horizontal,
