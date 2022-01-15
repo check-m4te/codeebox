@@ -65,6 +65,9 @@ const $js = monaco.editor.create($('#js'), {
   },
   renderLineHighlight: "line",
   renderLineHighlightOnlyWhenFocus:true,
+  cursorSmoothCaretAnimation:true,
+  cursorBlinking:'smooth',
+  
   padding:{
     top:25,
   }
@@ -79,6 +82,9 @@ const $css = monaco.editor.create($('#css'), {
   },
   renderLineHighlight: "line",
   renderLineHighlightOnlyWhenFocus:true,
+  cursorSmoothCaretAnimation:true,
+  cursorBlinking:'smooth',
+  
   padding:{
     top:25,
   }
@@ -93,6 +99,9 @@ const $html = monaco.editor.create($('#html'), {
   },
   renderLineHighlight: "line",
   renderLineHighlightOnlyWhenFocus:true,
+  cursorSmoothCaretAnimation:true,
+  cursorBlinking:'smooth',
+  
   padding:{
     top:25,
   },
