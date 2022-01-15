@@ -17,7 +17,6 @@
     "js-base64": "^3.7.2",
     "jszip": "^3.7.1",
     "monaco-editor": "^0.31.1",
-    "shade-blend-color": "^1.0.0",
-    "split-js": "^1.2.0"
+    "shade-blend-color": "^1.0.0"
   }
 }
