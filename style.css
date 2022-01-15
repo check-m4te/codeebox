@@ -1,7 +1,8 @@
-html,body {
+html,
+body {
   background-color: #f1f1f1;
   color: #333;
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 14px;
   margin: 0;
   padding: 0;
@@ -17,44 +18,44 @@ body {
 
 /* ! Fonts */
 @font-face {
-  font-family: 'CascadiaCodePL';
-  src: url('/assets/fonts/CascadiaCodePL.woff2') format('woff2');
+  font-family: "CascadiaCodePL";
+  src: url("/assets/fonts/CascadiaCodePL.woff2") format("woff2");
   font-weight: normal;
   font-style: normal;
 }
 @font-face {
-  font-family: 'FiraCode';
-  src: url('/assets/fonts/FiraCode.woff2') format('woff2');
+  font-family: "FiraCode";
+  src: url("/assets/fonts/FiraCode.woff2") format("woff2");
   font-weight: normal;
   font-style: normal;
 }
 @font-face {
-  font-family: 'Agave';
-  src: url('/assets/fonts/Agave.woff2') format('woff2');
+  font-family: "Agave";
+  src: url("/assets/fonts/Agave.woff2") format("woff2");
   font-weight: normal;
   font-style: normal;
 }
 @font-face {
-  font-family: 'Ellograph';
-  src: url('/assets/fonts/Ellograph.woff2') format('woff2');
+  font-family: "Ellograph";
+  src: url("/assets/fonts/Ellograph.woff2") format("woff2");
   font-weight: normal;
   font-style: normal;
 }
 @font-face {
-  font-family: 'Hasklig';
-  src: url('/assets/fonts/Hasklig.woff2') format('woff2');
+  font-family: "Hasklig";
+  src: url("/assets/fonts/Hasklig.woff2") format("woff2");
   font-weight: normal;
   font-style: normal;
 }
 @font-face {
-  font-family: 'JuliaMono';
-  src: url('/assets/fonts/JuliaMono.woff2') format('woff2');
+  font-family: "JuliaMono";
+  src: url("/assets/fonts/JuliaMono.woff2") format("woff2");
   font-weight: normal;
   font-style: normal;
 }
 @font-face {
-  font-family: 'CascadiaCodePL';
-  src: url('/assets/fonts/CascadiaCodePLItalic.woff2') format('woff2');
+  font-family: "CascadiaCodePL";
+  src: url("/assets/fonts/CascadiaCodePLItalic.woff2") format("woff2");
   font-weight: normal;
   font-style: italic;
 }
@@ -67,7 +68,8 @@ body {
   box-sizing: border-box;
 }
 
-*::before, *::after {
+*::before,
+*::after {
   box-sizing: inherit;
 }
 
@@ -83,14 +85,14 @@ iframe {
   overflow: hidden;
 }
 
-.editor::after{
+.editor::after {
   background-repeat: no-repeat;
-  content: '';
+  content: "";
   z-index: 1;
-  margin:0;
+  margin: 0;
   position: absolute;
   height: 48px;
-  bottom:35px;
+  bottom: 35px;
   right: 35px;
   width: 48px;
 }
@@ -110,114 +112,165 @@ iframe {
   height: 100vh;
   z-index: 1;
   width: 78px;
-  -webkit-box-shadow: 5px 5px 33px 5px rgba(0,0,0,0.15); 
-  box-shadow: 5px 5px 33px 5px rgba(0,0,0,0.15);
+  -webkit-box-shadow: 5px 5px 33px 5px rgba(0, 0, 0, 0.15);
+  box-shadow: 5px 5px 33px 5px rgba(0, 0, 0, 0.15);
   background-color: #444;
-  padding:5px;
+  padding: 5px;
   margin: 0;
 }
-.sidesidebar, .skypackbar {
+.sidesidebar,
+.skypackbar {
   height: 100vh;
   opacity: 1;
-  width: 250px;
-  padding-top:10px;
+  width: 400px;
+  padding-top: 10px;
   background-color: #444;
   text-align: center;
 }
 
-.sidesidebar * {
-  display: inline-block;
-  margin-bottom: 10px;
+.sidesidebar div:hover {
+  background-color: #99999911;
+  
 }
 
-label{
-  color:#f5f5f5;
-  font-family: 'Cascadia Code PL';
-
+.sidesidebar div {
+  padding: 10px;
 }
 
-input[type='number'] {
-  border-radius: 5px;
-  border:none;
+select {
   outline: 0;
-  padding:3px;
+  border: none;
+  padding: 5px;
+  width: 200px;
+}
+
+.sidesidebar label {
+  display: block;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  font-size: 20px;
+  text-align: center;
+}
+input[type='checkbox'] {
+  height: 30px;
+  width: 30px;
+  margin-bottom: 0;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -o-appearance: none;
+  appearance: none;
+}
+
+input[type='checkbox']:checked, input[type='checkbox']:checked:hover {
+  background-color: #00aaff44 !important;
+}
+
+input[type='checkbox']:hover {
+  background-color: #ffffff22 !important;
+}
+
+
+input[type="checkbox"]:checked::before {
+  content: '\2713';
+  position: relative;
+  font-size: 25px;
+  left: 5px;
+  bottom: 5px;
+  font-weight: 900;
+}
+label {
+  color: #f5f5f5;
+  font-family: "Cascadia Code PL";
+  font-size: 16px;
+}
+input[type="number"], input[type="text"], button {
+  border: none;
+  outline: 0;
+  padding: 3px;
   opacity: 0.8;
-  margin:2px;
+  width: 200px;
+  margin: 2px;
+  padding: 5px;
 }
 
 button {
-  width:185px;
-  border:none;
-  border-radius: 5px;
-  background-color: #222;
-  color: #f5f5f5;
+  background: #ccc;
+  display: block;
+  text-align: center;
+  margin: auto;
 }
 
 button:hover {
-  background-color: #252525;
+  background-color: #dfdfdf;
 }
 
 button:active {
-  background-color: #111;
+  background-color: #dfdfdf;
 }
 
 .split {
-     -webkit-box-sizing: border-box;
-     -moz-box-sizing: border-box;
-     box-sizing: border-box;
-     overflow-y: auto;
-     overflow-x: hidden;
- }
- 
- .content {
-    box-shadow: inset 0 1px 2px #e4e4e4;
-    background-color: #fff;
-    height: calc(100% + 2px);
-    width:  calc(100% + 2px);
-    overflow: hidden;
-    scrollbar-width: none;
- }
- 
- #html, #css, #js, iframe {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.content {
+  box-shadow: inset 0 1px 2px #e4e4e4;
+  background-color: #fff;
   height: calc(100% + 2px);
-  width:  calc(100% + 2px);
+  width: calc(100% + 2px);
+  overflow: hidden;
+  scrollbar-width: none;
+}
+
+#html,
+#css,
+#js,
+iframe {
+  height: calc(100% + 2px);
+  width: calc(100% + 2px);
   overflow: hidden;
   scrollbar-width: none;
   padding: 0;
- }
+}
 
- .gutter {
-     background-color: transparent;
-     background-repeat: no-repeat;
-     background-position: 50%;
- }
- 
- .gutter.gutter-horizontal {
-     cursor: col-resize;
-     background-image: url('./assets/imgs/vertical.png');
- }
- 
- .gutter.gutter-vertical {
-     cursor: row-resize;
-     background-image: url('./assets/imgs/horizontal.png');
- }
- 
- .split.split-horizontal,
- .gutter.gutter-horizontal {
-     height: 100%;
-     float: left;
- }
+.gutter {
+  background-color: transparent;
+  background-repeat: no-repeat;
+  background-position: 50%;
+}
 
+.gutter.gutter-horizontal {
+  cursor: col-resize;
+  background-image: url("./assets/imgs/vertical.png");
+}
 
-#skypack, #download, #settings, #preview, #copy, #run {
-  margin:17px;
+.gutter.gutter-vertical {
+  cursor: row-resize;
+  background-image: url("./assets/imgs/horizontal.png");
+}
+
+.split.split-horizontal,
+.gutter.gutter-horizontal {
+  height: 100%;
+  float: left;
+}
+
+#skypack,
+#download,
+#settings,
+#preview,
+#copy,
+#run {
+  margin: 17px;
 }
 
 #preview {
-  margin:13px;
+  margin: 13px;
   width: 40px;
 }
-
 
 #download {
   margin-bottom: 2px;
@@ -231,27 +284,29 @@ button:active {
 #settings {
   position: absolute;
   bottom: 0px;
-  width:34px;
+  width: 34px;
 }
 
 #run {
   position: absolute;
   bottom: 120px;
-  left:2px;
+  left: 2px;
   width: 37px;
 }
 
-.clickablesvg g, .clickablesvg path {
-  fill:#ccc;
+.clickablesvg g,
+.clickablesvg path {
+  fill: #ccc;
   transition: 0.2s;
 }
 
-.clickablesvg:hover g, .clickablesvg:hover path{
-  fill:#999 !important;
+.clickablesvg:hover g,
+.clickablesvg:hover path {
+  fill: #999 !important;
   transition: 100ms !important;
 }
 
-iframe{
+iframe {
   height: 100%;
   width: 100%;
   border: none;
@@ -280,4 +335,3 @@ iframe{
 ::-webkit-scrollbar {
   width: 10px;
 }
-

@@ -49,18 +49,18 @@ const setMonTheme = async p => {
     b = parseInt(highlight[2]);
     brightness = ((r + g + b) / 3);
     if(brightness > 125) {
-      accent = pSBC(-0.1, color)
+      accent = pSBC(-0.15, color)
       $$('g, path').forEach(e => {
         e.style.fill = '#222';
       })
-      $$('label, select, option').forEach(e => {
+      $$('label, select, option, a').forEach(e => {
         e.style.color = '#222'
       })
       $$('select, option').forEach(e => {
         e.style.backgroundColor = '#dedede'
       })
-      $$('input[type="number"]').forEach(e => {
-        e.style.backgroundColor = accent
+      $$('input[type="number"], input[type="checkbox"]').forEach(e => {
+        e.style.backgroundColor = pSBC(-0.1, accent)
         e.style.color = '#222'
       })
     }
@@ -68,15 +68,14 @@ const setMonTheme = async p => {
       $$('g, path').forEach(e => {
         e.style.fill = '#dedede';
       })
-      $$('label, select, option').forEach(e => {
+      $$('label, select, option, a').forEach(e => {
         e.style.color = '#dedede'
       })
       $$('select, option').forEach(e => {
-        e.style.backgroundColor = '#222'
-        e.style.color = '#dedede'
+        e.style.backgroundColor = pSBC(0.1,accent)
       })
 
-      $$('input[type="number"]').forEach(e => {
+      $$('input[type="number"], input[type="text"], input[type="checkbox"]').forEach(e => {
         e.style.backgroundColor = pSBC(0.1,accent)
         e.style.color = '#dedede'
       })
