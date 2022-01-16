@@ -23,15 +23,54 @@ const $sidebar       = $(".sidesidebar");
 //. BOOLEANS
 let realtimeUpdate   = true;
 let open             = false;
-
+let editors;
+//. OBJECTS
+let options          = {
+  fontSize: 18,
+  fontFamily:'CascadiaCodePL',
+  minimap: {
+    enabled:false,
+  },
+  wordWrap: "on",
+  lineNumbers: "off",
+}
 // * FUNCTIONS {
+
+function ontotrue(on) {
+  return on === 'on' ? true : false;
+}
+
+// !!! SETUP FUNCTION
+const setup = () => {
+  // ! Call settings functions from localStorage
+  options = JSON.parse(localStorage.getItem('options'));
+  setFontSize(options.fontSize);
+  setFont(options.fontFamily);
+  setMonTheme(localStorage.getItem('theme'));
+  setLineNumbers(options.lineNumbers)
+  setWrap(options.wordWrap)
+  setMinimap(options.minimap.enabled);
+
+  // . Set inputs and selects default value
+  $fontInput.selectedIndex = [...$fontInput.options].findIndex (option => option.text === options.fontFamily);
+  $themeInput.selectedIndex = [...$themeInput.options].findIndex (option => option.text === localStorage.getItem('theme'));
+  $fontsizeInput.value = options.fontSize.toString();
+  $linenums.checked = ontotrue(options.lineNumbers);
+  $wrap.checked = ontotrue(options.wordWrap);
+  $minimap.checked = options.minimap.enabled;
+}
+
+const updateSettings = () => {
+  editors.forEach(e => {
+    e.updateOptions(options);
+  })
+  localStorage.setItem('options', JSON.stringify(options));
+}
+
 //. Font size
 const setFontSize = size => {
-  let options = {"fontSize": parseInt(size)}
-  $html.updateOptions(options);
-  $css.updateOptions(options);
-  $js.updateOptions(options);
-  localStorage.setItem('fontsize', size);
+  options.fontSize = size;
+  updateSettings();
 }
 
 //. Theme
@@ -81,81 +120,44 @@ const setMonTheme = async p => {
     $$('.gutter').forEach(e=> e.style.backgroundColor = accent);
   })
   
-  localStorage.setItem('theme', p);
+  localStorage.setItem('theme', p.replace("%20", " "));
 }
 
 //. Font
 const setFont = text => {
-  let options = {"fontFamily": text}
-  $html.updateOptions(options);
-  $css.updateOptions(options);
-  $js.updateOptions(options);
-  localStorage.setItem('font', text);
+  options.fontFamily = text;
+  updateSettings();
 }
 
 //. Numbers
 const setLineNumbers = show => {
-  let options = {
-    lineNumbers: show === true ? 'on' : 'off',
-  }
-  $js.updateOptions(options)
-  $html.updateOptions(options)
-  $css.updateOptions(options)
-  localStorage.setItem('linenums', show);
+  options.lineNumbers = show;
+  updateSettings();
 }
 
 //. Word Wrap
-const setWrap = wrap => {
-  let options = {
-    wordWrap: wrap === true ? "on" : "false",
-    wrappingIndent: 'indent'
-  }
-  $js.updateOptions(options)
-  $css.updateOptions(options)
-  $html.updateOptions(options)
-  localStorage.setItem('wrapenabled', wrap)
+const setWrap = show => {
+  options.wordWrap = show;
+  updateSettings();
 }
 
 //. Word Wrap
-const setMinimap = wrap => {
-  let options = {
-    minimap: {
-      enabled: wrap,
-    }
-  }
-  $js.updateOptions(options)
-  $css.updateOptions(options)
-  $html.updateOptions(options)
-  localStorage.setItem('minimapenabled', wrap)
+const setMinimap = show => {
+  options.minimap.enabled = show;
+  updateSettings();
 }
 
 //* }
 
 // * LOCAL STORAGE
-if (!(localStorage.getItem('fontsize') && localStorage.getItem('theme') && localStorage.getItem('font'))) {
-  localStorage.setItem('fontsize', 16);
+if (!(localStorage.getItem('options') && localStorage.getItem('theme'))) {
+  localStorage.setItem('options', JSON.stringify(options));
   localStorage.setItem('theme', 'Monokai');
-  localStorage.setItem('font', 'CascadiaCodePL');
-  localStorage.setItem('minimapenabled', false);
-  localStorage.setItem('wrapenabled', false);
 }
 
 window.onload = () => {
-  // ! Call settings functions from localStorage
-  setFontSize(localStorage.getItem('fontsize'));
-  setFont(localStorage.getItem('font'));
-  setMonTheme(localStorage.getItem('theme'));
-  setLineNumbers(JSON.parse(localStorage.getItem('linenums')))
-  setWrap(JSON.parse(localStorage.getItem('wrapenabled')))
-  setMinimap(JSON.parse(localStorage.getItem('minimapenabled')));
-  
-  // . Set inputs and selects default value
-  $fontInput.selectedIndex = [...$fontInput.options].findIndex (option => option.text === localStorage.getItem('font'));
-  $themeInput.selectedIndex = [...$themeInput.options].findIndex (option => option.text === localStorage.getItem('theme'));
-  $fontsizeInput.value = localStorage.getItem('fontsize').toString();
-  $linenums.checked = JSON.parse(localStorage.getItem('linenums'));
-  $wrap.checked = JSON.parse(localStorage.getItem('wrapenabled'));
-  $minimap.checked = JSON.parse(localStorage.getItem('minimapenabled'));
+  editors = [$js,$html,$css];
+  setup();
 }
 
 // * EVENTS

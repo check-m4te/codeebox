@@ -32,6 +32,22 @@ self.MonacoEnvironment = {
 }
 
 const PARAMS = new URLSearchParams(window.location.search);
+let options = {
+  automaticLayout:true,
+  fontLigatures:true,
+  fontFamily:'CascadiaCodePL',
+  minimap: {
+    enabled:false,
+  },
+  renderLineHighlight: "line",
+  renderLineHighlightOnlyWhenFocus:true,
+  cursorSmoothCaretAnimation:true,
+  cursorBlinking:'smooth',
+
+  padding:{
+    top:25,
+  }
+}
 
 import {
   realtimeUpdate
@@ -64,55 +80,16 @@ Split(['#e', '#f'], {
 
 // ! Create editors!
 const $js = monaco.editor.create($('#js'), {
+  ...options,
   language: 'javascript',
-  automaticLayout:true,
-  fontLigatures:true,
-  fontFamily:'CascadiaCodePL',
-  minimap: {
-    enabled:false,
-  },
-  renderLineHighlight: "line",
-  renderLineHighlightOnlyWhenFocus:true,
-  cursorSmoothCaretAnimation:true,
-  cursorBlinking:'smooth',
-
-  padding:{
-    top:25,
-  }
 });
 const $css = monaco.editor.create($('#css'), {
+  ...options,
   language: 'css',
-  automaticLayout:true,
-  fontLigatures:true,
-  fontFamily:'CascadiaCodePL',
-  minimap: {
-    enabled:false,
-  },
-  renderLineHighlight: "line",
-  renderLineHighlightOnlyWhenFocus:true,
-  cursorSmoothCaretAnimation:true,
-  cursorBlinking:'smooth',
-
-  padding:{
-    top:25,
-  }
 });
 const $html = monaco.editor.create($('#html'), {
+  ...options,
   language: 'html',
-  automaticLayout:true,
-  fontLigatures:true,
-  fontFamily:'CascadiaCodePL',
-  minimap: {
-    enabled:false,
-  },
-  renderLineHighlight: "line",
-  renderLineHighlightOnlyWhenFocus:true,
-  cursorSmoothCaretAnimation:true,
-  cursorBlinking:'smooth',
-
-  padding:{
-    top:25,
-  },
 });
 
 
