@@ -17,6 +17,7 @@ const $fontsizeInput = $("#fontsize");
 const $realtime      = $('#realtime');
 const $linenums      = $('#linenums');
 const $wrap          = $('#wrapenabled');
+const $minimap       = $('#minimap');
 //. CLASSES
 const $sidebar       = $(".sidesidebar");
 //. BOOLEANS
@@ -115,6 +116,19 @@ const setWrap = wrap => {
   localStorage.setItem('wrapenabled', wrap)
 }
 
+//. Word Wrap
+const setMinimap = wrap => {
+  let options = {
+    minimap: {
+      enabled: wrap,
+    }
+  }
+  $js.updateOptions(options)
+  $css.updateOptions(options)
+  $html.updateOptions(options)
+  localStorage.setItem('minimapenabled', wrap)
+}
+
 //* }
 
 // * LOCAL STORAGE
@@ -122,6 +136,8 @@ if (!(localStorage.getItem('fontsize') && localStorage.getItem('theme') && local
   localStorage.setItem('fontsize', 16);
   localStorage.setItem('theme', 'Monokai');
   localStorage.setItem('font', 'CascadiaCodePL');
+  localStorage.setItem('minimapenabled', false);
+  localStorage.setItem('wrapenabled', false);
 }
 
 window.onload = () => {
@@ -131,6 +147,7 @@ window.onload = () => {
   setMonTheme(localStorage.getItem('theme'));
   setLineNumbers(JSON.parse(localStorage.getItem('linenums')))
   setWrap(JSON.parse(localStorage.getItem('wrapenabled')))
+  setMinimap(JSON.parse(localStorage.getItem('minimapenabled')));
   
   // . Set inputs and selects default value
   $fontInput.selectedIndex = [...$fontInput.options].findIndex (option => option.text === localStorage.getItem('font'));
@@ -138,19 +155,22 @@ window.onload = () => {
   $fontsizeInput.value = localStorage.getItem('fontsize').toString();
   $linenums.checked = JSON.parse(localStorage.getItem('linenums'));
   $wrap.checked = JSON.parse(localStorage.getItem('wrapenabled'));
+  $minimap.checked = JSON.parse(localStorage.getItem('minimapenabled'));
 }
 
 // * EVENTS
 
-$wrap.addEventListener('change', () => {
-  let wrapEnable = $wrap.checked
-  setWrap(wrapEnable)
-})
+
 
 $settingsBtn.addEventListener("click", () => {
-  if (!open) $sidebar.style.display = "inline-block";
-  else $sidebar.style.display = "none";
+  if (!open) {
+    $sidebar.style.display = "inline-block";
+    $settingsBtn.style.borderLeft = `5px solid #0af`
+  }
+  else {$sidebar.style.display = "none"
+  $settingsBtn.style.borderLeft = `none`}
   open = !open;
+  
 });
 
 // ! Themes
@@ -184,6 +204,18 @@ $realtime.addEventListener('change', () => {
 
 $linenums.addEventListener('change', () => {
   setLineNumbers($linenums.checked)
+})
+
+// ! Wrap
+$wrap.addEventListener('change', () => {
+  let wrapEnable = $wrap.checked
+  setWrap(wrapEnable)
+})
+
+// ! Minimap
+$minimap.addEventListener('change', () => {
+  let minimap = $minimap.checked
+  setMinimap(minimap)
 })
 
 export {

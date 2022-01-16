@@ -69,7 +69,7 @@ const $js = monaco.editor.create($('#js'), {
   fontLigatures:true,
   fontFamily:'CascadiaCodePL',
   minimap: {
-    enabled:false, // TODO: ADD OPTION
+    enabled:false,
   },
   renderLineHighlight: "line",
   renderLineHighlightOnlyWhenFocus:true,
@@ -86,7 +86,7 @@ const $css = monaco.editor.create($('#css'), {
   fontLigatures:true,
   fontFamily:'CascadiaCodePL',
   minimap: {
-    enabled:false, // TODO: ADD OPTION
+    enabled:false,
   },
   renderLineHighlight: "line",
   renderLineHighlightOnlyWhenFocus:true,
@@ -103,7 +103,7 @@ const $html = monaco.editor.create($('#html'), {
   fontLigatures:true,
   fontFamily:'CascadiaCodePL',
   minimap: {
-    enabled:false, // TODO: ADD OPTION
+    enabled:false,
   },
   renderLineHighlight: "line",
   renderLineHighlightOnlyWhenFocus:true,

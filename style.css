@@ -104,15 +104,12 @@ iframe {
 }
 
 /* ! Sidebars and menus */
-
 .sidebar {
   height: 100vh;
   z-index: 1;
   width: 78px !important;
-  -webkit-box-shadow: 5px 5px 33px 5px rgba(0, 0, 0, 0.15);
   box-shadow: 5px 5px 33px 5px rgba(0, 0, 0, 0.15);
   background-color: #444;
-  padding: 5px !important;
   margin: 0;
 }
 
@@ -258,7 +255,13 @@ iframe {
 /* .Sidebar Icons */
 
 .fa-brands, .fa-solid {
-  margin: 17px;
+  width: 78px;
+  height: 78px;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   transition: .1s;
   font-size: 35px;
   position: relative;
@@ -270,7 +273,7 @@ iframe {
 
 #skypack {
   font-size: 40px;
-  margin-bottom: 15px;
+  
 }
 
 #copy, #settings, #run {
@@ -283,17 +286,17 @@ iframe {
 #settings {
   bottom: 0px;
 }
-
 #run {
   bottom: 120px;
 }
 
 /* .Tooltips */
-div[data-tooltip]:hover::after {
+div[data-tooltip]::after {
+  transition: transform 100ms ease-in-out;
   position: absolute;
   font-size: 15px;
-  left: 50px;
-  bottom: 1px;
+  left: 70px;
+  bottom: 20px;
   font-family: 'CascadiaCodePL';
   border-radius: 5px;
   background: #223;
@@ -301,4 +304,10 @@ div[data-tooltip]:hover::after {
   color: #dfdfdf;
   padding: 10px;
   content: attr(data-tooltip);
+  transform: scaleX(0);
+  transform-origin: left;
+}
+
+div[data-tooltip]:hover::after {
+  transform: scaleX(1);
 }

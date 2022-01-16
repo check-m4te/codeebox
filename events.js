@@ -18,10 +18,14 @@ const $previewBtn = $('#preview');
 // * Open settings button
 let open = false
 $jsBtn.addEventListener('click', () => {
-    if(!open)
+    if(!open){
         $skypackBar.style.display = "block";
-    else
+        $jsBtn.style.borderLeft = `5px solid #0af`;
+    }
+    else{
         $skypackBar.style.display = "none";
+        $jsBtn.style.borderLeft = `none`;
+    }
     open = !open
 })
 
