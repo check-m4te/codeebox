@@ -7,13 +7,13 @@ import cssFormatMonaco from 'css-format-monaco';
 import * as monaco from 'monaco-editor'
 
 // ! Variables
-const $skypackBar = $('.skypackbar')
-const $skypackBtn = $('#importmodule')
-const $runBtn = $('#run');
-const $skypackInp = $('#skyinp')
-
-const $jsBtn = $('#skypack');
-const $previewBtn = $('#preview');
+const $skypackBar  = $('.skypackbar')
+const $skypackBtn  = $('#importmodule')
+const $runBtn      = $('#run');
+const $skypackInp  = $('#skyinp')
+const $downloadBtn = $("#download");
+const $jsBtn       = $('#skypack');
+const $previewBtn  = $('#preview');
 
 // * Open settings button
 let open = false
@@ -29,14 +29,16 @@ $jsBtn.addEventListener('click', () => {
     open = !open
 })
 
-
 // ! Event listeners
 $skypackBtn.addEventListener('click', () => {
     $js.trigger('keyboard', 'type', {text: `import ${$skypackInp.value.replace('-', '').toLowerCase()} from 'https://cdn.skypack.dev/${$skypackInp.value}'`});
 })
 
-$("#download").addEventListener("click", () => {
+$downloadBtn.addEventListener("click", () => {
     downloadZip();
+    let oldColor = $downloadBtn.style.color;
+    $downloadBtn.style.color = 'lightgreen';
+    setTimeout((() => $downloadBtn.style.color = oldColor), 5000)
 })
 
 $previewBtn.addEventListener('click', () => {
@@ -49,9 +51,11 @@ $runBtn.addEventListener('click', () => {
 
 document.addEventListener('keydown',
     e => {
-      if (
-        (navigator.userAgentData.platform.match('Mac') ? e.metaKey : e.ctrlKey) &&
-        e.code == 'KeyS')
+    if (
+        (
+        navigator.userAgentData.platform.match('Mac') ? e.metaKey : e.ctrlKey) &&
+        e.code == 'KeyS'
+    )
     {
         e.preventDefault();
         update();
@@ -74,8 +78,8 @@ var jsPalette = $js.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyMod.Shift | mon
 const generateCssFormater = () => cssFormatMonaco(
     monaco,
     {
-      indent_size: 2
+        indent_size: 2
     }
-  )
+)
 
 generateCssFormater();

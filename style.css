@@ -107,7 +107,9 @@ iframe {
 .sidebar {
   height: 100vh;
   z-index: 1;
-  width: 78px !important;
+  width: 78px;
+  display: flex;
+  flex-direction: column;
   box-shadow: 5px 5px 33px 5px rgba(0, 0, 0, 0.15);
   background-color: #444;
   margin: 0;
@@ -264,7 +266,7 @@ iframe {
   align-items: center;
   transition: .1s;
   font-size: 35px;
-  position: relative;
+  align-self: flex-start;
 }
 
 .fa-brands:hover, .fa-solid:hover {
@@ -273,26 +275,16 @@ iframe {
 
 #skypack {
   font-size: 40px;
-  
 }
 
-#copy, #settings, #run {
-  position: absolute;
-}
-
-#copy {
-  bottom: 60px;
-}
-#settings {
-  bottom: 0px;
-}
-#run {
-  bottom: 120px;
+#down {
+  margin-top: auto;
+  align-self: flex-end;
 }
 
 /* .Tooltips */
 div[data-tooltip]::after {
-  transition: transform 100ms ease-in-out;
+  transition: all 100ms ease-in-out;
   position: absolute;
   font-size: 15px;
   left: 70px;
@@ -304,10 +296,12 @@ div[data-tooltip]::after {
   color: #dfdfdf;
   padding: 10px;
   content: attr(data-tooltip);
+  opacity: 0;
   transform: scaleX(0);
   transform-origin: left;
 }
 
 div[data-tooltip]:hover::after {
+  opacity: 1;
   transform: scaleX(1);
 }

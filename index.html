@@ -14,17 +14,21 @@
 <body>
   <!-- . Sidebar -->
   <div class="sidebar">
-    <div class="fa-brands fa-node-js" data-tooltip="Import" id="skypack">
+    <div id="up">
+      <div class="fa-brands fa-node-js" data-tooltip="Import" id="skypack">
+      </div>
+      <div class="fa-solid fa-circle-down" data-tooltip="Download" id="download">
+      </div>
+      <div class="fa-solid fa-search" data-tooltip="Preview" id="preview">
+      </div>
     </div>
-    <div class="fa-solid fa-circle-down" data-tooltip="Download" id="download">
-    </div>
-    <div class="fa-solid fa-search" data-tooltip="Preview" id="preview">
-    </div>
-    <div class="fa-solid fa-play" data-tooltip="Run" id="run">
-    </div>
-    <div class="fa-solid fa-copy" data-tooltip="Copy" id="copy" onclick="navigator.clipboard.writeText(window.location.href)">
-    </div>
-    <div class="fa-solid fa-gear" data-tooltip="Settings" id="settings">
+    <div id="down">
+      <div class="fa-solid fa-play" data-tooltip="Run" id="run">
+      </div>
+      <div class="fa-solid fa-copy" data-tooltip="Copy" id="copy" onclick="navigator.clipboard.writeText(window.location.href)">
+      </div>
+      <div class="fa-solid fa-gear" data-tooltip="Settings" id="settings">
+      </div>
     </div>
   </div>
   <!-- ! Settings -->
@@ -112,9 +116,9 @@
       <label for="linenums">Show line numbers</label>
       <input type="checkbox" id="linenums" checked="true">
     </div>
-    <!-- . Wrap? -->
+    <!-- . Wrap -->
     <div id="wrapcon">
-      <label for="wrapenabled">Wrap enabled</label>
+      <label for="wrapenabled">Word Wrap</label>
       <input type="checkbox" id="wrapenabled" checked="true">
     </div>
     <!-- . Autosave -->

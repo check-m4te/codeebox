@@ -160,8 +160,6 @@ window.onload = () => {
 
 // * EVENTS
 
-
-
 $settingsBtn.addEventListener("click", () => {
   if (!open) {
     $sidebar.style.display = "inline-block";
