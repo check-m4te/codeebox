@@ -50,7 +50,7 @@ const setMonTheme = async p => {
     brightness = ((r + g + b) / 3);
     if(brightness > 125) {
       accent = pSBC(-0.15, color)
-      $$('label, select, option, a, .fab, .fa, .fa-solid').forEach(e => {
+      $$('label, select, option, a, .fa-brands, .fa-solid').forEach(e => {
         e.style.color = '#222'
       })
       $$('select, option').forEach(e => {
@@ -62,7 +62,7 @@ const setMonTheme = async p => {
       })
     }
     else{
-      $$('label, select, option, a, .fab, .fa, .fa-solid').forEach(e => {
+      $$('label, select, option, a, .fa-brands, .fa-solid').forEach(e => {
         e.style.color = '#dedede'
       })
       $$('select, option').forEach(e => {

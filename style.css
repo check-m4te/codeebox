@@ -102,7 +102,6 @@ iframe {
   height: 100vh;
   z-index: 1;
   width: 78px !important;
-  -webkit-box-shadow: 5px 5px 33px 5px rgba(0, 0, 0, 0.15);
   box-shadow: 5px 5px 33px 5px rgba(0, 0, 0, 0.15);
   background-color: #444;
   padding: 5px !important;
@@ -120,7 +119,6 @@ iframe {
 
 .sidesidebar div:hover {
   background-color: #99999911;
-  
 }
 
 .sidesidebar div {
@@ -145,9 +143,6 @@ input[type='checkbox'] {
   height: 30px;
   width: 30px;
   margin-bottom: 0;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  -o-appearance: none;
   appearance: none;
 }
 
@@ -190,17 +185,11 @@ button {
   margin: auto;
 }
 
-button:hover {
-  background-color: #dfdfdf;
-}
-
-button:active {
+button:hover, button:active {
   background-color: #dfdfdf;
 }
 
 .split {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
   box-sizing: border-box;
   overflow-y: auto;
   overflow-x: hidden;
@@ -223,7 +212,6 @@ iframe {
 }
 
 .gutter {
-  background-color: transparent;
   background-repeat: no-repeat;
   background-position: 50%;
 }
@@ -244,17 +232,21 @@ iframe {
   float: left;
 }
 
-.fa, .fab, .fa-solid {
+.fa-brands, .fa-solid {
   margin: 17px;
   transition: .1s;
   font-size: 35px;
   position: relative;
 }
-.fa:hover, .fab:hover, .fa-solid:hover {
+.fa-brands:hover, .fa-solid:hover {
   color: #999 !important;
 }
 
-div[data-tooltip]:hover::after {
+a {
+  color:white;font-family: 'CascadiaCodePL'; cursor:pointer
+}
+
+*[data-tooltip]:hover::after {
   position: absolute;
   font-size: 15px;
   left: 50px;

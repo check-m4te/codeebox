@@ -14,11 +14,11 @@
 <body>
   <!-- . Sidebar -->
   <div class="sidebar">
-    <div class="fab fa-node-js" data-tooltip="Import" id="skypack">
+    <div class="fa-brands fa-node-js" data-tooltip="Import" id="skypack">
     </div>
     <div class="fa-solid fa-circle-down" data-tooltip="Download" id="download">
     </div>
-    <div class="fa fa-search" data-tooltip="Preview" id="preview">
+    <div class="fa-solid fa-search" data-tooltip="Preview" id="preview">
     </div>
     <div class="fa-solid fa-play" data-tooltip="Run" id="run">
     </div>
@@ -127,7 +127,7 @@
   <div class="skypackbar" style="display: none;">
     <label for="skyinp">SkyPack module</label>
     <input type="text" id="skyinp"><button id="importmodule">Import</button>
-    <a onclick="window.open('https://www.skypack.dev/', 'Skypack', 'width=`400 height=`800`')" style="color:white;font-family: 'CascadiaCodePL'; cursor:pointer;">Modules</a>
+    <a onclick="window.open('https://www.skypack.dev/', 'Skypack', 'width=`400 height=`800`')">Modules</a>
   </div>
   <!-- ! Main grid -->
   <div id="a" class="split split-horizontal">
@@ -146,18 +146,7 @@
       <iframe srcdoc="" frameborder="0"></iframe>
     </div>
   </div>
-
-  <!-- <div class="grid">
-    <div id="html" class="editor"></div>
-    <div id="js" class="editor"></div>
-    <div id="css" class="editor"></div>
-    <iframe srcdoc=""></iframe>
-    <div class="horizontal-gutter">
-    </div>
-    <div class="vertical-gutter">
-    </div>
-  </div> -->
-  <!-- - Scripts -->
+  <!-- ! Scripts -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/split.js/1.2.0/split.min.js"></script>
   <script type="module" src="/main.js"></script>
   <script type="module" src="/events.js"></script>

@@ -11,12 +11,15 @@
     "vite-plugin-monaco-editor": "^1.0.10"
   },
   "dependencies": {
+    "autoprefixer": "^10.4.2",
     "css-format-monaco": "^2.0.4",
     "emmet-monaco-es": "^5.0.2",
     "file-saver": "^2.0.5",
     "js-base64": "^3.7.2",
     "jszip": "^3.7.1",
     "monaco-editor": "^0.31.1",
+    "postcss": "^8.4.5",
+    "postcss-nested": "^5.0.6",
     "shade-blend-color": "^1.0.0"
   }
 }
