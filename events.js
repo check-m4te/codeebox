@@ -49,22 +49,12 @@ $runBtn.addEventListener('click', () => {
     update();
 })
 
-document.addEventListener('keydown',
-    e => {
-    if (
-        (
-        navigator.userAgentData.platform.match('Mac') ? e.metaKey : e.ctrlKey) &&
-        e.code == 'KeyS'
-    )
-    {
-        e.preventDefault();
+var save = [$js,$html,$css].forEach(e => {
+    e.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.KeyS, function() {
         update();
         updateURLCode($html.getValue(), $css.getValue(), $js.getValue());
-    }
-    },
-    false,
-);
-
+    })    
+})
 var htmlPalette = $html.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyMod.Shift | monaco.KeyCode.KeyP, function() {
     $html.trigger('anyString', 'editor.action.quickCommand')
 });
