@@ -266,6 +266,7 @@ iframe {
   align-items: center;
   transition: .1s;
   font-size: 35px;
+  position: relative;
   align-self: flex-start;
 }
 
