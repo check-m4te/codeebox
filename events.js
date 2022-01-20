@@ -1,7 +1,6 @@
 // ! Imports
 import {$js, update, updateURLCode, $html, $css} from './main'
 import downloadZip from './download'
-import previewer from './previewer'
 import {$} from './main';
 import cssFormatMonaco from 'css-format-monaco';
 import * as monaco from 'monaco-editor'
@@ -67,7 +66,8 @@ $downloadBtn.addEventListener("click", () => {
 })
 
 $previewBtn.addEventListener('click', () => {
-    previewer.openWindow();
+    console.log($('#prev'))
+    $('#prev').requestFullscreen();
 })
 
 $runBtn.addEventListener('click', () => {
