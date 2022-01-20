@@ -14,6 +14,31 @@ const $skypackInp  = $('#skyinp')
 const $downloadBtn = $("#download");
 const $jsBtn       = $('#skypack');
 const $previewBtn  = $('#preview');
+const $importBtn  = $('#import');
+
+
+function importData() {
+    let input = document.createElement('input');
+    input.type = 'file';
+    input.onchange = e => {
+      // you can use this method to get file and perform respective operations
+              let files = e.target.files;
+              let f = files[0];
+              let r= ''
+              console.log(f);
+              let reader = new FileReader();
+                let o = reader.readAsText(f);
+                reader.onload = function(f) {
+                    r = f.target.result.replace('###HTML\n', '###>><</CODEEBOX_SEPARATOR').replace('###CSS\n', '###>><</CODEEBOX_SEPARATOR').replace('###JS\n', '###>><</CODEEBOX_SEPARATOR').split('###>><</CODEEBOX_SEPARATOR');
+                    $html.setValue(r[1]);
+                    $css.setValue(r[2]);
+                    $js.setValue(r[3]);
+                }
+               
+          };
+    input.click();
+  }
+
 
 // * Open settings button
 let open = false
@@ -48,6 +73,27 @@ $previewBtn.addEventListener('click', () => {
 $runBtn.addEventListener('click', () => {
     update();
 })
+
+$importBtn.addEventListener('click', () => {
+
+    importData();
+
+    // fetch('project.codee')
+    // .then(response => response.text())
+    // .then(data => {
+    //     let code = data.toString();
+    //     code = code.split('###HTML\n').join('#####///').split('###CSS\n').join('#####///').split('###JS\n').join('#####///').split('#####///');
+    //     console.log(code)
+    //     $html.setValue(code[1]);
+    //     $css.setValue(code[2]);
+    //     $js.setValue(code[3]);
+    // });
+})
+
+
+
+
+
 
 var save = [$js,$html,$css].forEach(e => {
     e.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.KeyS, function() {

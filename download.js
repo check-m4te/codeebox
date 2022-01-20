@@ -8,13 +8,7 @@ var zip = new JSZip();
 
 // * Generate the zip.
 const generateZip = () => {
-  zip.file("style.css", $css.getValue());
-  zip.file("index.html", htmlFile);
-  zip.file("script.js", $js.getValue());
-};
-
-// * Generate the HTML file so it imports the other files.
-let htmlFile = `
+  let htmlFile = `
 <!DOCTYPE html>
 <html>
     <head>
@@ -26,6 +20,10 @@ let htmlFile = `
     </body>
 </html>
 `;
+  zip.file("style.css", $css.getValue());
+  zip.file("index.html", htmlFile);
+  zip.file("script.js", $js.getValue());
+};
 
 // ! Download the zip.
 function downloadZip() {
@@ -34,6 +32,25 @@ function downloadZip() {
     // Download the Zip file.
     saveAs(content, "codeebox.zip");
   });
+
+  let codeeformat = `
+###HTML
+${$html.getValue()}
+###CSS
+${$css.getValue()}
+###JS
+${$js.getValue()}
+  `
+  var a = document.createElement('a');
+  a.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(codeeformat));
+  a.setAttribute('download', 'project.codee');
+
+  a.style.display = 'none';
+  document.body.appendChild(a);
+
+  a.click();
+
+  document.body.removeChild(a);
 }
 
 export default downloadZip;

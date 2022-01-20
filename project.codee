@@ -1,0 +1,8 @@
+###HTML
+<h1>P</h1>
+###CSS
+body {
+    color:red
+}
+###JS
+console.log('');
