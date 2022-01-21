@@ -17,14 +17,16 @@
     <div id="up">
       <div class="fa-brands fa-node-js" data-tooltip="Import" id="skypack">
       </div>
-      <div class="fa-solid fa-arrow-down" data-tooltip="Download" id="download">
+      <div class="fa-solid fa-circle-down" data-tooltip="Download project" id="download">
       </div>
       <div class="fa-solid fa-search" data-tooltip="Preview" id="preview">
       </div>
-      <div class="fa-solid fa-arrow-up" data-tooltip="Import" id="import">
+      <div class="fa-solid fa-upload" data-tooltip="Import" id="import">
       </div>
     </div>
     <div id="down">
+      <div class="fa-solid fa-file-export" data-tooltip="Export" id="export">
+      </div>
       <div class="fa-solid fa-play" data-tooltip="Run" id="run">
       </div>
       <div class="fa-solid fa-copy" data-tooltip="Copy" id="copy" onclick="navigator.clipboard.writeText(window.location.href)">
@@ -154,7 +156,7 @@
       <div id="js" class="editor"></div>
     </div>
     <div id="f" class="split content">
-      <iframe id="prev" srcdoc="" frameborder="0"></iframe>
+      <iframe id="prev" sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"  srcdoc="" frameborder="0"></iframe>
     </div>
   </div>
   <!-- ! Scripts -->

@@ -1,6 +1,6 @@
 // ! Imports
 import {$js, update, updateURLCode, $html, $css} from './main'
-import downloadZip from './download'
+import {download, exportFile} from './download'
 import {$} from './main';
 import cssFormatMonaco from 'css-format-monaco';
 import * as monaco from 'monaco-editor'
@@ -11,6 +11,7 @@ const $skypackBtn  = $('#importmodule')
 const $runBtn      = $('#run');
 const $skypackInp  = $('#skyinp')
 const $downloadBtn = $("#download");
+const $exportBtn = $("#export");
 const $jsBtn       = $('#skypack');
 const $previewBtn  = $('#preview');
 const $importBtn  = $('#import');
@@ -59,10 +60,17 @@ $skypackBtn.addEventListener('click', () => {
 })
 
 $downloadBtn.addEventListener("click", () => {
-    downloadZip();
+    download();
     let oldColor = $downloadBtn.style.color;
     $downloadBtn.style.color = 'lightgreen';
     setTimeout((() => $downloadBtn.style.color = oldColor), 5000)
+})
+
+$exportBtn.addEventListener("click", () => {
+    exportFile();
+    let oldColor = $exportBtn.style.color;
+    $downloadBtn.style.color = 'lightgreen';
+    setTimeout((() => $exportBtn.style.color = oldColor), 5000)
 })
 
 $previewBtn.addEventListener('click', () => {

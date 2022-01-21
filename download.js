@@ -26,13 +26,15 @@ const generateZip = () => {
 };
 
 // ! Download the zip.
-function downloadZip() {
+function exportFile() {
   generateZip();
   zip.generateAsync({ type: "blob" }).then(function (content) {
     // Download the Zip file.
     saveAs(content, "codeebox.zip");
   });
+}
 
+function download() {
   let codeeformat = `
 ###HTML
 ${$html.getValue()}
@@ -53,4 +55,5 @@ ${$js.getValue()}
   document.body.removeChild(a);
 }
 
-export default downloadZip;
+
+export {download, exportFile};
