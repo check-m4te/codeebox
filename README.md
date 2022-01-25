@@ -4,18 +4,20 @@
 
 
 ### CodeeBox
-![image](https://user-images.githubusercontent.com/82386159/149657130-355b415c-3a02-4e9d-ae53-fd6bc49a56ec.png)
+![image](https://user-images.githubusercontent.com/82386159/151038506-89a09b60-d94f-445c-b956-453b82166083.png)
 A ~~simple~~ super cool web developing code playground 😏
 https://codeebox.vercel.app
 
 ### Features:
 1. Instant change preview (You can disable it if you want)
 2. Saving without accounts or databases, everything's on the URL (Encoded)
-3. Resizable, fully customizable.
-4. Monaco editor! Taken right straight from VSCode source! (Has command palette, emmet, autocompletion, intellisense and formatting)
-5. Dark mode, light mode, 49 themes!
-6. Adaptive theme; sidebar, panels and gutters adapts to the theme you selected.
-7. Clean and beautiful UI.
+3. File format (for larger projects) `.codee`
+4. Resizable, fully customizable.
+5. Monaco editor! Taken right straight from VSCode source! (Has command palette, emmet, autocompletion, intellisense and formatting)
+6. Dark mode, light mode, 49 themes!
+7. Adaptive theme; sidebar, panels and gutters adapts to the theme you selected.
+8. Active repository.
+9. Clean and beautiful UI.
 
 ### Keybindings:
 F1 or Ctrl + Shift + P: open command palette.
