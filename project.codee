@@ -1,8 +1,40 @@
+
 ###HTML
-<h1>P</h1>
+<div id="container">
+    <button>Party?</button>
+</dih>
 ###CSS
+button {
+    background-color: #05f;
+    color: white;
+    border: none;
+    padding: .7em 1em;
+    font-size: 20px;
+    transition: background-color 100ms ease-in-out;
+}
+
+button:hover {
+    background-color: #04e;
+}
+
 body {
-    color:red
+    margin: 0;
+    padding: 0;
+}
+
+#container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
 }
 ###JS
-console.log('');
+import canvasconfetti from 'https://cdn.skypack.dev/canvas-confetti'
+const $ = sel => document.querySelector(sel)
+
+$('button').addEventListener('click', () => {
+    canvasconfetti();
+    $('button').innerText = $('button').innerText === 'Party?' ?        'Party!' : 'Party?'
+})
+  
