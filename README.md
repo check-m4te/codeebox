@@ -19,6 +19,8 @@ https://codeebox.vercel.app
 8. Active repository.
 9. Clean and beautiful UI.
 
+![image](https://github.com/L1ghtingBolt/codeebox/raw/main/favicon.png)
+
 ### Keybindings:
 F1 or Ctrl + Shift + P: open command palette.
 Other keybindings can be found in command palette.
