@@ -4,6 +4,8 @@ import {
   decode
 } from 'js-base64'
 
+import Split from 'split.js'
+
 // !MONACO
 import * as monaco from 'monaco-editor'
 import { emmetHTML, emmetJSX, emmetCSS } from 'emmet-monaco-es'
@@ -58,24 +60,49 @@ const $ = sel => document.querySelector(sel)
 const $$ = sel => document.querySelectorAll(sel)
 
 //. Split JS (resizing)
-Split(['#a', '#b'], {
+let sp1 = Split(['#a', '#b'], {
   gutterSize: 8,
+  minSize: 0,
+  onDragEnd: () => {
+    localStorage.setItem('sizes', JSON.stringify({
+    sp1: sp1.getSizes(),
+    sp2: sp2.getSizes(), 
+    sp3: sp3.getSizes()
+  }))
+  },
   cursor: 'col-resize'
 })
 
-Split(['#c', '#d'], {
+let sp2 = Split(['#c', '#d'], {
   direction: 'vertical',
   sizes: [50, 50],
+  minSize: 0,
+  onDragEnd: () => {
+    localStorage.setItem('sizes', JSON.stringify({
+    sp1: sp1.getSizes(),
+    sp2: sp2.getSizes(), 
+    sp3: sp3.getSizes()
+  }))
+  },
   gutterSize: 8,
   cursor: 'row-resize'
 })
 
-Split(['#e', '#f'], {
+let sp3 = Split(['#e', '#f'], {
   direction: 'vertical',
   sizes: [50, 50],
   gutterSize: 8,
+  minSize: 0,
+  onDragEnd: () => {
+    localStorage.setItem('sizes', JSON.stringify({
+    sp1: sp1.getSizes(),
+    sp2: sp2.getSizes(), 
+    sp3: sp3.getSizes()
+  }))
+  },
   cursor: 'row-resize'
 })
+
 
 
 // ! Create editors!
@@ -92,6 +119,15 @@ const $html = monaco.editor.create($('#html'), {
   language: 'html',
 });
 
+// * Set sizes:
+let splitSizes = JSON.parse(localStorage.getItem('sizes')) ?? {
+  sp1: sp1.getSizes(),
+  sp2: sp2.getSizes(), 
+  sp3: sp3.getSizes()
+}
+sp1.setSizes(splitSizes.sp1)
+sp2.setSizes(splitSizes.sp2)
+sp3.setSizes(splitSizes.sp3)
 
 // * Editor configurations.
 
@@ -182,8 +218,6 @@ function update() {
     updateURLCode($html.getValue(), $css.getValue(), $js.getValue());
   }
 }
-
-
 
 // ! EXPORTS
 export {

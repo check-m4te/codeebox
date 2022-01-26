@@ -20,6 +20,7 @@
     "monaco-editor": "^0.31.1",
     "postcss": "^8.4.5",
     "postcss-nested": "^5.0.6",
-    "shade-blend-color": "^1.0.0"
+    "shade-blend-color": "^1.0.0",
+    "split.js": "^1.6.5"
   }
 }
