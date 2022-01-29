@@ -10,20 +10,23 @@ const $ = sel => document.querySelector(sel)
 const $$ = sel => document.querySelectorAll(sel)
 
 //. IDS
+const $wrap          = $('#wrapenabled');
 const $settingsBtn   = $("#settings");
 const $themeInput    = $("#themeinp");
-const $fontInput     = $("#fonts");
 const $fontsizeInput = $("#fontsize");
 const $realtime      = $('#realtime');
 const $linenums      = $('#linenums');
-const $wrap          = $('#wrapenabled');
+const $saveurl       = $('#urlsave');
 const $minimap       = $('#minimap');
+const $fontInput     = $("#fonts");
+
 //. CLASSES
 const $sidebar       = $(".sidesidebar");
 //. BOOLEANS
 let realtimeUpdate   = true;
 let open             = false;
 let editors;
+let urlsave = false;
 //. OBJECTS
 let options          = {
   fontSize: 18,
@@ -58,6 +61,7 @@ const setup = () => {
   $linenums.checked = ontotrue(options.lineNumbers);
   $wrap.checked = ontotrue(options.wordWrap);
   $minimap.checked = options.minimap.enabled;
+  $saveurl.checked = JSON.parse(localStorage.getItem('saveurl'))
 }
 
 const updateSettings = () => {
@@ -153,6 +157,7 @@ const setMinimap = show => {
 if (!(localStorage.getItem('options') && localStorage.getItem('theme'))) {
   localStorage.setItem('options', JSON.stringify(options));
   localStorage.setItem('theme', 'Monokai');
+  localStorage.setItem('saveurl', false);
 }
 
 window.onload = () => {
@@ -218,8 +223,15 @@ $minimap.addEventListener('change', () => {
   setMinimap(minimap)
 })
 
+// ! URL Saving.
+$saveurl.addEventListener('change', () => {
+  urlsave = $saveurl.checked;
+  localStorage.setItem('saveurl', $saveurl.checked)
+})
+
 export {
   realtimeUpdate,
+  urlsave,
   setMonTheme,
   setLineNumbers,
 }
