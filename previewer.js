@@ -21,7 +21,7 @@ export const preview = (html, css, js) => {
       ${js}
     </script>
   `;
-    if (js.includes("import")) {
+    if ((js.includes('import \'') || js.includes('import \"') || js.includes('import \`')) && (js.includes('from') || js.includes('import('))) {
         newJS = `
         <script type="module">
         ${js}
