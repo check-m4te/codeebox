@@ -24,7 +24,7 @@ export const preview = (html, css, js) => {
     if (js.includes("import")) {
         newJS = `
         <script type="module">
-        ${$js.getValue()}
+        ${js}
         </script>
         `
     }
