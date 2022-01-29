@@ -3,7 +3,8 @@ import {$js, update, updateURLCode, $html, $css} from './main'
 import {download, exportFile} from './download'
 import {$} from './main';
 import cssFormatMonaco from 'css-format-monaco';
-import * as monaco from 'monaco-editor'
+import * as monaco from 'monaco-editor';
+import { preview } from './previewer';
 
 // ! Variables
 const $skypackBar  = $('.skypackbar')
@@ -27,14 +28,13 @@ function importData() {
               let r= ''
               console.log(f);
               let reader = new FileReader();
-                let o = reader.readAsText(f);
+                reader.readAsText(f);
                 reader.onload = function(f) {
-                    r = f.target.result.replace('###HTML\n', '###>><</CODEEBOX_SEPARATOR').replace('###CSS\n', '###>><</CODEEBOX_SEPARATOR').replace('###JS\n', '###>><</CODEEBOX_SEPARATOR').split('###>><</CODEEBOX_SEPARATOR');
+                    r = f.target.result.split('###>><</CODEEBOX_SEPARATOR');
                     $html.setValue(r[1]);
                     $css.setValue(r[2]);
                     $js.setValue(r[3]);
                 }
-               
           };
     input.click();
   }
@@ -74,8 +74,7 @@ $exportBtn.addEventListener("click", () => {
 })
 
 $previewBtn.addEventListener('click', () => {
-    console.log($('#prev'))
-    $('#prev').requestFullscreen();
+    preview($html.getValue(), $css.getValue(), $js.getValue())
 })
 
 $runBtn.addEventListener('click', () => {
@@ -83,19 +82,7 @@ $runBtn.addEventListener('click', () => {
 })
 
 $importBtn.addEventListener('click', () => {
-
     importData();
-
-    // fetch('project.codee')
-    // .then(response => response.text())
-    // .then(data => {
-    //     let code = data.toString();
-    //     code = code.split('###HTML\n').join('#####///').split('###CSS\n').join('#####///').split('###JS\n').join('#####///').split('#####///');
-    //     console.log(code)
-    //     $html.setValue(code[1]);
-    //     $css.setValue(code[2]);
-    //     $js.setValue(code[3]);
-    // });
 })
 
 

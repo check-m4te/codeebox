@@ -201,13 +201,12 @@ function update() {
       <style>
         ${$css.getValue()}
       </style>
-      
     </head>
     <body>
       ${$html.getValue()}
       ${newJS}
     </body>
-    
+
   </html>
 `
   $('iframe').setAttribute('srcdoc', htmlcomplete)

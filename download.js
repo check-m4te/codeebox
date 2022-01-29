@@ -35,12 +35,11 @@ function exportFile() {
 }
 
 function download() {
-  let codeeformat = `
-###HTML
+  let codeeformat = `###>><</CODEEBOX_SEPARATOR
 ${$html.getValue()}
-###CSS
+###>><</CODEEBOX_SEPARATOR
 ${$css.getValue()}
-###JS
+###>><</CODEEBOX_SEPARATOR
 ${$js.getValue()}
   `
   var a = document.createElement('a');
