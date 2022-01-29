@@ -266,31 +266,32 @@ iframe {
 
 /* .Sidebar Icons */
 
-.fa-brands, .fa-solid {
+#up {
+  margin-top: 7px;
+}
+
+.bx {
   width: 78px;
-  height: 78px;
+  height: 74px;
   margin: 0;
   padding: 0;
   display: flex;
   justify-content: center;
   align-items: center;
   transition: .1s;
-  font-size: 35px;
+  font-size: 50px;
   position: relative;
   align-self: flex-start;
 }
 
-.fa-brands:hover, .fa-solid:hover {
+.bx:hover {
   color: #999 !important;
-}
-
-#skypack {
-  font-size: 40px;
 }
 
 #down {
   margin-top: auto;
   align-self: flex-end;
+  margin-bottom: 7px;
 }
 
 /* .Tooltips */
