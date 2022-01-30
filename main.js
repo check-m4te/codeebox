@@ -155,24 +155,22 @@ function updateURLCode(html, css, js) {
   }
 }
 function getURLCode() {
-  if(urlsave) {
-    const codeBase64 = PARAMS.get('code');
-    let code, html, js, css = '';
-    if(codeBase64){
-      code = codeBase64.split('|_|');
-      html = decode(code[0]);
-      css = decode(code[1]);
-      js = decode(code[2]);
-    }
-    else {
-      html = localStorage.getItem('html');
-      css = localStorage.getItem('css');
-      js = localStorage.getItem('js');
-    }
-    $html.setValue(html);
-    $js.setValue(js);
-    $css.setValue(css);
+  const codeBase64 = PARAMS.get('code');
+  let code, html, js, css = '';
+  if(codeBase64){
+    code = codeBase64.split('|_|');
+    html = decode(code[0]);
+    css = decode(code[1]);
+    js = decode(code[2]);
   }
+  else {
+    html = localStorage.getItem('html');
+    css = localStorage.getItem('css');
+    js = localStorage.getItem('js');
+  }
+  $html.setValue(html);
+  $js.setValue(js);
+  $css.setValue(css);
 }
 getURLCode();
 //.First update, automatic.
@@ -202,13 +200,14 @@ function update() {
   <!DOCTYPE html>
   <html>
     <head>
-      <style>
-        ${$css.getValue()}
-      </style>
+      <title>Webpage.</title>
     </head>
     <body>
       ${$html.getValue()}
       ${newJS}
+      <style>
+        ${$css.getValue()}
+      </style>
     </body>
 
   </html>
