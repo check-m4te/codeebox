@@ -263,29 +263,43 @@ iframe {
   padding: 0;
 }
 
+@keyframes hop {
+  50% {
+    transform: translateY(-5px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
 /* .Sidebar Icons */
-.fa-solid, .fa-brands {
+.bx {
   width: 72px;
   height: 75px;
   margin: 0;
   padding: 0;
+  padding-top: 5px;
   display: flex;
   justify-content: center;
   align-items: center;
-  transition: .1s;
+  transition: opacity .1s;
   opacity: .7;
   font-size: 40px;
   position: relative;
   align-self: flex-start;
   color: #ddd;
+  box-sizing: border-box;
+  border-right: 3px solid transparent;
+  border-left: 3px solid transparent;
 }
 
-.fa-solid:hover, .fa-brands:hover {
+.bx:hover {
   opacity: 1;
+  animation: hop .2s forwards ease;
 }
 
 #skypack {
-  font-size: 38px;
+  font-size: 44px;
 }
 
 #down {

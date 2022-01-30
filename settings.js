@@ -180,8 +180,10 @@ $settingsBtn.addEventListener("click", () => {
     $sidebar.style.display = "inline-block";
     $settingsBtn.style.borderLeft = `3px solid ${lightTheme ? "#222" : "#ccc"}`
   }
-  else {$sidebar.style.display = "none"
-  $settingsBtn.style.borderLeft = `none`}
+  else {
+    $sidebar.style.display = "none"
+    $settingsBtn.style.borderLeft = `3px solid transparent`
+  }
   open = !open;
   
 });

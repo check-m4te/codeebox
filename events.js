@@ -51,7 +51,7 @@ $jsBtn.addEventListener('click', () => {
     }
     else{
         $skypackBar.style.display = "none";
-        $jsBtn.style.borderLeft = `none`;
+        $jsBtn.style.borderLeft = `3px solid transparent`;
     }
     sopen = !sopen
 })
