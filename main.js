@@ -61,7 +61,7 @@ const $$ = sel => document.querySelectorAll(sel)
 
 //. Split JS (resizing)
 let sp1 = Split(['#a', '#b'], {
-  gutterSize: 8,
+  gutterSize: 10,
   minSize: 0,
   onDragEnd: () => {
     localStorage.setItem('sizes', JSON.stringify({
@@ -84,7 +84,7 @@ let sp2 = Split(['#c', '#d'], {
     sp3: sp3.getSizes()
   }))
   },
-  gutterSize: 8,
+  gutterSize: 10,
   cursor: 'row-resize'
 })
 

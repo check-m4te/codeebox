@@ -107,10 +107,9 @@ iframe {
 .sidebar {
   height: 100vh;
   z-index: 1;
-  width: 78px;
+  width: 72px;
   display: flex;
   flex-direction: column;
-  box-shadow: 5px 5px 33px 5px rgba(0, 0, 0, 0.15);
   background-color: #444;
   margin: 0;
 }
@@ -266,22 +265,23 @@ iframe {
 
 /* .Sidebar Icons */
 .fa-solid, .fa-brands {
-  width: 78px;
-  height: 78px;
+  width: 72px;
+  height: 75px;
   margin: 0;
   padding: 0;
   display: flex;
   justify-content: center;
   align-items: center;
   transition: .1s;
-  font-size: 35px;
+  opacity: .7;
+  font-size: 40px;
   position: relative;
   align-self: flex-start;
   color: #ddd;
 }
 
 .fa-solid:hover, .fa-brands:hover {
-  color: #999 !important;
+  opacity: 1;
 }
 
 #skypack {

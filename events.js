@@ -5,6 +5,7 @@ import {$} from './main';
 import cssFormatMonaco from 'css-format-monaco';
 import * as monaco from 'monaco-editor';
 import { preview } from './previewer';
+import { lightTheme } from './settings';
 
 // ! Variables
 const $skypackBar  = $('.skypackbar')
@@ -41,17 +42,18 @@ function importData() {
 
 
 // * Open settings button
-let open = false
+let sopen = false
 $jsBtn.addEventListener('click', () => {
-    if(!open){
+    if(!sopen){
         $skypackBar.style.display = "block";
-        $jsBtn.style.borderLeft = `5px solid #0af`;
+        console.log(lightTheme)
+        $jsBtn.style.borderLeft = `3px solid ${lightTheme ? "#222" : "#ccc"}`;
     }
     else{
         $skypackBar.style.display = "none";
         $jsBtn.style.borderLeft = `none`;
     }
-    open = !open
+    sopen = !sopen
 })
 
 // ! Event listeners

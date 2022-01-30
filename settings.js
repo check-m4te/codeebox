@@ -35,7 +35,7 @@ let options          = {
     enabled:false,
   },
   wordWrap: "on",
-  lineNumbers: "off",
+  lineNumbers: false,
 }
 // * FUNCTIONS {
 
@@ -58,7 +58,7 @@ const setup = () => {
   $fontInput.selectedIndex = [...$fontInput.options].findIndex (option => option.text === options.fontFamily);
   $themeInput.selectedIndex = [...$themeInput.options].findIndex (option => option.text === localStorage.getItem('theme'));
   $fontsizeInput.value = options.fontSize.toString();
-  $linenums.checked = ontotrue(options.lineNumbers);
+  $linenums.checked = options.lineNumbers;
   $wrap.checked = ontotrue(options.wordWrap);
   $minimap.checked = options.minimap.enabled;
   $saveurl.checked = JSON.parse(localStorage.getItem('saveurl'))
@@ -77,6 +77,8 @@ const setFontSize = size => {
   updateSettings();
 }
 
+export let lightTheme = false
+
 //. Theme
 const setMonTheme = async p => {
   let accent,color, highlight, r, g, b, brightness;
@@ -93,6 +95,9 @@ const setMonTheme = async p => {
     b = parseInt(highlight[2]);
     brightness = ((r + g + b) / 3);
     if(brightness > 125) {
+      if(open) 
+        $settingsBtn.style.borderLeft = `3px solid #222`
+      lightTheme = true;
       accent = pSBC(-0.15, color)
       $$('label, select, option, a, .fa-solid, .fa-brands').forEach(e => {
         e.style.color = '#222'
@@ -106,6 +111,9 @@ const setMonTheme = async p => {
       })
     }
     else{
+      lightTheme = false
+      if(open) 
+        $settingsBtn.style.borderLeft = `3px solid #ccc`
       $$('label, select, option, a, .fa-solid, .fa-brands').forEach(e => {
         e.style.color = '#dedede'
       })
@@ -170,7 +178,7 @@ window.onload = () => {
 $settingsBtn.addEventListener("click", () => {
   if (!open) {
     $sidebar.style.display = "inline-block";
-    $settingsBtn.style.borderLeft = `5px solid #0af`
+    $settingsBtn.style.borderLeft = `3px solid ${lightTheme ? "#222" : "#ccc"}`
   }
   else {$sidebar.style.display = "none"
   $settingsBtn.style.borderLeft = `none`}
