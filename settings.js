@@ -99,7 +99,7 @@ const setMonTheme = async p => {
         $settingsBtn.style.borderLeft = `3px solid #222`
       lightTheme = true;
       accent = pSBC(-0.15, color)
-      $$('label, select, option, a, .fa-solid, .fa-brands').forEach(e => {
+      $$('label, select, option, a, .bx').forEach(e => {
         e.style.color = '#222'
       })
       $$('select, option').forEach(e => {
@@ -114,7 +114,7 @@ const setMonTheme = async p => {
       lightTheme = false
       if(open) 
         $settingsBtn.style.borderLeft = `3px solid #ccc`
-      $$('label, select, option, a, .fa-solid, .fa-brands').forEach(e => {
+      $$('label, select, option, a, .bx').forEach(e => {
         e.style.color = '#dedede'
       })
       $$('select, option').forEach(e => {
