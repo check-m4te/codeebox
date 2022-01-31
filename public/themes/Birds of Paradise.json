@@ -145,7 +145,7 @@
     "editor.foreground": "#E6E1C4",
     "editor.background": "#372725",
     "editor.selectionBackground": "#16120E",
-    "editor.lineHighlightBackground": "#1F1611",
+    "editor.lineHighlightBorder": "#fff1",
     "editorCursor.foreground": "#E6E1C4",
     "editorWhitespace.foreground": "#42302D"
   }

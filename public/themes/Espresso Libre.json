@@ -177,7 +177,7 @@
     "editor.foreground": "#BDAE9D",
     "editor.background": "#2A211C",
     "editor.selectionBackground": "#C3DCFF",
-    "editor.lineHighlightBackground": "#3A312C",
+    "editor.lineHighlightBorder": "#fff1",
     "editorCursor.foreground": "#889AFF",
     "editorWhitespace.foreground": "#BFBFBF"
   }

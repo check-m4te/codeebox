@@ -8,7 +8,7 @@ import Split from 'split.js'
 
 // !MONACO
 import * as monaco from 'monaco-editor'
-import { emmetHTML, emmetJSX, emmetCSS } from 'emmet-monaco-es'
+import { emmetHTML, emmetCSS } from 'emmet-monaco-es'
 import editorWorker from 'monaco-editor/esm/vs/editor/editor.worker?worker'
 import jsonWorker from 'monaco-editor/esm/vs/language/json/json.worker?worker'
 import cssWorker from 'monaco-editor/esm/vs/language/css/css.worker?worker'
@@ -42,12 +42,12 @@ let options = {
     enabled:false,
   },
   renderLineHighlight: "line",
-  renderLineHighlightOnlyWhenFocus:true,
+  renderLineHighlightOnlyWhenFocus:false,
   cursorSmoothCaretAnimation:true,
   cursorBlinking:'smooth',
 
   padding:{
-    top:25,
+    top:15,
   }
 }
 
@@ -56,6 +56,7 @@ import {
 } from './settings';
 
 //. $ funtion (one-line-jquery 😉)
+// TODO: INSTALL SpiralQuery
 const $ = sel => document.querySelector(sel)
 const $$ = sel => document.querySelectorAll(sel)
 

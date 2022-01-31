@@ -85,8 +85,8 @@ iframe {
   margin: 0;
   position: absolute;
   height: 48px;
-  bottom: 35px;
-  right: 35px;
+  bottom: 17px;
+  right: 14px;
   width: 48px;
 }
 
@@ -114,10 +114,9 @@ iframe {
   margin: 0;
 }
 
-.sidesidebar,
+.settingspanel,
 .skypackbar {
   height: 100vh;
-  opacity: 1;
   width: 400px;
   padding-top: 10px;
   background-color: #444;
@@ -126,16 +125,15 @@ iframe {
 
 /* * Settings menu */
 
-.sidesidebar div:hover {
+.settingspanel div:hover {
   background-color: #99999911;
-  
 }
 
-.sidesidebar div {
+.settingspanel div {
   padding: 10px;
 }
 
-.sidesidebar label {
+.settingspanel label {
   display: block;
   margin-bottom: 10px;
   margin-top: 10px;
@@ -278,12 +276,11 @@ iframe {
   height: 75px;
   margin: 0;
   padding: 0;
-  padding-top: 5px;
   display: flex;
   justify-content: center;
   align-items: center;
   transition: opacity .1s;
-  opacity: .7;
+  opacity: .5;
   font-size: 40px;
   position: relative;
   align-self: flex-start;

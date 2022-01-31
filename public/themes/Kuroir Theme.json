@@ -410,7 +410,7 @@
     "editor.foreground": "#363636",
     "editor.background": "#E8E9E8",
     "editor.selectionBackground": "#F5AA0091",
-    "editor.lineHighlightBackground": "#CBDC2F38",
+    "editor.lineHighlightBorder": "#0001",
     "editorCursor.foreground": "#202020",
     "editorWhitespace.foreground": "#0000004A",
     "editorIndentGuide.background": "#8F8F8F",

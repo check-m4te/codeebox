@@ -317,7 +317,7 @@
     "editor.foreground": "#F8F8F8",
     "editor.background": "#000000F7",
     "editor.selectionBackground": "#668CDB9C",
-    "editor.lineHighlightBackground": "#F2ECFF1F",
+
     "editorCursor.foreground": "#FFFFFF",
     "editorWhitespace.foreground": "#616D793D"
   }

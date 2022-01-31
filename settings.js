@@ -21,7 +21,7 @@ const $minimap       = $('#minimap');
 const $fontInput     = $("#fonts");
 
 //. CLASSES
-const $sidebar       = $(".sidesidebar");
+const $sidebar       = $(".settingspanel");
 //. BOOLEANS
 let realtimeUpdate   = true;
 let open             = false;
@@ -87,26 +87,26 @@ const setMonTheme = async p => {
   .then(data => {
     monaco.editor.defineTheme('theme', data);
     monaco.editor.setTheme('theme');
-    accent = pSBC(0.1, getComputedStyle($('.monaco-editor')).backgroundColor);
+    accent = pSBC(0.1, getComputedStyle($('.monaco-editor')).backgroundColor, "#88f");
     color = getComputedStyle($('.monaco-editor')).backgroundColor;
     highlight = color.replace('rgb(', '').replace(')','').split(',');
     r = parseInt(highlight[0]);
     g = parseInt(highlight[1]);
     b = parseInt(highlight[2]);
     brightness = ((r + g + b) / 3);
-    if(brightness > 125) {
+    if(brightness > 125 || p === "iPlastic") {
       if(open) 
         $settingsBtn.style.borderLeft = `3px solid #222`
       lightTheme = true;
-      accent = pSBC(-0.15, color)
+      accent = pSBC(-0.2, color, "#667f")
       $$('label, select, option, a, .bx').forEach(e => {
         e.style.color = '#222'
       })
       $$('select, option').forEach(e => {
-        e.style.backgroundColor = '#dedede'
+        e.style.backgroundColor = pSBC(-0.11, accent)
       })
       $$('input[type="number"], input[type="checkbox"]').forEach(e => {
-        e.style.backgroundColor = pSBC(-0.1, accent)
+        e.style.backgroundColor = pSBC(-0.11, accent)
         e.style.color = '#222'
       })
     }
@@ -127,8 +127,8 @@ const setMonTheme = async p => {
       })
     }
     $('.sidebar').style.backgroundColor = accent;
-    $('.sidesidebar').style.backgroundColor = accent;
-    $('.skypackbar').style.backgroundColor = accent;
+    $('.settingspanel').style.backgroundColor = pSBC(-0.03, accent);
+    $('.skypackbar').style.backgroundColor = pSBC(-0.03, accent);
     $$('.gutter').forEach(e=> e.style.backgroundColor = accent);
   })
   
