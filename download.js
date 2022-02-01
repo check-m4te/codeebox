@@ -1,14 +1,14 @@
 // ! imports
-import JSZip from "jszip";
-import { $js, $css, $html } from "./main";
-import { saveAs } from "file-saver";
+import JSZip from 'jszip';
+import {$js, $css, $html} from './main';
+import {saveAs} from 'file-saver';
 
 // ! Make the zip
-var zip = new JSZip();
+const zip = new JSZip();
 
 // * Generate the zip.
 const generateZip = () => {
-  let htmlFile = `
+  const htmlFile = `
 <!DOCTYPE html>
 <html>
     <head>
@@ -20,30 +20,31 @@ const generateZip = () => {
     </body>
 </html>
 `;
-  zip.file("style.css", $css.getValue());
-  zip.file("index.html", htmlFile);
-  zip.file("script.js", $js.getValue());
+  zip.file('style.css', $css.getValue());
+  zip.file('index.html', htmlFile);
+  zip.file('script.js', $js.getValue());
 };
 
 // ! Download the zip.
 function exportFile() {
   generateZip();
-  zip.generateAsync({ type: "blob" }).then(function (content) {
+  zip.generateAsync({type: 'blob'}).then(function(content) {
     // Download the Zip file.
-    saveAs(content, "codeebox.zip");
+    saveAs(content, 'codeebox.zip');
   });
 }
 
 function download() {
-  let codeeformat = `###>><</CODEEBOX_SEPARATOR
+  const codeeformat = `###>><</CODEEBOX_SEPARATOR
 ${$html.getValue()}
 ###>><</CODEEBOX_SEPARATOR
 ${$css.getValue()}
 ###>><</CODEEBOX_SEPARATOR
 ${$js.getValue()}
-  `
-  var a = document.createElement('a');
-  a.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(codeeformat));
+  `;
+  const a = document.createElement('a');
+  a.setAttribute('href', 'data:text/plain;charset=utf-8,' +
+      encodeURIComponent(codeeformat));
   a.setAttribute('download', 'project.codee');
 
   a.style.display = 'none';
