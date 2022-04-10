@@ -1,6 +1,5 @@
 # Known issues:
-1. ~~Cannot load custom themes using vercel~~ Solved
-2. ~~Cannot open command palette~~ Solved
+1. By default there's no theme, so you have to select one. Not really an issue but yea...
 
 
 ### CodeeBox
