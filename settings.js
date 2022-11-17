@@ -169,7 +169,7 @@ const setMinimap = (show) => {
 // * LOCAL STORAGE
 if (!(localStorage.getItem('options') && localStorage.getItem('theme'))) {
   localStorage.setItem('options', JSON.stringify(options));
-  localStorage.setItem('theme', 'Monokai');
+  localStorage.setItem('theme', 'krTheme');
   localStorage.setItem('saveurl', false);
 }
 
