@@ -3,7 +3,8 @@
 
 
 ### CodeeBox
-![image](https://user-images.githubusercontent.com/82386159/151038506-89a09b60-d94f-445c-b956-453b82166083.png)
+![image](https://github.com/check-m4te/codeebox/assets/132251469/77d9c702-eee5-4691-a19a-bc5eac715891)
+
 A simple client-based web developing code playground 😏
 https://codeebox.vercel.app
 
